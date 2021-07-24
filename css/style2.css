@@ -43,3 +43,7 @@ body {
 .logo a, .top-nav ul li a, .button span a {
     text-decoration: none;
 }
+
+.cp-text {
+    color: red;
+}
