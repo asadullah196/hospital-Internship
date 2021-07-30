@@ -1,4 +1,8 @@
 /*Extended CSS for the software*/
+label {
+  font-size: 18px;
+  color: #333;
+}
 
 /*student profile CSS*/
 body {

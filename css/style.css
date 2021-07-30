@@ -1034,9 +1034,8 @@ input[type="email"],
 
 .company_address p {
 	font-family: Arial, Helvetica, sans-serif;
-	padding    : 0.2em 0;
-	font-size  : 0.8125em;
-	color      : rgb(155, 155, 155);
+	font-size  : 20px;
+	color      : #333;
 	line-height: 1.5em;
 }
 

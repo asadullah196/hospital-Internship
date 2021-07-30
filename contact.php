@@ -32,6 +32,7 @@ if (isset($_POST['submit'])) {
 					<div class="col-xl-4">
 						<div class="company_address">
 							<h2>Hospital Address :</h2>
+							<br><br>
 							<p>Plot # 9/2, Avenue # 5,</p>
 							<p>Section # 6, Block # B,</p>
 							<p>Mirpur, Dhaka</p>
@@ -53,7 +54,7 @@ if (isset($_POST['submit'])) {
 									<span><input type="email" name="emailid" required="ture" value=""></span>
 								</div>
 								<div>
-									<span><label>MOBILE.NO</label></span>
+									<span><label>MOBILE NO</label></span>
 									<span><input type="text" name="mobileno" required="true" value=""></span>
 								</div>
 								<div>
