@@ -22,6 +22,9 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+
+	<?php include('template/header.php'); ?>
+
 	<br><br><br><br><br><br>
 	<!--start-wrap-->
 	<section>
@@ -73,13 +76,9 @@ if (isset($_POST['submit'])) {
 			</div>
 		</div>
 	</section>
-	<footer>
-		<div class="footer-copyright">
-			<?php
-				include('template/footer.php');
-			?>
-		</div>
-	</footer>
+
+	<?php include('template/footer.php'); ?>
+
 </body>
 
 </html>

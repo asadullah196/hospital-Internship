@@ -124,7 +124,8 @@ body {
 }
 
 .header {
-	background: url(../images/header-bg.png);
+	
+	background: #000c35;
 }
 
 .logo {

@@ -45,5 +45,88 @@ body {
 }
 
 .cp-text {
-    color: red;
+    color: #707eac;
+    font-size: 30px;
+    text-align: center;
+}
+
+/*Footer CSS */
+.footer-area {
+  padding-top: 30px;
+  background: #000c35;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.pb-75 {
+  padding-bottom: 75px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.footer-sing-up h2, .footer-left-info h2 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 35px;
+}
+
+.footer-sing-up h5, .footer-left-info h5 {
+  margin-bottom: 25px;  
+  font-size: 22px;
+}
+.footer-sing-up h5 {
+  color: #707eac;
+}
+
+.footer-left-info h5 {
+  color: #d1d2d6;
+}
+
+
+/*Button CSS */
+
+.footer-btn {
+  margin-top: 30px;
+}
+
+.footer-btn a {
+	background: #002bb7 none repeat scroll 0 0;
+	border-radius: 30px;
+	color: #fff;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1;
+	margin-bottom: 0;
+	padding: 20px 50px;
+	text-align: center;
+	text-transform: capitalize;
+	touch-action: manipulation;
+	transition: all 0.3s ease 0s;
+	vertical-align: middle;
+	white-space: nowrap;
+	border: 2px solid transparent;
+}
+
+.btn i {
+	margin-right: 2px;
+}
+
+.footer-btn a:hover {
+	border-color: #926bfa;
+	background: none;
+	color: #fff;
+}
+
+.btn-border {
+	background: transparent;
+	border: 2px solid #926bfa;
+	color: #ffffff;
+}
+
+
+.btn-border:hover {
+	background: #002bb7;
+	border-color: #002bb7;
+	color: #ffffff;
 }
