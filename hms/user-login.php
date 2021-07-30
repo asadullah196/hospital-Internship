@@ -33,7 +33,6 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,6 +52,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body class="login">
+
 	<div class="row">
 		<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="logo margin-top-30">
@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
 				</form>
 
 				<div class="copyright">
-					&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> HMS</span>. <span>All rights reserved</span>
+					&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> DCMS</span>. <span>All rights reserved</span>
 				</div>
 
 			</div>
