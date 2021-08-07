@@ -94,7 +94,7 @@ if (isset($_GET['cancel'])) {
 												<td><?php echo $row['doctorSpecialization']; ?></td>
 												<td><?php echo $row['consultancyFees']; ?></td>
 												<td><?php echo $row['appointmentDate']; ?> / <?php echo
-																							$row['appointmentTime']; ?>
+																								$row['appointmentTime']; ?>
 												</td>
 												<td><?php echo $row['postingDate']; ?></td>
 												<td>
