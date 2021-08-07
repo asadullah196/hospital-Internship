@@ -10,7 +10,7 @@ check_login();
 <html lang="en">
 
 <head>
-	<title>User | Dashboard</title>
+	<title> User | Dashboard </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -109,7 +109,7 @@ check_login();
 							<div class="col-sm-4">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
-										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
+										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i> </span>
 										<h2 class="StepTitle">Urine Test</h2>
 
 										<p class="links cl-effect-1">
@@ -123,7 +123,7 @@ check_login();
 							<div class="col-sm-4">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
-										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
+										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-adn fa-stack-1x fa-inverse"></i> </span>
 										<h2 class="StepTitle">Blood Test</h2>
 
 										<p class="cl-effect-1">
@@ -137,7 +137,7 @@ check_login();
 							<div class="col-sm-4">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
-										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-arrow-circle-up fa-stack-1x fa-inverse"></i> </span>
 										<h2 class="StepTitle"> Special Test </h2>
 
 										<p class="links cl-effect-1">
