@@ -57,17 +57,28 @@ check_login();
 					<!-- end: PAGE TITLE -->
 
                     <section class="paitent-report">
-					<?php
-						$sql = mysqli_query($con, "SELECT * FROM user_urin_test where user_urin_test.id=1");
-						$row = mysqli_fetch_array($sql);
-					?>
-
+						<?php
+							$sql = mysqli_query($con, "SELECT * FROM users where users.id=1");
+							$row = mysqli_fetch_array($sql);
+						?>
+					
                         <div class="paitent-detail report-css">
-                            <p>Name : <?php echo $row['user_name'];?></p>
-                            <p>Name : <?php echo $row['user_name'];?></p>
+                            <p>Patients ID : <?php echo $row['id'];?></p>
+                            <p>Full Name : <?php echo $row['fullName'];?></p>
+                            <p>Address : <?php echo $row['address'];?></p>
+                            <p>City : <?php echo $row['city'];?></p>
+                            <p>Gender : <?php echo $row['gender'];?></p>
+                            <p>Phone : <?php echo $row['phone'];?></p>
+                            <p>Email : <?php echo $row['email'];?></p>
                         </div>
+                    </section>
+                    <section>
+					<?php
+							$sql = mysqli_query($con, "SELECT * FROM user_urin_test where user_urin_test.id=1");
+							$row = mysqli_fetch_array($sql);
+						?>
                         <div class="report-detail">
-                            <h1>Asadullah Galib</h1>
+						<p>Patients ID : <?php echo $row['id'];?></p>
                         </div>
                     </section>
 					<!-- start: BASIC EXAMPLE -->
