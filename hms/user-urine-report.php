@@ -62,8 +62,9 @@ check_login();
 						$row = mysqli_fetch_array($sql);
 					?>
 
-                        <div class="paitent-detail">
-                            <h3>Name : <?php echo $row['user_name'];?></h3>
+                        <div class="paitent-detail report-css">
+                            <p><b>Name : <?php echo $row['user_name'];?></b></p>
+                            <p>Name : <?php echo $row['user_name'];?></p>
                         </div>
                         <div class="report-detail">
                             <h1>Asadullah Galib</h1>
