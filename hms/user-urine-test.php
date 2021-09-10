@@ -73,18 +73,41 @@ if (isset($_GET['cancel'])) {
 											<th>Id</th>
 											<th>Name</th>
 											<th>Phone</th>
+											<th>Status</th>
+											<th>Report</th>
 										</tr>
 									</thead>
 									<tbody>
 										<!-- Connect the erin table -->
 										<?php
-											$sql = mysqli_query($con, "SELECT * FROM user_urin_test");
+											$sql = mysqli_query($con, "SELECT * FROM user_urin_test where user_urin_test.id=1");
 											$row = mysqli_fetch_array($sql);
 										?>
 										<tr>
-											<th><?php echo $row['id']; ?></th>
-											<th><?php echo $row['user_name']; ?></th>
-											<th><?php echo $row['user_phone']; ?></th>
+											<td><?php echo $row['id']; ?></td>
+											<td><?php echo $row['user_name']; ?></td>
+											<td><?php echo $row['user_phone']; ?></td>
+
+											<td>
+												<?php 
+													if ($row['status'] == true){
+														echo Ready;
+													}
+													else {
+														echo Pending;
+													}
+												?>
+											</td>
+											<td>
+												<?php 
+													if ($row['status'] == true){
+														echo 'Check Here';
+													}
+													else {
+														echo 'Not Available';
+													}
+												?>
+											</td>
 										</tr>
 									</tbody>
 								</table>
