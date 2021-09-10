@@ -63,7 +63,7 @@ check_login();
 					?>
 
                         <div class="paitent-detail report-css">
-                            <p><b>Name : <?php echo $row['user_name'];?></b></p>
+                            <p>Name : <?php echo $row['user_name'];?></p>
                             <p>Name : <?php echo $row['user_name'];?></p>
                         </div>
                         <div class="report-detail">

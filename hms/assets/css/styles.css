@@ -11396,3 +11396,9 @@ td.small-width {
 [date-picker] .disabled.active, [date-picker] .disabled.now {
   color: #ffffff !important;
 }
+
+.paitent-detail.report-css p{
+  font-size: 24px;
+  color: #000;
+  padding-left: 20px;
+}
