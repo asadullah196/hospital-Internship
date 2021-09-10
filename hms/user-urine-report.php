@@ -63,13 +63,13 @@ check_login();
 						?>
 					
                         <div class="paitent-detail report-css">
-                            <p>Patients ID : <?php echo $row['id'];?></p>
-                            <p>Full Name : <?php echo $row['fullName'];?></p>
-                            <p>Address : <?php echo $row['address'];?></p>
-                            <p>City : <?php echo $row['city'];?></p>
-                            <p>Gender : <?php echo $row['gender'];?></p>
-                            <p>Phone : <?php echo $row['phone'];?></p>
-                            <p>Email : <?php echo $row['email'];?></p>
+                            <p>Patients ID&nbsp;: <?php echo $row['id'];?></p>
+                            <p>Full Name&nbsp;&nbsp;: <?php echo $row['fullName'];?></p>
+                            <p>Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['address'];?></p>
+                            <p>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['city'];?></p>
+                            <p>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['gender'];?></p>
+                            <p>Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['phone'];?></p>
+                            <p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['email'];?></p>
                         </div>
                     </section>
                     <section>
