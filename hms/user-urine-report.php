@@ -58,12 +58,12 @@ check_login();
 
                     <section class="paitent-report">
 					<?php
-						$sql = mysqli_query($con, "SELECT * FROM user_urin_test where user_urin_test.id=2");
+						$sql = mysqli_query($con, "SELECT * FROM user_urin_test where user_urin_test.id=1");
 						$row = mysqli_fetch_array($sql);
 					?>
 
                         <div class="paitent-detail">
-                            <h3>Name : <?php echo 'name';?></h3>
+                            <h3>Name : <?php echo $row['user_name'];?></h3>
                         </div>
                         <div class="report-detail">
                             <h1>Asadullah Galib</h1>
