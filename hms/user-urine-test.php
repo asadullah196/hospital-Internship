@@ -4,10 +4,12 @@ error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
+
 if (isset($_GET['cancel'])) {
 	mysqli_query($con, "update appointment set userStatus='0' where id = '" . $_GET['id'] . "'");
 	$_SESSION['msg'] = "Your appointment canceled !!";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,67 +63,35 @@ if (isset($_GET['cancel'])) {
 					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
 
-
 						<div class="row">
 							<div class="col-md-12">
 
-							
-
-								<table class="table table-hover" id="sample-table-1">
+								<!-- Code for Urin Test -->
+								<table class="parent-table table">
 									<thead>
 										<tr>
-											<th class="hidden-xs">Doctor Name</th>
-											<th>Specialization</th>
-											<th>Email Address</th>
-											<th>Phone Number</th>
-											<th>Appointment Date / Time </th>
-											<th>Appointment Creation Date </th>
-
+											<th>Id</th>
+											<th>Name</th>
+											<th>Phone</th>
 										</tr>
 									</thead>
 									<tbody>
+										<!-- Connect the erin table -->
 										<?php
-										$sql = mysqli_query($con, "select doctors.doctorName as docname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId where appointment.userId='" . $_SESSION['id'] . "'");
-										$cnt = 1;
-										while ($row = mysqli_fetch_array($sql)) {
+											$sql = mysqli_query($con, "SELECT * FROM user_urin_test");
+											$row = mysqli_fetch_array($sql);
 										?>
-
-											<tr>
-												
-												<td class="hidden-xs"><?php echo $row['docname']; ?></td>
-												<td><?php echo $row['doctorSpecialization']; ?></td>
-												<td><?php echo $row['consultancyFees']; ?></td>
-												<td><?php echo $row['appointmentDate']; ?> / <?php echo
-																								$row['appointmentTime']; ?>
-												</td>
-												<td><?php echo $row['postingDate']; ?></td>
-												<td>
-													<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
-														echo "Active";
-													}
-													if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) {
-														echo "Cancel by You";
-													}
-
-													if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0)) {
-														echo "Cancel by Doctor";
-													}
-
-
-
-													?></td>
-											</tr>
-
-										<?php
-											$cnt = $cnt + 1;
-										} ?>
-
-
+										<tr>
+											<th><?php echo $row['id']; ?></th>
+											<th><?php echo $row['user_name']; ?></th>
+											<th><?php echo $row['user_phone']; ?></th>
+										</tr>
 									</tbody>
 								</table>
-							</div>
 
-							<center><h2>Hello test </h2></center>
+								
+
+							<h2><br><br>Hello test </h2>
 
 							<div class="col-md-12">
 
