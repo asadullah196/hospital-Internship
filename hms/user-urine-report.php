@@ -55,6 +55,15 @@ check_login();
 						</div>
 					</section>
 					<!-- end: PAGE TITLE -->
+
+                    <section class="paitent-report">
+                        <div class="paitent-detail">
+                            <h3>Name : <?php echo 'name';?></h3>
+                        </div>
+                        <div class="report-detail">
+                            <h1>Asadullah Galib</h1>
+                        </div>
+                    </section>
 					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
 

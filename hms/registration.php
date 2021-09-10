@@ -6,9 +6,10 @@ $fname=$_POST['full_name'];
 $address=$_POST['address'];
 $city=$_POST['city'];
 $gender=$_POST['gender'];
+$phone=$_POST['phone'];
 $email=$_POST['email'];
 $password=md5($_POST['password']);
-$query=mysqli_query($con,"insert into users(fullname,address,city,gender,email,password) values('$fname','$address','$city','$gender','$email','$password')");
+$query=mysqli_query($con,"insert into users(fullname,address,city,gender,phone,email,password) values('$fname','$address','$city','$gender','$phone','$email','$password')");
 if($query)
 {
 	echo "<script>alert('Successfully Registered. You can login now');</script>";
@@ -76,6 +77,9 @@ return true;
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="city" placeholder="City" required>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="phone" placeholder="Phone" required>
 							</div>
 							<div class="form-group">
 								<label class="block">
