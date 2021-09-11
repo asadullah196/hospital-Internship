@@ -134,10 +134,10 @@ if (isset($_POST['submit'])) {
                                 </table>
 
                             </div>
-                        <div class="download-button">
-                            <button><a href="#"> Download </a></button>
-                            <button><a href="#"> Print </a></button>
-                        </div>
+                            <div class="download-button">
+                                <button><a href="#"> Download </a></button>
+                                <button><a href="#"> Print </a></button>
+                            </div>
                         </div>
                     </div>
                 </div>
