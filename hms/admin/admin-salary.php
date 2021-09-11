@@ -74,22 +74,66 @@ if (isset($_POST['submit'])) {
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
                             <div class="col-md-12">
-                            <table class="">
+
+                                <?php
+                                // Database Connection Block
+                                $sql = mysqli_query($con, "select * from users");
+								$num = mysqli_num_rows($sql);
+                                
+                                
+
+                                // Salary Calculation Block
+                                    $base_salary = 12000;
+
+                                    $paitents_number = $num;
+                                    $paitents_earning = $num * 120;
+
+                                    $total_salary =  $report_earning + $paitents_earning + $base_salary;
+                                ?>
+
+                                <h2>Salary Details</h2><br>
+                                <table class="parent-table table table-bordered admin-salary" width="1">
                                     <thead>
                                         <tr>
-
+                                            <th>Name</th>
+                                            <th>Quantity</th>
+                                            <th>Rate (BDT)</th>
+                                            <th>Total (BDT)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-
-                                            </td>
+                                            <td>Base Salary</td>
+                                            <td>1</td>
+                                            <td><?php echo $paitents_number; ?></td>
+                                            <td><?php echo $base_salary; ?></td>
+                                        </tr>                                    
+                                        <tr>
+                                            <td>Total Patients</td>
+                                            <td><?php echo $report_number; ?></td>
+                                            <td>120</td>
+                                            <td><?php echo $paitents_earning; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Report</td>
+                                            <td><?php echo $report_number; ?></td>
+                                            <td>75</td>
+                                            <td><?php echo $report_earning; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Total Payable</td>
+                                            <td>= <?php echo $total_salary; ?> BDT</td>
                                         </tr>
                                     </tbody>
                                 </table>
 
                             </div>
+                        <div class="download-button">
+                            <button><a href="#"> Download </a></button>
+                            <button><a href="#"> Print </a></button>
+                        </div>
                         </div>
                     </div>
                 </div>
