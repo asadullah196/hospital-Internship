@@ -56,31 +56,34 @@ check_login();
 					</section>
 					<!-- end: PAGE TITLE -->
 
-                    <section class="paitent-report">
+					<section class="paitent-report">
 						<?php
-							$sql = mysqli_query($con, "SELECT * FROM users where users.id=1");
-							$row = mysqli_fetch_array($sql);
+						$sql = mysqli_query($con, "SELECT * FROM users where id='".$_SESSION['id']."'");
+						$row = mysqli_fetch_array($sql);
 						?>
-					
-                        <div class="paitent-detail report-css">
-                            <p>Patients ID&nbsp;: <?php echo $row['id'];?></p>
-                            <p>Full Name&nbsp;&nbsp;: <?php echo $row['fullName'];?></p>
-                            <p>Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['address'];?></p>
-                            <p>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['city'];?></p>
-                            <p>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['gender'];?></p>
-                            <p>Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['phone'];?></p>
-                            <p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['email'];?></p>
-                        </div>
-                    </section>
-                    <section>
-					<?php
-							$sql = mysqli_query($con, "SELECT * FROM user_urin_test where user_urin_test.id=1");
-							$row = mysqli_fetch_array($sql);
+						
+
+						<br>
+						<div class="paitent-detail report-css">
+							<p>Patients ID&nbsp;: <?php echo $row['id']; ?></p>
+							<p>Full Name&nbsp;&nbsp;: <?php echo $row['fullName']; ?></p>
+							<p>Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['address']; ?></p>
+							<p>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['city']; ?></p>
+							<p>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['gender']; ?></p>
+							<p>Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['phone']; ?></p>
+							<p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['email']; ?></p>
+						</div>
+						<br>
+					</section>
+					<section>
+						<?php
+						$sql = mysqli_query($con, "SELECT * FROM users where users.id=2");
+						$row = mysqli_fetch_array($sql);
 						?>
-                        <div class="report-detail">
-						<p>Patients ID : <?php echo $row['id'];?></p>
-                        </div>
-                    </section>
+						<div class="report-detail">
+							<p>Patients ID : <?php echo $row['id']; ?></p>
+						</div>
+					</section>
 					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
 
@@ -128,8 +131,8 @@ check_login();
 													</p>
 
 												<?php } else {
-														echo 'Not Available';
-													} ?>
+													echo 'Not Available';
+												} ?>
 											</td>
 										</tr>
 									</tbody>
