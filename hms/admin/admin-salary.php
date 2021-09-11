@@ -74,7 +74,20 @@ if (isset($_POST['submit'])) {
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
                             <div class="col-md-12">
-                               
+                            <table class="">
+                                    <thead>
+                                        <tr>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                             </div>
                         </div>
