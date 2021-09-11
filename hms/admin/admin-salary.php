@@ -39,6 +39,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
     <!-- html2pdf converter -->
+    <script src="pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 </head>
@@ -67,7 +68,7 @@ if (isset($_POST['submit'])) {
                     <div class="container-fluid container-fullw bg-white">
 
                         <div class="row">
-                            <div class="col-md-12" id="pdf">
+                            <div class="col-md-12" id="invoice">
 
                                 <?php
                                 // Database Connection Block
@@ -129,9 +130,6 @@ if (isset($_POST['submit'])) {
 
                             </div>
                             <div class="col-md-12 text-right mb-3">
-
-                            <button onclick="printDiv('pdf','Title')">print div</button>
-                            <button onclick="saveDiv('pdf','Title')">save div as pdf</button>
 
                                 <button class="btn btn-primary" id="download"> Download PDF</button>
                                 <button class="btn btn-primary" id="download"> Print</button>
