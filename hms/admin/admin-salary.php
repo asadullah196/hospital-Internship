@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-    <title>Admin | Edit Doctor Details</title>
+    <title>Admin Salary Details</title>
 
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -38,7 +38,8 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-
+    <!-- html2pdf converter -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 </head>
 
@@ -57,42 +58,35 @@ if (isset($_POST['submit'])) {
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Admin | Edit Doctor Details</h1>
+                                <h1 class="mainTitle">Admin Salary </h1>
                             </div>
-                            <ol class="breadcrumb">
-                                <li>
-                                    <span>Admin</span>
-                                </li>
-                                <li class="active">
-                                    <span>Edit Doctor Details</span>
-                                </li>
-                            </ol>
                         </div>
                     </section>
                     <!-- end: PAGE TITLE -->
                     <!-- start: BASIC EXAMPLE -->
                     <div class="container-fluid container-fullw bg-white">
+
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" id="invoice">
 
                                 <?php
                                 // Database Connection Block
                                 $sql = mysqli_query($con, "select * from users");
-								$num = mysqli_num_rows($sql);
-                                
+                                $num = mysqli_num_rows($sql);
+
                                 $report_sql = mysqli_query($con, "select * from user_urin_test");
-								$report_num = mysqli_num_rows($report_sql);
+                                $report_num = mysqli_num_rows($report_sql);
 
                                 // Salary Calculation Block
-                                    $base_salary = 12000;
+                                $base_salary = 12000;
 
-                                    $paitents_number = $num;
-                                    $paitents_earning = $num * 120;
+                                $paitents_number = $num;
+                                $paitents_earning = $num * 120;
 
-                                    $report_number = $report_num;
-                                    $report_earning = $report_num * 75;
+                                $report_number = $report_num;
+                                $report_earning = $report_num * 75;
 
-                                    $total_salary =  $report_earning + $paitents_earning + $base_salary;
+                                $total_salary =  $report_earning + $paitents_earning + $base_salary;
                                 ?>
 
                                 <h2>Salary Details</h2><br>
@@ -111,7 +105,7 @@ if (isset($_POST['submit'])) {
                                             <td>1</td>
                                             <td><?php echo $paitents_number; ?></td>
                                             <td><?php echo $base_salary; ?></td>
-                                        </tr>                                    
+                                        </tr>
                                         <tr>
                                             <td>Total Patients</td>
                                             <td><?php echo $report_number; ?></td>
@@ -134,9 +128,9 @@ if (isset($_POST['submit'])) {
                                 </table>
 
                             </div>
-                            <div class="download-button">
-                                <button><a href="#"> Download </a></button>
-                                <button><a href="#"> Print </a></button>
+                            <div class="col-md-12 text-right mb-3">
+                                <button class="btn btn-primary" id="download"> Download PDF</button>
+                                <button class="btn btn-primary" id="download"> Print PDF</button>
                             </div>
                         </div>
                     </div>
