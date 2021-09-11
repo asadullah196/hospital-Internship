@@ -80,7 +80,8 @@ if (isset($_POST['submit'])) {
                                 $sql = mysqli_query($con, "select * from users");
 								$num = mysqli_num_rows($sql);
                                 
-                                
+                                $report_sql = mysqli_query($con, "select * from user_urin_test");
+								$report_num = mysqli_num_rows($report_sql);
 
                                 // Salary Calculation Block
                                     $base_salary = 12000;
