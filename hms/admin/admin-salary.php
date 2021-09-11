@@ -88,6 +88,9 @@ if (isset($_POST['submit'])) {
                                     $paitents_number = $num;
                                     $paitents_earning = $num * 120;
 
+                                    $report_number = $report_num;
+                                    $report_earning = $report_num * 75;
+
                                     $total_salary =  $report_earning + $paitents_earning + $base_salary;
                                 ?>
 
