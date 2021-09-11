@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
                     <div class="container-fluid container-fullw bg-white">
 
                         <div class="row">
-                            <div class="col-md-12" id="invoice">
+                            <div class="col-md-12" id="pdf">
 
                                 <?php
                                 // Database Connection Block
@@ -129,8 +129,12 @@ if (isset($_POST['submit'])) {
 
                             </div>
                             <div class="col-md-12 text-right mb-3">
+
+                            <button onclick="printDiv('pdf','Title')">print div</button>
+                            <button onclick="saveDiv('pdf','Title')">save div as pdf</button>
+
                                 <button class="btn btn-primary" id="download"> Download PDF</button>
-                                <button class="btn btn-primary" id="download"> Print PDF</button>
+                                <button class="btn btn-primary" id="download"> Print</button>
                             </div>
                         </div>
                     </div>
