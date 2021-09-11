@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
             <!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
 
             <!-- end: TOP NAVBAR -->
-            <div class="main-content">
+            <div class="main-content" id="">
                 <div class="wrap-content container" id="container">
                     <!-- start: PAGE TITLE -->
                     <section id="page-title">
@@ -131,8 +131,8 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="col-md-12 text-right mb-3">
 
-                                <button class="btn btn-primary" id="download"> Download PDF</button>
-                                <button class="btn btn-primary" id="download"> Print</button>
+                                <button class="btn btn-primary" id="download"> Download</button>
+                                <button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
                             </div>
                         </div>
                     </div>
