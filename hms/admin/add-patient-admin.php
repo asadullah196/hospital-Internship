@@ -15,8 +15,7 @@ if (isset($_POST['submit'])) {
 	$password = md5($_POST['password']);
 	$query = mysqli_query($con, "insert into users(fullname,address,city,gender,phone,email,password) values('$fname','$address','$city','$gender','$phone','$email','$password')");
 	if ($query) {
-		echo "<script>alert('Successfully Registered. You can login now');</script>";
-		//header('location:user-login.php');
+		echo "<script>alert('Patient Added Successfully to the System!');</script>";
 	}
 }
 ?>
