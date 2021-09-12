@@ -76,6 +76,18 @@
 							</a>
 						</li>
 
+						<li>
+							<a href="patient-search.php">
+								<span class="title"> Patient Search </span>
+							</a>
+						</li>
+
+						<li>
+							<a href="patient-search.php">
+								<span class="title"> Add Report </span>
+							</a>
+						</li>
+
 					</ul>
 				</li>
 				<li>
