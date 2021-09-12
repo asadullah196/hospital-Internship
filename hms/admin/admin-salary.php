@@ -131,7 +131,6 @@ if (isset($_POST['submit'])) {
 
                             </div>
                             <div class="col-md-12 text-right mb-3">
-
                                 <button class="btn btn-primary" id="download"> Download</button>
                                 <button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
                             </div>
