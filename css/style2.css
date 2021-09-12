@@ -10,6 +10,7 @@ body {
     margin: 0;
     font-family: 'Lato', sans-serif;
     color: #000;
+    font-size: 20px !important;
   }
   
   .student-profile .card {
