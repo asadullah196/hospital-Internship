@@ -65,7 +65,7 @@
 					<ul class="sub-menu">
 
 						<li>
-							<a href="manage-users.php">
+							<a href="add-patient-admin.php">
 								<span class="title"> Add Patient </span>
 							</a>
 						</li>
