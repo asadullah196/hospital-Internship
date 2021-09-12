@@ -88,7 +88,7 @@ check_login();
 										<tbody>
 											<?php
 
-											$sql = mysqli_query($con, "select * from tblpatient where PatientName like '%$sdata%'|| PatientContno like '%$sdata%'");
+											$sql = mysqli_query($con, "select * from users where fullName like '%$sdata%'|| phone like '%$sdata%'");
 											$num = mysqli_num_rows($sql);
 											if ($num > 0) {
 												$cnt = 1;
@@ -96,8 +96,8 @@ check_login();
 											?>
 													<tr>
 														<td class="center"><?php echo $cnt; ?>.</td>
-														<td class="hidden-xs"><?php echo $row['PatientName']; ?></td>
-														<td><?php echo $row['PatientContno']; ?></td>
+														<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
+														<td><?php echo $row['phone']; ?></td>
 														<td><?php echo $row['PatientGender']; ?></td>
 														<td><?php echo $row['CreationDate']; ?></td>
 														<td><?php echo $row['UpdationDate']; ?>
