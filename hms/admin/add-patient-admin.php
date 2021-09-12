@@ -6,25 +6,27 @@ include('include/checklogin.php');
 check_login();
 
 if (isset($_POST['submit'])) {
-	$docspecialization = $_POST['Doctorspecialization'];
-	$docname = $_POST['docname'];
-	$docaddress = $_POST['clinicaddress'];
-	$docfees = $_POST['docfees'];
-	$doccontactno = $_POST['doccontact'];
-	$docemail = $_POST['docemail'];
-	$password = md5($_POST['npass']);
-	$sql = mysqli_query($con, "insert into doctors(specilization,doctorName,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$docemail','$password')");
-	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
-		echo "<script>window.location.href ='manage-doctors.php'</script>";
+	$fname = $_POST['full_name'];
+	$address = $_POST['address'];
+	$city = $_POST['city'];
+	$gender = $_POST['gender'];
+	$phone = $_POST['phone'];
+	$email = $_POST['email'];
+	$password = md5($_POST['password']);
+	$query = mysqli_query($con, "insert into users(fullname,address,city,gender,phone,email,password) values('$fname','$address','$city','$gender','$phone','$email','$password')");
+	if ($query) {
+		echo "<script>alert('Successfully Registered. You can login now');</script>";
+		//header('location:user-login.php');
 	}
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin | Add Doctor</title>
+	<title>Admin | Add Patients</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
