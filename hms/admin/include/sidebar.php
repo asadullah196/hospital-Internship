@@ -205,10 +205,10 @@
 					<a href="admin-salary.php">
 						<div class="item-content">
 							<div class="item-media">
-								<i class="fas fa-search-dollar"></i>
+								<i class="fa fa-usd fa-lg"></i>								
 							</div>
 							<div class="item-inner">
-								<span class="title"> Check Salary </span>
+								<span class="title">&nbsp;&nbsp;&nbsp;Check Salary </span>
 							</div>
 						</div>
 					</a>
