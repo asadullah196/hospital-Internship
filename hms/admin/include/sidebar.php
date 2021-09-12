@@ -191,7 +191,7 @@
 								<i class="ti-files"></i>
 							</div>
 							<div class="item-inner">
-								<span class="title"> Reports </span><i class="icon-arrow"></i>
+								<span class="title"> Dead -- Reports </span><i class="icon-arrow"></i>
 							</div>
 						</div>
 					</a>
@@ -214,7 +214,7 @@
 								<i class="ti-search"></i>
 							</div>
 							<div class="item-inner">
-								<span class="title"> Patient Search </span>
+								<span class="title"> Dead -- Patient Search </span>
 							</div>
 						</div>
 					</a>
