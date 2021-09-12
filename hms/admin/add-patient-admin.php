@@ -83,14 +83,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Doctor</h1>
+								<h1 class="mainTitle">Admin | Add Patient </h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Doctor</span>
+									<span>Add Patient</span>
 								</li>
 							</ol>
 						</div>
@@ -108,22 +108,22 @@ if (isset($_POST['submit'])) {
 											<form name="registration" id="registration" method="post" onSubmit="return valid();">
 												<fieldset>
 													<legend>
-														Sign Up
+														Add New Patient
 													</legend>
 													<p>
-														Enter your personal details below:
+														Enter personal details below:
 													</p>
 													<div class="form-group">
-														<input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
+														Full Name <input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
 													</div>
 													<div class="form-group">
-														<input type="text" class="form-control" name="address" placeholder="Address" required>
+														Address <input type="text" class="form-control" name="address" placeholder="Address" required>
 													</div>
 													<div class="form-group">
-														<input type="text" class="form-control" name="city" placeholder="City" required>
+														City <input type="text" class="form-control" name="city" placeholder="City" required>
 													</div>
 													<div class="form-group">
-														<input type="text" class="form-control" name="phone" placeholder="Phone" required>
+														Phone <input type="text" class="form-control" name="phone" placeholder="Phone" required>
 													</div>
 													<div class="form-group">
 														<label class="block">
@@ -141,41 +141,28 @@ if (isset($_POST['submit'])) {
 														</div>
 													</div>
 													<p>
-														Enter your account details below:
+														Enter your login details below:
 													</p>
 													<div class="form-group">
-														<span class="input-icon">
+														Email <span class="input-icon">
 															<input type="email" class="form-control" name="email" id="email" onBlur="userAvailability()" placeholder="Email" required>
 															<i class="fa fa-envelope"></i> </span>
 														<span id="user-availability-status1" style="font-size:12px;"></span>
 													</div>
 													<div class="form-group">
-														<span class="input-icon">
+														Password <span class="input-icon">
 															<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
 															<i class="fa fa-lock"></i> </span>
 													</div>
 													<div class="form-group">
-														<span class="input-icon">
+														Password Again <span class="input-icon">
 															<input type="password" class="form-control" id="password_again" name="password_again" placeholder="Password Again" required>
 															<i class="fa fa-lock"></i> </span>
 													</div>
-													<div class="form-group">
-														<div class="checkbox clip-check check-primary">
-															<input type="checkbox" id="agree" value="agree" checked="true" readonly=" true">
-															<label for="agree">
-																I agree
-															</label>
-														</div>
-													</div>
+
 													<div class="form-actions">
-														<p>
-															Already have an account?
-															<a href="user-login.php">
-																Log-in
-															</a>
-														</p>
 														<button type="submit" class="btn btn-primary pull-right" id="submit" name="submit">
-															Submit <i class="fa fa-arrow-circle-right"></i>
+															Save <i class="fa fa-arrow-circle-right"></i>
 														</button>
 													</div>
 												</fieldset>
