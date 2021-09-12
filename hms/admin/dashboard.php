@@ -122,7 +122,10 @@ check_login();
 							<div class="col-sm-4">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
-										<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+										<span class="fa-stack fa-2x">
+											<i class="fa fa-square fa-stack-2x text-primary"></i> 
+											<i class="fa fa-search-minus fa-stack-1x fa-inverse"></i> 
+										</span>
 										<h2 class="StepTitle"> Pending Report</h2>
 
 										<p class="links cl-effect-1">
@@ -164,7 +167,10 @@ check_login();
 							<div class="col-sm-4">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
-										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-bell fa-stack-1x fa-inverse"></i> </span>
+										<span class="fa-stack fa-2x">
+											<i class="fa fa-square fa-stack-2x text-primary"></i> 
+											<i class="fa fa-bell fa-stack-1x fa-inverse"></i> 
+										</span>
 										<h2 class="StepTitle">Salary Update</h2>
 
 										<p class="links cl-effect-1">
