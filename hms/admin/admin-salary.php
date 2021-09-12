@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
                                 // Database Connection Block
                                 $sql = mysqli_query($con, "select * from users");
                                 $num = mysqli_num_rows($sql);
-
+                                
                                 $report_sql = mysqli_query($con, "select * from user_urin_test");
                                 $report_num = mysqli_num_rows($report_sql);
 
@@ -82,12 +82,13 @@ if (isset($_POST['submit'])) {
                                 $base_salary = 12000;
 
                                 $paitents_number = $num;
-                                $paitents_earning = $num * 120;
+                                $paitents_earning = $paitents_number * 120;
 
                                 $report_number = $report_num;
-                                $report_earning = $report_num * 75;
+                                $report_earning = $report_number * 75;
 
                                 $total_salary =  $report_earning + $paitents_earning + $base_salary;
+                                
                                 ?>
 
                                 <h2>Salary Details</h2><br>
