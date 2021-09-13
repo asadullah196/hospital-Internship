@@ -7,9 +7,11 @@ check_login();
 
 
 if (isset($_GET['del'])) {
-	mysqli_query($con, "delete from doctors where id = '" . $_GET['id'] . "'");
+	mysqli_query($con, "delete from tblcontactus where id = '" . $_GET['id'] . "'");
 	$_SESSION['msg'] = "data deleted !!";
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +69,9 @@ if (isset($_GET['del'])) {
 						<div class="row">
 							<div class="col-md-12">
 								<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Read Queries</span></h5>
+								<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
+									<?php echo htmlentities($_SESSION['msg'] = ""); ?>
+								</p>
 								<table class="table table-hover" id="sample-table-1">
 									<thead>
 										<tr>
@@ -101,7 +106,9 @@ if (isset($_GET['del'])) {
 												</td>
 												<td>
 													<div class="visible-md visible-lg hidden-sm hidden-xs">
-														<a href="query-details.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="fa fa-file"></i></a>
+														<a href="read-query.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove">
+															<i class="fa fa-times fa fa-white"></i>
+														</a>
 													</div>
 												</td>
 											</tr>
