@@ -78,11 +78,10 @@ check_login();
 											<tr>
 												<th class="center">#</th>
 												<th>Patient Name</th>
-												<th>Patient Contact Number</th>
-												<th>Patient Gender </th>
+												<th>Contact Number</th>
 												<th>Creation Date </th>
-												<th>Updation Date </th>
 												<th>Action</th>
+												<th>Add Report</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -98,14 +97,16 @@ check_login();
 														<td class="center"><?php echo $cnt; ?>.</td>
 														<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
 														<td><?php echo $row['phone']; ?></td>
-														<td><?php echo $row['PatientGender']; ?></td>
 														<td><?php echo $row['CreationDate']; ?></td>
-														<td><?php echo $row['UpdationDate']; ?>
 														</td>
 														<td>
-
 															<a href="view-patient.php?viewid=<?php echo $row['ID']; ?>"><i class="fa fa-eye"></i></a>
-
+														</td>
+														<td>
+															<a href="add-urin-report-admin.php?viewid=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a>
+														
+															<?php var_dump($row['id']); ?>
+														
 														</td>
 													</tr>
 												<?php

@@ -185,41 +185,6 @@
 					</a>
 				</li>
 				<li>
-					<a href="javascript:void(0)">
-						<div class="item-content">
-							<div class="item-media">
-								<i class="ti-files"></i>
-							</div>
-							<div class="item-inner">
-								<span class="title"> Dead -- Reports </span><i class="icon-arrow"></i>
-							</div>
-						</div>
-					</a>
-					<ul class="sub-menu">
-
-						<li>
-							<a href="between-dates-reports.php">
-								<span class="title">B/w dates reports </span>
-							</a>
-						</li>
-
-
-
-					</ul>
-				</li>
-				<li>
-					<a href="patient-search.php">
-						<div class="item-content">
-							<div class="item-media">
-								<i class="ti-search"></i>
-							</div>
-							<div class="item-inner">
-								<span class="title"> Dead -- Patient Search </span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
 					<a href="admin-salary.php">
 						<div class="item-content">
 							<div class="item-media">

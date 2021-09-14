@@ -26,6 +26,11 @@ check_login();
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+
+	<!-- html2pdf converter -->
+    <script src="pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -58,10 +63,10 @@ check_login();
 
 					<section class="paitent-report">
 						<?php
-						$sql = mysqli_query($con, "SELECT * FROM users where id='".$_SESSION['id']."'");
+						$sql = mysqli_query($con, "SELECT * FROM users where id='" . $_SESSION['id'] . "'");
 						$row = mysqli_fetch_array($sql);
 						?>
-						
+
 
 						<br>
 						<div class="paitent-detail report-css">
@@ -77,66 +82,66 @@ check_login();
 					</section>
 					<section>
 						<?php
-						$sql = mysqli_query($con, "SELECT * FROM users where users.id=2");
+						$sql = mysqli_query($con, "SELECT * FROM user_urin where id='" . $_SESSION['id'] . "'");
 						$row = mysqli_fetch_array($sql);
 						?>
-						<div class="report-detail">
-							<p>Patients ID : <?php echo $row['id']; ?></p>
-						</div>
 					</section>
 					<!-- start: BASIC EXAMPLE -->
-					<div class="container-fluid container-fullw bg-white">
+					<div class="container-fluid container-fullw bg-white" id="invoice">
 
 						<div class="row">
 							<div class="col-md-12">
-
+								<div class="report-detail">
+									<h3>Urine Test Report</h3>
+								</div>
 								<!-- Code for Urin Test -->
-								<table class="parent-table table">
+								<table class="parent-table table table-bordered admin-salary" width="1">
 									<thead>
 										<tr>
-											<th>Id</th>
-											<th>Name</th>
-											<th>Phone</th>
-											<th>Status</th>
-											<th>Report</th>
+											<th>Laboratory Test</th>
+											<th>Patient value</th>
+											<th>Normal Value</th>
 										</tr>
 									</thead>
 									<tbody>
-										<!-- Connect the erin table -->
-										<?php
-										$sql = mysqli_query($con, "SELECT * FROM user_urin_test where user_urin_test.id=2");
-										$row = mysqli_fetch_array($sql);
-										?>
 										<tr>
-											<td><?php echo $row['id']; ?></td>
-											<td><?php echo $row['user_name']; ?></td>
-											<td><?php echo $row['user_phone']; ?></td>
-
-											<td>
-												<?php
-												if ($row['status'] == true) {
-													echo Ready;
-												} else {
-													echo Pending;
-												}
-												?>
-											</td>
-
-											<td>
-												<?php if ($row['status'] == true) { ?>
-													<p class="links cl-effect-1">
-														<a href="user-urine-report.php">
-															Check Report
-														</a>
-													</p>
-
-												<?php } else {
-													echo 'Not Available';
-												} ?>
-											</td>
+											<td>Hemoglobin(g/l)</td>
+											<td><?php echo htmlentities($row['hemoglobingl']); ?></td>
+											<td>120-160</td>
+										</tr>
+										<tr>
+											<td>Leukocyte Count(cell/microL)</td>
+											<td><?php echo htmlentities($row['leukocyte_count_cm']); ?></td>
+											<td>4800-1000</td>
+										</tr>
+										<tr>
+											<td>Glucose(mmol/l)</td>
+											<td><?php echo htmlentities($row['glucose_ml']); ?></td>
+											<td>3.9-6.4</td>
+										</tr>
+										<tr>
+											<td>Blood Urea nitrogen(mmol/l)</td>
+											<td><?php echo htmlentities($row['blood_urea_nitrogen_ml']); ?></td>
+											<td>7.1-35.7</td>
+										</tr>
+										</tr>
+										<tr>
+											<td>Creatinine(micromml)</td>
+											<td><?php echo htmlentities($row['creatinine_m']); ?></td>
+											<td>44.2-97.2</td>
+										</tr>
+										</tr>
+										<tr>
+											<td>Arterial pH</td>
+											<td><?php echo htmlentities($row['arterial_ph']); ?></td>
+											<td>7.35-7.45</td>
 										</tr>
 									</tbody>
 								</table>
+								<div class="col-md-12 text-right mb-3">
+                                	<button class="btn btn-primary" id="download"> Download</button>
+                                	<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+                            	</div>
 							</div>
 						</div>
 
@@ -175,8 +180,9 @@ check_login();
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: CLIP-TWO JAVASCRIPTS -->
 		<script src="assets/js/main.js"></script>
-		<!-- start: JavaScript Event Handlers for this page -->
-		<script src="assets/js/form-elements.js"></script>
+
+		<!-- start: CLIP-TWO JAVASCRIPTS -->
+		<script src="assets/js/main.js"></script>
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();

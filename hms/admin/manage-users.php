@@ -14,7 +14,7 @@ if (isset($_GET['del'])) {
 <html lang="en">
 
 <head>
-	<title>Admin | Manage Users</title>
+	<title>Admin | Manage Patients</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -51,14 +51,14 @@ if (isset($_GET['del'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Manage Users</h1>
+								<h1 class="mainTitle">Admin | Manage Patients</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Manage Users</span>
+									<span>Manage Patients</span>
 								</li>
 							</ol>
 						</div>
@@ -84,7 +84,8 @@ if (isset($_GET['del'])) {
 											<th>Email </th>
 											<th>Creation Date </th>
 											<th>Updation Date </th>
-											<th>Action</th>
+											<th>View Details</th>
+											<th>Remove</th>
 
 										</tr>
 									</thead>
@@ -104,7 +105,11 @@ if (isset($_GET['del'])) {
 												<td><?php echo $row['gender']; ?></td>
 												<td><?php echo $row['email']; ?></td>
 												<td><?php echo $row['regDate']; ?></td>
-												<td><?php echo $row['updationDate']; ?>
+												<td><?php echo $row['updationDate']; ?></td>
+												<td>
+													<div class="visible-md visible-lg hidden-sm hidden-xs">
+														<a href="manage-users.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="fa fa-file"></i></a>
+													</div>
 												</td>
 												<td>
 													<div class="visible-md visible-lg hidden-sm hidden-xs">
