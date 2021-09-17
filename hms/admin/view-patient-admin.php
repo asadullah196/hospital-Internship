@@ -127,7 +127,7 @@ if (isset($_POST['submit'])) {
 
 											<a href="add-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
 
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
+											<a href="add-urine-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
 										</td>
