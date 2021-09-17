@@ -59,19 +59,19 @@ if (isset($_POST['submit'])) {
 
 			<!-- end: TOP NAVBAR -->
 			<div class="main-content">
-				<div class="wrap-content container" id="container">
+				<div class="wrap-content container">
 					<!-- start: PAGE TITLE -->
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Patient History</h1>
+								<h1 class="mainTitle">Admin | View Patient History</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Patient History</span>
+									<span>View Patient History</span>
 								</li>
 							</ol>
 						</div>
@@ -86,17 +86,16 @@ if (isset($_POST['submit'])) {
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">Add Patient History</h3>
+												<h3 class="">View Patient History</h3>
 											</div>
 
 											<?php
                                                 // Connect with user-patient database
-                                                $sql = mysqli_query($con, "select * from users where id='" . $did . "'");
+                                                $sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
                                                 $row = mysqli_fetch_array($sql);
                                             ?>
 
 											<div class="panel-body">
-
 												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
 													<div class="form-group">
 														<table class="parent-table table table-bordered admin-salary" width="1">
@@ -110,64 +109,64 @@ if (isset($_POST['submit'])) {
 															<tbody>
 																<tr>
 																	<td>Patient</td>
-																	<td><input type="text" name="pname" class="form-control" placeholder="" value="<?php echo $row['fullName'];?>" readonly></td>
+																	<td><?php echo $row['name'];?></td>
 																	<td>N/A</td>
 																</tr>
 
 																<tr>
 																	<td>Age</td>
-																	<td><input type="text" name="page" class="form-control" placeholder="Patient Age" required></td>
+																	<td><?php echo $row['age'];?></td>
 																	<td>Year</td>
 																</tr>
 
 																<tr>
 																	<td>Gender</td>
-																	<td><input type="text" name="pgender" class="form-control" placeholder="Gender" required></td>
+																	<td><?php echo $row['gender'];?></td>
 																	<td>N/A</td>
 																</tr>
 
 																<tr>
 																	<td>Height</td>
-																	<td><input type="text" name="pheight" class="form-control" placeholder="Height" required></td>
+																	<td><?php echo $row['height'];?></td>
 																	<td>Inc</td>
 																</tr>
 
 																<tr>
 																	<td>Weight</td>
-																	<td><input type="text" name="pweight" class="form-control" placeholder="Weight" required></td>
+																	<td><?php echo $row['weight'];?></td>
 																	<td>Kg</td>
 																</tr>
 																
 																<tr>
 																	<td>Temperature</td>
-																	<td><input type="text" name="ptemperature" class="form-control" placeholder="Temperature" required></td>
+																	<td><?php echo $row['temperature'];?></td>
 																	<td>Degrees Celsius</td>
 																</tr>
 
 																<tr>
 																	<td>Blood Pressure</td>
-																	<td><input type="text" name="pblood_pressure" class="form-control" placeholder="Blood Pressure" required></td>
+																	<td><?php echo $row['blood_pressure'];?></td>
 																	<td>mmHg</td>
 																</tr>
 
 																<tr>
 																	<td>Covid19 Vaccinated</td>
-																	<td><input type="text" name="pcovid_vaccinated" class="form-control" placeholder="Covid Vaccinated" required></td>
+																	<td><?php echo $row['covid_vaccinated'];?></td>
 																	<td>N/A</td>
 																</tr>
 
 																<tr>
 																	<td>Occupation</td>
-																	<td><input type="text" name="poccupation" class="form-control" placeholder="Occupation" required></td>
+																	<td><?php echo $row['occupation'];?></td>
 																	<td>N/A</td>
 																</tr>
 
 															</tbody>
 														</table>
 													</div>
-													<button type="submit" name="submit" id="submit" class="btn btn-primary pull-right">
-														Submit
-													</button>
+													<div class="col-md-12 text-right mb-3">
+														<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+													</div>
 												</form>
 											</div>
 										</div>
@@ -177,8 +176,6 @@ if (isset($_POST['submit'])) {
 							</div>
 							<div class="col-lg-12 col-md-12">
 								<div class="panel panel-white">
-
-
 								</div>
 							</div>
 						</div>

@@ -134,7 +134,7 @@ if (isset($_POST['submit'])) {
 
 										
 										<td>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
+										<a href="view-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
@@ -142,7 +142,7 @@ if (isset($_POST['submit'])) {
 
 										
 										<td>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
+										<a href="update-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
