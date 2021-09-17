@@ -8,30 +8,29 @@ check_login();
 $did = intval($_GET['viewid']); // get patient id
 
 if (isset($_POST['submit'])) {
+	$docspecialization = $_POST['Doctorspecialization'];
+	$docaddress = $_POST['clinicaddress'];
+	$docfees = $_POST['docfees'];
+	$doccontactno = $_POST['doccontact'];
+	$docemail = $_POST['docemail'];
+	$password = md5($_POST['npass']);
 
-	$vid = $_GET['viewid'];
-	$bp = $_POST['bp'];
-	$bs = $_POST['bs'];
-	$weight = $_POST['weight'];
-	$temp = $_POST['temp'];
-	$pres = $_POST['pres'];
+	$id = $did;
+	$name = $_POST['docname'];
+	$test = $_POST['doccupation'];
 
-
-	$query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
-	if ($query) {
-		echo '<script>alert("Medicle history has been added.")</script>';
-		echo "<script>window.location.href ='manage-patient.php'</script>";
-	} else {
-		echo '<script>alert("Something Went Wrong. Please try again")</script>';
+	$sql = mysqli_query($con, "insert into user_history(id,name,occupation) values('$id','$name','$test')");
+	if ($sql) {
+		echo "<script>alert('Doctor info added Successfully');</script>";
+		echo "<script>window.location.href ='view-patient-admin.php?viewid=$id'</script>";
 	}
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Doctor | Add Patient History Admin </title>
+	<title>Admin | Add Patient History </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -47,137 +46,108 @@ if (isset($_POST['submit'])) {
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+
 </head>
 
 <body>
 	<div id="app">
 		<?php include('include/sidebar.php'); ?>
 		<div class="app-content">
+
 			<?php include('include/header.php'); ?>
+
+			<!-- end: TOP NAVBAR -->
 			<div class="main-content">
 				<div class="wrap-content container" id="container">
 					<!-- start: PAGE TITLE -->
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Doctor | Add Patient History Admin </h1>
+								<h1 class="mainTitle">Admin | Add Patient History</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Doctor</span>
+									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span> Manage Patients</span>
+									<span>Add Patient History</span>
 								</li>
 							</ol>
 						</div>
 					</section>
+					<!-- end: PAGE TITLE -->
+					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
 							<div class="col-md-12">
-								<?php
-								// Connect with user-patient database
-								$sql = mysqli_query($con, "select * from users where id='" . $did . "'");
-								$row = mysqli_fetch_array($sql);
-								?>
-								<div class="box-basic-info">
-									<h2>Name: <?php echo $row['fullName']; ?></h2>
-									<h2>Phone: <?php echo $row['phone']; ?></h2>
-								</div>
 
-								<!-- start: REGISTER BOX -->
-								<div class="box-register">
-									<form name="registration" id="registration" method="post" onSubmit="return valid();">
-										<fieldset>
-											<h3>&nbsp;&nbsp;&nbsp;Add Patient History </h3>
-
-											<div class="col-md-8">
-												<?php
-												// Connect with user-patient database
-												$sql = mysqli_query($con, "select * from user_urin where id='" . $did . "'");
-												$row = mysqli_fetch_array($sql);
-												?>
-												<table class="parent-table table table-bordered admin-salary" width="1">
-													<thead>
-														<tr>
-															<th>Name</th>
-															<th>Value</th>
-															<th>Units</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>Age</td>
-															<td><input type="text" class="form-control" name="age" placeholder="Age" required></td>
-															<td>Year</td>
-														</tr>
-													<tbody>
-														<tr>
-															<td>Gender</td>
-															<td><input type="text" class="form-control" name="gender" placeholder="Gender" required></td>
-															<td>N/A</td>
-														</tr>
-													<tbody>
-														<tr>
-															<td>Height</td>
-															<td><input type="text" class="form-control" name="height" placeholder="Height" required></td>
-															<td>Inc</td>
-														</tr>
-													<tbody>
-														<tr>
-															<td>Weight</td>
-															<td><input type="text" class="form-control" name="weight" placeholder="Weight" required></td>
-															<td>Kg</td>
-														</tr>
-													<tbody>
-														<tr>
-															<td>Temperature</td>
-															<td><input type="text" class="form-control" name="temperature" placeholder="Temperature" required></td>
-															<td>Degrees Celsius</td>
-														</tr>
-													<tbody>
-														<tr>
-															<td>Blood Pressure</td>
-															<td><input type="text" class="form-control" name="blood_pressure" placeholder="Blood Pressure" required></td>
-															<td>mmHg</td>
-														</tr>
-													<tbody>
-														<tr>
-															<td>Covid19 Vaccinated</td>
-															<td><input type="text" class="form-control" name="covid_vaccinated" placeholder="Covid Vaccinated" required></td>
-															<td>N/A</td>
-														</tr>
-													<tbody>
-														<tr>
-															<td>Occupation</td>
-															<td><input type="text" class="form-control" name="occupation" placeholder="Occupation" required></td>
-															<td>N/A</td>
-														</tr>
-													</tbody>
-												</table>
-												<div class="form-actions">
-													<button type="submit" class="btn btn-primary pull-right" id="submit" name="urin-submit">
-														Save <i class="fa fa-arrow-circle-right"></i>
-													</button>
-												</div>
+								<div class="row margin-top-30">
+									<div class="col-lg-8 col-md-12">
+										<div class="panel panel-white">
+											<div class="panel-heading">
+												<h5 class="panel-title">Add Patient History</h5>
 											</div>
-										</fieldset>
-									</form>
+
+											<?php $galib='Rakib Khan';?>
+
+											<div class="panel-body">
+
+												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+													
+													<div class="form-group">
+														<label for="doctorname">
+															Doctor Name
+														</label>
+														<input type="text" name="docname" class="form-control" placeholder="Enter Doctor Name" required="true">
+													</div>
+
+													<div class="form-group">
+														<label for="occupation">
+															Doctor Occupation
+														</label>
+														<input type="text" name="doccupation" class="form-control" placeholder="Enter Doctor Profession" value="<?php echo $galib;?>">
+													</div>
+
+													<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
+														Submit
+													</button>
+												</form>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="panel panel-white">
+
+
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<!-- end: BASIC EXAMPLE -->
+
+
+
+
+
+
+			<!-- end: SELECT BOXES -->
+
 		</div>
-		<!-- start: FOOTER -->
-		<?php include('include/footer.php'); ?>
-		<!-- end: FOOTER -->
+	</div>
+	</div>
+	<!-- start: FOOTER -->
+	<?php include('include/footer.php'); ?>
+	<!-- end: FOOTER -->
 
-		<!-- start: SETTINGS -->
-		<?php include('include/setting.php'); ?>
+	<!-- start: SETTINGS -->
+	<?php include('include/setting.php'); ?>
 
-		<!-- end: SETTINGS -->
+	<!-- end: SETTINGS -->
 	</div>
 	<!-- start: MAIN JAVASCRIPTS -->
 	<script src="vendor/jquery/jquery.min.js"></script>
