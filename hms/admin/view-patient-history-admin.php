@@ -7,25 +7,6 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
-if (isset($_POST['submit'])) {
-
-	$id = $did;
-	$name = $_POST['pname'];
-	$age = $_POST['page'];
-	$gender = $_POST['pgender'];
-	$height = $_POST['pheight'];
-	$weight = $_POST['pweight'];
-	$temperature = $_POST['ptemperature'];
-	$blood_pressure = $_POST['pblood_pressure'];
-	$covid_vaccinated = $_POST['pcovid_vaccinated'];
-	$occupation = $_POST['poccupation'];
-
-	$sql = mysqli_query($con, "INSERT INTO `user_history` (`id`, `name`, `age`, `gender`, `height`, `weight`, `temperature`, `blood_pressure`, `covid_vaccinated`, `occupation`, `status`) VALUES ('$id', '$name', '$age', '$gender', '$height', '$weight', '$temperature', '$blood_pressure', '$covid_vaccinated', '$occupation', '1');");
-	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
-		echo "<script>window.location.href ='view-patient-admin.php?viewid=$id'</script>";
-	}
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,85 +71,91 @@ if (isset($_POST['submit'])) {
 											</div>
 
 											<?php
-                                                // Connect with user-patient database
-                                                $sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
-                                                $row = mysqli_fetch_array($sql);
-                                            ?>
+											// Connect with user-patient database
+											$sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
+											$row = mysqli_fetch_array($sql);
+											?>
 
-											<div class="panel-body">
-												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
-													<div class="form-group">
-														<table class="parent-table table table-bordered admin-salary" width="1">
-															<thead>
-																<tr>
-																	<th>Name</th>
-																	<th>Value</th>
-																	<th>Units</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Patient</td>
-																	<td><?php echo $row['name'];?></td>
-																	<td>N/A</td>
-																</tr>
+											<?php if ($row['status'] == 1) { ?>
+												<div class="panel-body">
+													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+														<div class="form-group">
+															<table class="parent-table table table-bordered admin-salary" width="1">
+																<thead>
+																	<tr>
+																		<th>Name</th>
+																		<th>Value</th>
+																		<th>Units</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>Patient</td>
+																		<td><?php echo $row['name']; ?></td>
+																		<td>N/A</td>
+																	</tr>
 
-																<tr>
-																	<td>Age</td>
-																	<td><?php echo $row['age'];?></td>
-																	<td>Year</td>
-																</tr>
+																	<tr>
+																		<td>Age</td>
+																		<td><?php echo $row['age']; ?></td>
+																		<td>Year</td>
+																	</tr>
 
-																<tr>
-																	<td>Gender</td>
-																	<td><?php echo $row['gender'];?></td>
-																	<td>N/A</td>
-																</tr>
+																	<tr>
+																		<td>Gender</td>
+																		<td><?php echo $row['gender']; ?></td>
+																		<td>N/A</td>
+																	</tr>
 
-																<tr>
-																	<td>Height</td>
-																	<td><?php echo $row['height'];?></td>
-																	<td>Inc</td>
-																</tr>
+																	<tr>
+																		<td>Height</td>
+																		<td><?php echo $row['height']; ?></td>
+																		<td>Inc</td>
+																	</tr>
 
-																<tr>
-																	<td>Weight</td>
-																	<td><?php echo $row['weight'];?></td>
-																	<td>Kg</td>
-																</tr>
-																
-																<tr>
-																	<td>Temperature</td>
-																	<td><?php echo $row['temperature'];?></td>
-																	<td>Degrees Celsius</td>
-																</tr>
+																	<tr>
+																		<td>Weight</td>
+																		<td><?php echo $row['weight']; ?></td>
+																		<td>Kg</td>
+																	</tr>
 
-																<tr>
-																	<td>Blood Pressure</td>
-																	<td><?php echo $row['blood_pressure'];?></td>
-																	<td>mmHg</td>
-																</tr>
+																	<tr>
+																		<td>Temperature</td>
+																		<td><?php echo $row['temperature']; ?></td>
+																		<td>Degrees Celsius</td>
+																	</tr>
 
-																<tr>
-																	<td>Covid19 Vaccinated</td>
-																	<td><?php echo $row['covid_vaccinated'];?></td>
-																	<td>N/A</td>
-																</tr>
+																	<tr>
+																		<td>Blood Pressure</td>
+																		<td><?php echo $row['blood_pressure']; ?></td>
+																		<td>mmHg</td>
+																	</tr>
 
-																<tr>
-																	<td>Occupation</td>
-																	<td><?php echo $row['occupation'];?></td>
-																	<td>N/A</td>
-																</tr>
+																	<tr>
+																		<td>Covid19 Vaccinated</td>
+																		<td><?php echo $row['covid_vaccinated']; ?></td>
+																		<td>N/A</td>
+																	</tr>
 
-															</tbody>
-														</table>
-													</div>
-													<div class="col-md-12 text-right mb-3">
-														<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
-													</div>
-												</form>
-											</div>
+																	<tr>
+																		<td>Occupation</td>
+																		<td><?php echo $row['occupation']; ?></td>
+																		<td>N/A</td>
+																	</tr>
+
+																</tbody>
+															</table>
+														</div>
+														<div class="col-md-12 text-right mb-3">
+															<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+														</div>
+													</form>
+												</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
 										</div>
 									</div>
 

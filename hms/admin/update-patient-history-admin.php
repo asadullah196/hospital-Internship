@@ -91,12 +91,12 @@ if (isset($_POST['submit'])) {
 
 											<?php
                                                 // Connect with user-patient database
-                                                $sql = mysqli_query($con, "select * from users where id='" . $did . "'");
+                                                $sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
                                                 $row = mysqli_fetch_array($sql);
                                             ?>
 
+											<?php if ($row['status'] == 1) { ?>
 											<div class="panel-body">
-
 												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
 													<div class="form-group">
 														<table class="parent-table table table-bordered admin-salary" width="1">
@@ -170,6 +170,11 @@ if (isset($_POST['submit'])) {
 													</button>
 												</form>
 											</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
 										</div>
 									</div>
 
