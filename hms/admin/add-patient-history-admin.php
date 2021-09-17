@@ -89,33 +89,77 @@ if (isset($_POST['submit'])) {
 								<div class="box-register">
 									<form name="registration" id="registration" method="post" onSubmit="return valid();">
 										<fieldset>
-											<h3> Add Patient History </h3>
+											<h3>&nbsp;&nbsp;&nbsp;Add Patient History </h3>
 
-											<?php
-											// Connect with user-patient database
-											$sql = mysqli_query($con, "select * from user_urin where id='" . $did . "'");
-											$row = mysqli_fetch_array($sql);
-											?>
-											<table class="parent-table table table-bordered admin-salary" width="1">
-												<thead>
-													<tr>
-														<th>Name</th>
-														<th>value</th>
-														<th>Units</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>Hemoglobin(g/l)</td>
-														<td><input type="text" class="form-control" name="hemoglobin" placeholder="Current Value: <?php echo htmlentities($row['hemoglobingl']); ?>" required></td>
-														<td>120-160</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="form-actions">
-												<button type="submit" class="btn btn-primary pull-right" id="submit" name="urin-submit">
-													Save <i class="fa fa-arrow-circle-right"></i>
-												</button>
+											<div class="col-md-8">
+												<?php
+												// Connect with user-patient database
+												$sql = mysqli_query($con, "select * from user_urin where id='" . $did . "'");
+												$row = mysqli_fetch_array($sql);
+												?>
+												<table class="parent-table table table-bordered admin-salary" width="1">
+													<thead>
+														<tr>
+															<th>Name</th>
+															<th>Value</th>
+															<th>Units</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Age</td>
+															<td><input type="text" class="form-control" name="age" placeholder="Age" required></td>
+															<td>Year</td>
+														</tr>
+													<tbody>
+														<tr>
+															<td>Gender</td>
+															<td><input type="text" class="form-control" name="gender" placeholder="Gender" required></td>
+															<td>N/A</td>
+														</tr>
+													<tbody>
+														<tr>
+															<td>Height</td>
+															<td><input type="text" class="form-control" name="height" placeholder="Height" required></td>
+															<td>Inc</td>
+														</tr>
+													<tbody>
+														<tr>
+															<td>Weight</td>
+															<td><input type="text" class="form-control" name="weight" placeholder="Weight" required></td>
+															<td>Kg</td>
+														</tr>
+													<tbody>
+														<tr>
+															<td>Temperature</td>
+															<td><input type="text" class="form-control" name="temperature" placeholder="Temperature" required></td>
+															<td>Degrees Celsius</td>
+														</tr>
+													<tbody>
+														<tr>
+															<td>Blood Pressure</td>
+															<td><input type="text" class="form-control" name="blood_pressure" placeholder="Blood Pressure" required></td>
+															<td>mmHg</td>
+														</tr>
+													<tbody>
+														<tr>
+															<td>Covid19 Vaccinated</td>
+															<td><input type="text" class="form-control" name="covid_vaccinated" placeholder="Covid Vaccinated" required></td>
+															<td>N/A</td>
+														</tr>
+													<tbody>
+														<tr>
+															<td>Occupation</td>
+															<td><input type="text" class="form-control" name="occupation" placeholder="Occupation" required></td>
+															<td>N/A</td>
+														</tr>
+													</tbody>
+												</table>
+												<div class="form-actions">
+													<button type="submit" class="btn btn-primary pull-right" id="submit" name="urin-submit">
+														Save <i class="fa fa-arrow-circle-right"></i>
+													</button>
+												</div>
 											</div>
 										</fieldset>
 									</form>
