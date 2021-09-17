@@ -71,7 +71,7 @@
 						</li>
 						
 						<li>
-							<a href="manage-users.php">
+							<a href="view-all-patients-admin.php">
 								<span class="title"> View All Patient </span>
 							</a>
 						</li>

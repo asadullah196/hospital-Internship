@@ -10,7 +10,6 @@ $did = intval($_GET['viewid']); // get patient id
 if (isset($_POST['submit'])) {
 
 	$vid = $_GET['viewid'];
-	var_dump($viewid);
 	$bp = $_POST['bp'];
 	$bs = $_POST['bs'];
 	$weight = $_POST['weight'];
@@ -32,7 +31,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Doctor | View Patient Detail</title>
+	<title>Doctor | Add Patient History Admin </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -61,14 +60,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Doctor | Manage Patients</h1>
+								<h1 class="mainTitle">Doctor | Add Patient History Admin </h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Doctor</span>
 								</li>
 								<li class="active">
-									<span>Manage Patients</span>
+									<span> Manage Patients</span>
 								</li>
 							</ol>
 						</div>
@@ -76,96 +75,65 @@ if (isset($_POST['submit'])) {
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
 							<div class="col-md-12">
-								<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
 								<?php
-								$vid = $_GET['viewid'];
-								$ret = mysqli_query($con, "select * from users where ID='$vid'");
-								$cnt = 1;
-								while ($row = mysqli_fetch_array($ret)) {
+								// Connect with user-patient database
+								$sql = mysqli_query($con, "select * from users where id='" . $did . "'");
+								$row = mysqli_fetch_array($sql);
 								?>
-									<table border="1" class="table table-bordered">
-										<tr align="center">
-											<td colspan="4" style="font-size:20px;color:blue">
-												Patient Details</td>
-										</tr>
+								<div class="box-basic-info">
+									<h2>Name: <?php echo $row['fullName']; ?></h2>
+									<h2>Phone: <?php echo $row['phone']; ?></h2>
+								</div>
 
-										<tr>
-											<th scope>Patient Name</th>
-											<td><?php echo $row['fullName']; ?></td>
-											<th scope>Patient Email</th>
-											<td><?php echo $row['email']; ?></td>
-										</tr>
-										<tr>
-											<th scope>Patient Mobile Number</th>
-											<td><?php echo $row['phone']; ?></td>
-											<th>Patient Address</th>
-											<td><?php echo $row['address']; ?></td>
-										</tr>
-										<tr>
-											<th>Patient Gender</th>
-											<td><?php echo $row['gender']; ?></td>
-											<th>Patient Reg Date</th>
-											<td><?php echo $row['regDate']; ?></td>
-										</tr>
+								<!-- start: REGISTER BOX -->
+								<div class="box-register">
+									<form name="registration" id="registration" method="post" onSubmit="return valid();">
+										<fieldset>
+											<h3> Add Patient History </h3>
 
-									<?php } ?>
-									</table>
-									<?php
-									$ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
-									?>
-							</div>
-							<div class="col-md-12 text-left mb-3">
-								<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<tr>
-										<th>Add Report</th>
-										<th>View Report</th>
-										<th>Update Report</th>
-									</tr>
-
-									<tr>
-										<td>
-
-											<a href="add-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
-
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
-
-										
-										<td>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
-
-										
-										<td>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
-									</tr>
-
-								</table>
+											<?php
+											// Connect with user-patient database
+											$sql = mysqli_query($con, "select * from user_urin where id='" . $did . "'");
+											$row = mysqli_fetch_array($sql);
+											?>
+											<table class="parent-table table table-bordered admin-salary" width="1">
+												<thead>
+													<tr>
+														<th>Name</th>
+														<th>value</th>
+														<th>Units</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Hemoglobin(g/l)</td>
+														<td><input type="text" class="form-control" name="hemoglobin" placeholder="Current Value: <?php echo htmlentities($row['hemoglobingl']); ?>" required></td>
+														<td>120-160</td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="form-actions">
+												<button type="submit" class="btn btn-primary pull-right" id="submit" name="urin-submit">
+													Save <i class="fa fa-arrow-circle-right"></i>
+												</button>
+											</div>
+										</fieldset>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	<!-- start: FOOTER -->
-	<?php include('include/footer.php'); ?>
-	<!-- end: FOOTER -->
+		<!-- start: FOOTER -->
+		<?php include('include/footer.php'); ?>
+		<!-- end: FOOTER -->
 
-	<!-- start: SETTINGS -->
-	<?php include('include/setting.php'); ?>
+		<!-- start: SETTINGS -->
+		<?php include('include/setting.php'); ?>
 
-	<!-- end: SETTINGS -->
+		<!-- end: SETTINGS -->
 	</div>
 	<!-- start: MAIN JAVASCRIPTS -->
 	<script src="vendor/jquery/jquery.min.js"></script>
