@@ -127,7 +127,7 @@ check_login();
 										<h2 class="StepTitle">Blood Test</h2>
 
 										<p class="cl-effect-1">
-											<a href="appointment-history.php">
+											<a href="user-blood-test.php">
 												View Update
 											</a>
 										</p>

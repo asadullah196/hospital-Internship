@@ -5,12 +5,33 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
+
+if (isset($_POST['submit'])) {
+
+	$vid = $_GET['viewid'];
+	var_dump($viewid);
+	$bp = $_POST['bp'];
+	$bs = $_POST['bs'];
+	$weight = $_POST['weight'];
+	$temp = $_POST['temp'];
+	$pres = $_POST['pres'];
+
+
+	$query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
+	if ($query) {
+		echo '<script>alert("Medicle history has been added.")</script>';
+		echo "<script>window.location.href ='manage-patient.php'</script>";
+	} else {
+		echo '<script>alert("Something Went Wrong. Please try again")</script>';
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin | View Patients</title>
+	<title>Doctor | View Patient Detail</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -39,14 +60,14 @@ check_login();
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | View Patients</h1>
+								<h1 class="mainTitle">Doctor | Manage Patients</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Admin</span>
+									<span>Doctor</span>
 								</li>
 								<li class="active">
-									<span>View Patients</span>
+									<span>Manage Patients</span>
 								</li>
 							</ol>
 						</div>
@@ -54,74 +75,81 @@ check_login();
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
 							<div class="col-md-12">
-								<form role="form" method="post" name="search">
-
-									<div class="form-group">
-										<label for="doctorname">
-											Search by Name/Mobile No.
-										</label>
-										<input type="text" name="searchdata" id="searchdata" class="form-control" value="" required='true'>
-									</div>
-
-									<button type="submit" name="search" id="submit" class="btn btn-o btn-primary">
-										Search
-									</button>
-								</form>
+								<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
 								<?php
-								if (isset($_POST['search'])) {
-
-									$sdata = $_POST['searchdata'];
+								$vid = $_GET['viewid'];
+								$ret = mysqli_query($con, "select * from users where ID='$vid'");
+								$cnt = 1;
+								while ($row = mysqli_fetch_array($ret)) {
 								?>
-									<h4 align="center">Result against "<?php echo $sdata; ?>" keyword </h4>
-									<table class="table table-hover" id="sample-table-1">
-										<thead>
-											<tr>
-												<th class="center">#</th>
-												<th>Patient Name</th>
-												<th>Contact Number</th>
-												<th>Creation Date </th>
-												<th>Action</th>
-												<th>Add Report</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
+									<table border="1" class="table table-bordered">
+										<tr align="center">
+											<td colspan="4" style="font-size:20px;color:blue">
+												Patient Details</td>
+										</tr>
 
-											$sql = mysqli_query($con, "select * from users where fullName like '%$sdata%'|| phone like '%$sdata%'");
-											$num = mysqli_num_rows($sql);
-											if ($num > 0) {
-												$cnt = 1;
-												while ($row = mysqli_fetch_array($sql)) {
-											?>
-													<tr>
-														<td class="center"><?php echo $cnt; ?>.</td>
-														<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
-														<td><?php echo $row['phone']; ?></td>
-														<td><?php echo $row['CreationDate']; ?></td>
-														</td>
-														<td>
-															<a href="view-patient.php?viewid=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a>
-														</td>
-														<td>
-															<a href="add-report-admin.php?viewid=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a>
-														
-															<?php var_dump($row['id']); ?>
-														
-														</td>
-													</tr>
-												<?php
-													$cnt = $cnt + 1;
-												}
-											} else { ?>
-												<tr>
-													<td colspan="8"> No record found against this search</td>
+										<tr>
+											<th scope>Patient Name</th>
+											<td><?php echo $row['fullName']; ?></td>
+											<th scope>Patient Email</th>
+											<td><?php echo $row['email']; ?></td>
+										</tr>
+										<tr>
+											<th scope>Patient Mobile Number</th>
+											<td><?php echo $row['phone']; ?></td>
+											<th>Patient Address</th>
+											<td><?php echo $row['address']; ?></td>
+										</tr>
+										<tr>
+											<th>Patient Gender</th>
+											<td><?php echo $row['gender']; ?></td>
+											<th>Patient Reg Date</th>
+											<td><?php echo $row['regDate']; ?></td>
+										</tr>
 
-												</tr>
-
-										<?php }
-										} ?>
-										</tbody>
+									<?php } ?>
 									</table>
+									<?php
+
+									$ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
+
+
+
+									?>
+									<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+										<tr align="center">
+											<th colspan="8">Medical History</th>
+										</tr>
+										<tr>
+											<th>#</th>
+											<th>Blood Pressure</th>
+											<th>Weight</th>
+											<th>Blood Sugar</th>
+											<th>Body Temprature</th>
+											<th>Medical Prescription</th>
+											<th>Visit Date</th>
+										</tr>
+										<?php
+										while ($row = mysqli_fetch_array($ret)) {
+										?>
+											<tr>
+												<td><?php echo $cnt; ?></td>
+												<td><?php echo $row['BloodPressure']; ?></td>
+												<td><?php echo $row['Weight']; ?></td>
+												<td><?php echo $row['BloodSugar']; ?></td>
+												<td><?php echo $row['Temperature']; ?></td>
+												<td><?php echo $row['MedicalPres']; ?></td>
+												<td><?php echo $row['CreationDate']; ?></td>
+											</tr>
+										<?php $cnt = $cnt + 1;
+										} ?>
+									</table>
+							</div>
+							<div class="col-md-12 text-right mb-3">
+								<a href="add-patient-admin.php"><button class="btn btn-primary"> Patient History</button></a>
+								<button class="btn btn-primary"> Urine Report</button>
+								<button class="btn btn-primary"> Blood Report</button>
+								<button class="btn btn-primary"> Special Note</button>
 							</div>
 						</div>
 					</div>

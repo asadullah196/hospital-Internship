@@ -10,7 +10,7 @@ check_login();
 <html lang="en">
 
 <head>
-	<title>Admin | View Patients</title>
+	<title>Admin | View Patients </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -80,8 +80,7 @@ check_login();
 												<th>Patient Name</th>
 												<th>Contact Number</th>
 												<th>Creation Date </th>
-												<th>Action</th>
-												<th>Add Report</th>
+												<th>View Details</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -97,16 +96,10 @@ check_login();
 														<td class="center"><?php echo $cnt; ?>.</td>
 														<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
 														<td><?php echo $row['phone']; ?></td>
-														<td><?php echo $row['CreationDate']; ?></td>
+														<td><?php echo $row['regDate']; ?></td>
 														</td>
 														<td>
-															<a href="view-patient.php?viewid=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a>
-														</td>
-														<td>
-															<a href="add-report-admin.php?viewid=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a>
-														
-															<?php var_dump($row['id']); ?>
-														
+															<a href="view-patient-admin.php?viewid=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a>
 														</td>
 													</tr>
 												<?php

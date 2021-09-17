@@ -10,7 +10,7 @@ check_login();
 <html lang="en">
 
 <head>
-	<title>User | Urine Test History</title>
+	<title>User | Blood Test Report </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -26,6 +26,11 @@ check_login();
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+
+	<!-- html2pdf converter -->
+    <script src="pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -42,77 +47,101 @@ check_login();
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">User | Urine Test History</h1>
+								<h1 class="mainTitle">User | Blood Test Report</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>User </span>
 								</li>
 								<li class="active">
-									<span>Urine Test History</span>
+									<span>Blood Test History</span>
 								</li>
 							</ol>
 						</div>
 					</section>
 					<!-- end: PAGE TITLE -->
+
+					<section class="paitent-report">
+						<?php
+						$sql = mysqli_query($con, "SELECT * FROM users where id='" . $_SESSION['id'] . "'");
+						$row = mysqli_fetch_array($sql);
+						?>
+
+
+						<br>
+						<div class="paitent-detail report-css">
+							<p>Patients ID&nbsp;: <?php echo $row['id']; ?></p>
+							<p>Full Name&nbsp;&nbsp;: <?php echo $row['fullName']; ?></p>
+							<p>Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['address']; ?></p>
+							<p>City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['city']; ?></p>
+							<p>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['gender']; ?></p>
+							<p>Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['phone']; ?></p>
+							<p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo $row['email']; ?></p>
+						</div>
+						<br>
+					</section>
+					<section>
+						<?php
+						$sql = mysqli_query($con, "SELECT * FROM user_urin where id='" . $_SESSION['id'] . "'");
+						$row = mysqli_fetch_array($sql);
+						?>
+					</section>
 					<!-- start: BASIC EXAMPLE -->
-					<div class="container-fluid container-fullw bg-white">
+					<div class="container-fluid container-fullw bg-white" id="invoice">
 
 						<div class="row">
 							<div class="col-md-12">
-
+								<div class="report-detail">
+									<h3>Blood Test Report</h3>
+								</div>
 								<!-- Code for Urin Test -->
-								<table class="parent-table table">
+								<table class="parent-table table table-bordered admin-salary" width="1">
 									<thead>
 										<tr>
-											<th>Id</th>
-											<th>Name</th>
-											<th>Phone</th>
-											<th>Status</th>
-											<th>Report</th>
+											<th>Laboratory Test</th>
+											<th>Patient value</th>
+											<th>Normal Value</th>
 										</tr>
 									</thead>
 									<tbody>
-										<!-- Connect the erin table -->
-										<?php
-											//Connect with user urin test table
-											$sql = mysqli_query($con, "SELECT * FROM user_urin where id='" . $_SESSION['id'] . "'");
-											$row = mysqli_fetch_array($sql);
-
-											//Connect with user details table
-											$usersql = mysqli_query($con, "SELECT * FROM users where id='" . $_SESSION['id'] . "'");
-											$userrow = mysqli_fetch_array($usersql);
-										?>
 										<tr>
-											<td><?php echo $row['id']; ?></td>
-											<td><?php echo $userrow['fullName']; ?></td>
-											<td><?php echo $userrow['phone']; ?></td>
-
-											<td>
-												<?php
-												if ($row['status'] == true) {
-													echo 'Ready';
-												} else {
-													echo 'Pending';
-												}
-												?>
-											</td>
-
-											<td>
-												<?php if ($row['status'] == true) { ?>
-													<p class="links cl-effect-1">
-														<a href="user-urine-report.php">
-															Check Report
-														</a>
-													</p>
-
-												<?php } else {
-														echo 'Not Available';
-													} ?>
-											</td>
+											<td>Hemoglobin(g/l)</td>
+											<td><?php echo htmlentities($row['hemoglobingl']); ?></td>
+											<td>120-160</td>
+										</tr>
+										<tr>
+											<td>Leukocyte Count(cell/microL)</td>
+											<td><?php echo htmlentities($row['leukocyte_count_cm']); ?></td>
+											<td>4800-1000</td>
+										</tr>
+										<tr>
+											<td>Glucose(mmol/l)</td>
+											<td><?php echo htmlentities($row['glucose_ml']); ?></td>
+											<td>3.9-6.4</td>
+										</tr>
+										<tr>
+											<td>Blood Urea nitrogen(mmol/l)</td>
+											<td><?php echo htmlentities($row['blood_urea_nitrogen_ml']); ?></td>
+											<td>7.1-35.7</td>
+										</tr>
+										</tr>
+										<tr>
+											<td>Creatinine(micromml)</td>
+											<td><?php echo htmlentities($row['creatinine_m']); ?></td>
+											<td>44.2-97.2</td>
+										</tr>
+										</tr>
+										<tr>
+											<td>Arterial pH</td>
+											<td><?php echo htmlentities($row['arterial_ph']); ?></td>
+											<td>7.35-7.45</td>
 										</tr>
 									</tbody>
 								</table>
+								<div class="col-md-12 text-right mb-3">
+                                	<button class="btn btn-primary" id="download"> Download</button>
+                                	<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+                            	</div>
 							</div>
 						</div>
 
@@ -151,8 +180,9 @@ check_login();
 		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: CLIP-TWO JAVASCRIPTS -->
 		<script src="assets/js/main.js"></script>
-		<!-- start: JavaScript Event Handlers for this page -->
-		<script src="assets/js/form-elements.js"></script>
+
+		<!-- start: CLIP-TWO JAVASCRIPTS -->
+		<script src="assets/js/main.js"></script>
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();

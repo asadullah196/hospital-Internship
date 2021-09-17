@@ -10,7 +10,7 @@ check_login();
 <html lang="en">
 
 <head>
-	<title>User | Urine Test History</title>
+	<title>User | Blood Test History</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -42,14 +42,14 @@ check_login();
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">User | Urine Test History</h1>
+								<h1 class="mainTitle">User | Blood Test History</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>User </span>
 								</li>
 								<li class="active">
-									<span>Urine Test History</span>
+									<span>Blood Test History</span>
 								</li>
 							</ol>
 						</div>
@@ -101,7 +101,7 @@ check_login();
 											<td>
 												<?php if ($row['status'] == true) { ?>
 													<p class="links cl-effect-1">
-														<a href="user-urine-report.php">
+														<a href="user-blood-report.php">
 															Check Report
 														</a>
 													</p>

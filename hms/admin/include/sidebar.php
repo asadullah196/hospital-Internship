@@ -72,19 +72,19 @@
 						
 						<li>
 							<a href="manage-users.php">
+								<span class="title"> View All Patient </span>
+							</a>
+						</li>
+
+						<li>
+							<a href="patient-search-admin.php">
 								<span class="title"> Manage Patient </span>
 							</a>
 						</li>
 
 						<li>
 							<a href="patient-search.php">
-								<span class="title"> Patient Search </span>
-							</a>
-						</li>
-
-						<li>
-							<a href="patient-search.php">
-								<span class="title"> Add Report </span>
+								<span class="title"> Dead - Add Report </span>
 							</a>
 						</li>
 
