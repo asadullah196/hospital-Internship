@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
 	$sql = mysqli_query($con, "INSERT INTO `user_urin` (`id`, `name`, `hemoglobingl`, `leukocyte_count_cm`, `glucose_ml`, `blood_urea_nitrogen_ml`, `creatinine_m`, `arterial_ph`, `status`) VALUES ('$id', '$name', '$hemoglobingl', '$leukocyte_count', '$glucose', '$blood_urea_nitrogen', '$creatinine', '$arterial', '1');");
 	if ($sql) {
 		echo "<script>alert('Doctor info added Successfully');</script>";
-		echo "<script>window.location.href ='add-urine-report-admin.php?viewid=$id'</script>";
+		echo "<script>window.location.href ='update-urine-report-admin.php?viewid=$id'</script>";
 	}
 }
 ?>
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Admin | Add Urin Report </title>
+	<title>Admin | Update Urin Report </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -63,14 +63,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Urin Report </h1>
+								<h1 class="mainTitle">Admin | Update Urin Report </h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Urin Report </span>
+									<span>Update Urin Report </span>
 								</li>
 							</ol>
 						</div>
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">Add Urin Report </h3>
+												<h3 class="">Update Urin Report </h3>
 											</div>
 
 											<?php

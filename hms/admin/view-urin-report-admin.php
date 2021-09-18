@@ -7,31 +7,13 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
-if (isset($_POST['submit'])) {
-
-	$id = $did;
-	$name = $_POST['pname'];
-	$age = $_POST['page'];
-	$gender = $_POST['pgender'];
-	$height = $_POST['pheight'];
-	$weight = $_POST['pweight'];
-	$temperature = $_POST['ptemperature'];
-	$blood_pressure = $_POST['pblood_pressure'];
-	$covid_vaccinated = $_POST['pcovid_vaccinated'];
-	$occupation = $_POST['poccupation'];
-
-	$sql = mysqli_query($con, "INSERT INTO `user_history` (`id`, `name`, `age`, `gender`, `height`, `weight`, `temperature`, `blood_pressure`, `covid_vaccinated`, `occupation`, `status`) VALUES ('$id', '$name', '$age', '$gender', '$height', '$weight', '$temperature', '$blood_pressure', '$covid_vaccinated', '$occupation', '1');");
-	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
-		echo "<script>window.location.href ='view-patient-admin.php?viewid=$id'</script>";
-	}
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin | Add Urine Report </title>
+	<title>Admin | View Patient Urin Report </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -64,14 +46,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Urine Report </h1>
+								<h1 class="mainTitle">Admin | View Patient Urin Report </h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Urine Report </span>
+									<span>View Patient Urin Report </span>
 								</li>
 							</ol>
 						</div>
@@ -86,90 +68,80 @@ if (isset($_POST['submit'])) {
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">Add Urine Report </h3>
+												<h3 class="">View Patient Urin Report </h3>
 											</div>
 
 											<?php
-                                                // Connect with user-patient database
-                                                $sql = mysqli_query($con, "select * from users where id='" . $did . "'");
-                                                $row = mysqli_fetch_array($sql);
-                                            ?>
+											// Connect with user-patient database
+											$sql = mysqli_query($con, "select * from user_urin where id='" . $did . "'");
+											$row = mysqli_fetch_array($sql);
+											?>
 
-											<div class="panel-body">
+											<?php if ($row['status'] == 1) { ?>
+												<div class="panel-body">
+													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+														<div class="form-group">
+															<table class="parent-table table table-bordered admin-salary" width="1">
+																<thead>
+																	<tr>
+																		<th>Laboratory Test</th>
+																		<th>Patient Value</th>
+																		<th>Normal Value</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>Patient</td>
+																		<td><?php echo $row['name']; ?></td>
+																		<td>N/A</td>
+																	</tr>
 
-												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
-													<div class="form-group">
-														<table class="parent-table table table-bordered admin-salary" width="1">
-															<thead>
-																<tr>
-																	<th>Laboratory Test</th>
-																	<th>Patient Value</th>
-																	<th>Normal Value</th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td>Patient</td>
-																	<td><input type="text" name="pname" class="form-control" placeholder="" value="<?php echo $row['fullName'];?>" readonly></td>
-																	<td>N/A</td>
-																</tr>
+																	<tr>
+																		<td>Hemoglobin(g/l)</td>
+																		<td><?php echo $row['hemoglobingl']; ?></td>
+																		<td>120-160</td>
+																	</tr>
 
-																<tr>
-																	<td>Age</td>
-																	<td><input type="text" name="page" class="form-control" placeholder="Patient Age" required></td>
-																	<td>Year</td>
-																</tr>
+																	<tr>
+																		<td>Leukocyte Count(cell/microL)</td>
+																		<td><?php echo $row['leukocyte_count_cm']; ?></td>
+																		<td>4800-1000</td>
+																	</tr>
 
-																<tr>
-																	<td>Gender</td>
-																	<td><input type="text" name="pgender" class="form-control" placeholder="Gender" required></td>
-																	<td>N/A</td>
-																</tr>
+																	<tr>
+																		<td>Glucose(mmol/l)</td>
+																		<td><?php echo $row['glucose_ml']; ?></td>
+																		<td>3.9-6.4</td>
+																	</tr>
+																	<tr>
+																		<td>Blood Urea nitrogen(mmol/l)</td>
+																		<td><?php echo $row['blood_urea_nitrogen_ml']; ?></td>
+																		<td>7.1-35.7</td>
+																	</tr>
+																	<tr>
+																		<td>Creatinine(micromml)</td>
+																		<td><?php echo $row['creatinine_m']; ?></td>
+																		<td>44.2-97.2</td>
+																	</tr>
+																	<tr>
+																		<td>Arterial pH</td>
+																		<td><?php echo $row['arterial_ph']; ?></td>
+																		<td>7.35-7.45</td>
+																	</tr>
 
-																<tr>
-																	<td>Height</td>
-																	<td><input type="text" name="pheight" class="form-control" placeholder="Height" required></td>
-																	<td>Inc</td>
-																</tr>
-
-																<tr>
-																	<td>Weight</td>
-																	<td><input type="text" name="pweight" class="form-control" placeholder="Weight" required></td>
-																	<td>Kg</td>
-																</tr>
-																
-																<tr>
-																	<td>Temperature</td>
-																	<td><input type="text" name="ptemperature" class="form-control" placeholder="Temperature" required></td>
-																	<td>Degrees Celsius</td>
-																</tr>
-
-																<tr>
-																	<td>Blood Pressure</td>
-																	<td><input type="text" name="pblood_pressure" class="form-control" placeholder="Blood Pressure" required></td>
-																	<td>mmHg</td>
-																</tr>
-
-																<tr>
-																	<td>Covid19 Vaccinated</td>
-																	<td><input type="text" name="pcovid_vaccinated" class="form-control" placeholder="Covid Vaccinated" required></td>
-																	<td>N/A</td>
-																</tr>
-
-																<tr>
-																	<td>Occupation</td>
-																	<td><input type="text" name="poccupation" class="form-control" placeholder="Occupation" required></td>
-																	<td>N/A</td>
-																</tr>
-
-															</tbody>
-														</table>
-													</div>
-													<button type="submit" name="submit" id="submit" class="btn btn-primary pull-right">
-														Submit
-													</button>
-												</form>
-											</div>
+																</tbody>
+															</table>
+														</div>
+														<div class="col-md-12 text-right mb-3">
+															<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+														</div>
+													</form>
+												</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
 										</div>
 									</div>
 
