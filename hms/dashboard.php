@@ -141,7 +141,7 @@ check_login();
 										<h2 class="StepTitle"> Special Test </h2>
 
 										<p class="links cl-effect-1">
-											<a href="book-appointment.php">
+											<a href="#">
 												Check Update
 											</a>
 										</p>

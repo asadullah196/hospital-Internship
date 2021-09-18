@@ -122,10 +122,7 @@ check_login();
 					</div>
 				</div>
 			</div>
-			<!-- start: FOOTER -->
-			<?php include('include/footer.php'); ?>
-			<!-- end: FOOTER -->
-
+			
 			<!-- start: SETTINGS -->
 			<?php include('include/setting.php'); ?>
 
