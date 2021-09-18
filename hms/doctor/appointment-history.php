@@ -84,7 +84,7 @@ if (isset($_GET['cancel'])) {
 									</thead>
 									<tbody>
 										<?php
-										$sql = mysqli_query($con, "select users.fullName as fname,appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $_SESSION['id'] . "'");
+										$sql = mysqli_query($con, "select users.id as fid, users.fullName as fname,appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $_SESSION['id'] . "'");
 										$cnt = 1;
 										while ($row = mysqli_fetch_array($sql)) {
 										?>
@@ -111,7 +111,15 @@ if (isset($_GET['cancel'])) {
 													}
 													?>
 												</td>
-												<td><?php echo "Hello"; ?></td>
+
+												
+												<td>
+													<p class="cl-effect-1">
+														<a href="user-detail-doctor.php?viewid=<?php echo $row['fid'] ?>">
+															View Details
+														</a>
+													</p>
+												</td>
 												<td>
 													<div class="visible-md visible-lg hidden-sm hidden-xs">
 														<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) { ?>
