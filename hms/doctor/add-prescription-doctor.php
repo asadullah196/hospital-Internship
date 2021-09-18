@@ -65,7 +65,7 @@ if (isset($_GET['cancel'])) {
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span><?php var_dump($_GET['id']); ?></h5>
+                                <h3 class="">Add <span class="text-bold">Prescription</span></h3>
                                 <?php
                                 $vid = $_GET['id'];
                                 $ret = mysqli_query($con, "select * from users where ID='$did'");
@@ -103,11 +103,15 @@ if (isset($_GET['cancel'])) {
                                     $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
                                     ?>
                             </div>
+                            <h2 class="text-bold"><br/><br/>&nbsp;&nbsp;Rx </h2>
                             <div class="col-md-12 text-left mb-3">
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <tr>
-                                        <th>View Report</th>
-                                        <th>Prescription</th>
+                                        <th>Serial No</th>
+                                        <th>Medicine Name</th>
+                                        <th>Medicine Details</th>
+                                        <th>Time Table</th>
+                                        <th>Total Medicine</th>
                                     </tr>
 
                                     <tr>
