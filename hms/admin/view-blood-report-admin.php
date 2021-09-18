@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 	$uric_acide = $_POST['puric_acide'];
 
 
-	$sql = mysqli_query($con, "INSERT INTO `user_blood`(`id`, `name`, `albumin`, `alt_sgot`, `ast_sgot`, `alkaline_phosphatase`, `total_billirubin`, `bun`, `calcium`, `chloride`, `creatinine`, `glucose`, `lactate_dehydrogenase_ldh`, `magnesium`, `sodium`, `total_protien`, `uric_acide`, `status`) VALUES ('$id','$name','$albumin','$alt_sgot','$ast_sgot','$alkaline_phosphatase','$total_billirubin','$bun','$calcium','$chloride','$creatinine','$glucose','$lactate_dehydrogenase_ldh','$magnesium','$total_protien','$uric_acide','1')");
+	$sql = mysqli_query($con, "INSERT INTO `user_blood`(`id`, `name`, `albumin`, `alt_sgot`, `ast_sgot`, `alkaline_phosphatase`, `total_billirubin`, `bun`, `calcium`, `chloride`, `creatinine`, `glucose`, `lactate_dehydrogenase_ldh`, `magnesium`, `sodium`, `total_protien`, `uric_acide`, `status`) VALUES ('$id','$name','$name','$albumin','$alt_sgot','$ast_sgot','$alkaline_phosphatase','$total_billirubin','$bun','$calcium','$chloride','$creatinine','$glucose','$lactate_dehydrogenase_ldh','$magnesium','$total_protien','$uric_acide','1')");
 	
 	if ($sql) {
 		echo "<script>alert('Blood Report Added Successfully');</script>";
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Admin | Add Blood Report </title>
+	<title>Admin | View Blood Report </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -73,14 +73,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Blood Report </h1>
+								<h1 class="mainTitle">Admin | View Blood Report </h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Blood Report </span>
+									<span>View Blood Report </span>
 								</li>
 							</ol>
 						</div>
@@ -95,12 +95,12 @@ if (isset($_POST['submit'])) {
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">Add Blood Report </h3>
+												<h3 class="">View Blood Report </h3>
 											</div>
 
 											<?php
 											// Connect with user-patient database
-											$sql = mysqli_query($con, "select * from users where id='" . $did . "'");
+											$sql = mysqli_query($con, "select * from user_blood where id='" . $did . "'");
 											$row = mysqli_fetch_array($sql);
 											?>
 
@@ -120,107 +120,107 @@ if (isset($_POST['submit'])) {
 															<tbody>
 																<tr>
 																	<td>Patient</td>
-																	<td><input type="text" name="pname" class="form-control" placeholder="" value="<?php echo $row['fullName']; ?>" readonly></td>
+																	<td><?php echo $row['name']; ?></td>
 																	<td>N/A</td>
 																	<td>N/A</td>
 																</tr>
 
 																<tr>
 																	<td>Albumin</td>
-																	<td><input type="text" class="form-control" name="palbumin" placeholder="Albumin" required></td>
+																	<td><?php echo $row['albumin']; ?></td>
 																	<td>g/dl</td>
 																	<td> 3.5 - 5.0 </td>
 																</tr>
 																<tr>
 																	<td>ALT (SGOT)</td>
-																	<td><input type="text" class="form-control" name="palt_sgot" placeholder="ALT (SGOT)" required></td>
+																	<td><?php echo $row['alt_sgot']; ?></td>
 																	<td>IU/L</td>
 																	<td>11 - 36</td>
 																</tr>
 																<tr>
 																	<td>AST (SGOT)</td>
-																	<td><input type="text" class="form-control" name="past_sgot" placeholder="AST (SGOT)" required></td>
+																	<td><?php echo $row['ast_sgot']; ?></td>
 																	<td>IU/L</td>
 																	<td>38 - 126</td>
 																</tr>
 																<tr>
 																	<td>Alkaline Phosphatase</td>
-																	<td><input type="text" class="form-control" name="palkaline_phosphatase" placeholder="Alkaline Phosphatase" required></td>
+																	<td><?php echo $row['alkaline_phosphatase']; ?></td>
 																	<td>mg/dl</td>
 																	<td>0.2 - 1.3</td>
 																</tr>
 																<tr>
 																	<td>Total Billirubin</td>
-																	<td><input type="text" class="form-control" name="ptotal_billirubin" placeholder="Total Billirubin" required></td>
+																	<td><?php echo $row['total_billirubin']; ?></td>
 																	<td>mg/dl</td>
 																	<td>7 - 17</td>
 																</tr>
 																<tr>
 																	<td>BUN</td>
-																	<td><input type="text" class="form-control" name="pbun" placeholder="BUN" required></td>
+																	<td><?php echo $row['bun']; ?></td>
 																	<td>mg/dl</td>
 																	<td>8.4 - 10.2</td>
 																</tr>
 																<tr>
 																	<td>Calcium</td>
-																	<td><input type="text" class="form-control" name="pcalcium" placeholder="Calcium" required></td>
+																	<td><?php echo $row['calcium']; ?></td>
 																	<td>mg/dl</td>
 																	<td>98 - 107</td>
 																</tr>
 																<tr>
 																	<td>Chloride</td>
-																	<td><input type="text" class="form-control" name="pchloride" placeholder="Chloride" required></td>
+																	<td><?php echo $row['chloride']; ?></td>
 																	<td>mg/dl</td>
 																	<td>0.7 - 1.2</td>
 																</tr>
 																<tr>
 																	<td>Creatinine</td>
-																	<td><input type="text" class="form-control" name="pcreatinine" placeholder="Creatinine" required></td>
+																	<td><?php echo $row['creatinine']; ?></td>
 																	<td>mmol/L</td>
 																	<td>65 - 105</td>
 																</tr>
 																<tr>
 																	<td>Glucose</td>
-																	<td><input type="text" class="form-control" name="pglucose" placeholder="Glucose" required></td>
+																	<td><?php echo $row['glucose']; ?></td>
 																	<td>mg/dl</td>
 																	<td>100 - 250</td>
 																</tr>
 																<tr>
 																	<td>Lactate dehydrogenase (LDH)</td>
-																	<td><input type="text" class="form-control" name="plactate_dehydrogenase_ldh" placeholder="Lactate dehydrogenase (LDH)" required></td>
+																	<td><?php echo $row['lactate_dehydrogenase_ldh']; ?></td>
 																	<td>mg/dl</td>
 																	<td>0.65 - 1.05</td>
 																</tr>
 																<tr>
 																	<td>Magnesium</td>
-																	<td><input type="text" class="form-control" name="pmagnesium" placeholder="Magnesium" required></td>
+																	<td><?php echo $row['magnesium']; ?></td>
 																	<td>IU/L</td>
 																	<td>3.6 - 5.0</td>
 																</tr>
 																<tr>
 																	<td>Sodium</td>
-																	<td><input type="text" class="form-control" name="psodium" placeholder="Sodium" required></td>
+																	<td><?php echo $row['sodium']; ?></td>
 																	<td>mmol/L</td>
 																	<td>137 - 145</td>
 																</tr>
 																<tr>
 																	<td>Total Protien</td>
-																	<td><input type="text" class="form-control" name="ptotal_protien" placeholder="Total Protien" required></td>
+																	<td><?php echo $row['total_protien']; ?></td>
 																	<td>mmol/L</td>
 																	<td>6.3 - 8.2</td>
 																</tr>
 																<tr>
 																	<td>Uric Acide</td>
-																	<td><input type="text" class="form-control" name="puric_acide" placeholder="Uric Acide" required></td>
+																	<td><?php echo $row['uric_acide']; ?></td>
 																	<td>mmol/L</td>
 																	<td>227 - 467</td>
 																</tr>
 															</tbody>
 														</table>
 													</div>
-													<button type="submit" name="submit" id="submit" class="btn btn-primary pull-right">
-														Submit
-													</button>
+													<div class="col-md-12 text-right mb-3">
+														<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+													</div>
 												</form>
 											</div>
 										</div>
