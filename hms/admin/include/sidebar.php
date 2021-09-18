@@ -81,34 +81,7 @@
 								<span class="title"> Manage Patient </span>
 							</a>
 						</li>
-
-						<li>
-							<a href="patient-search.php">
-								<span class="title"> Dead - Add Report </span>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:void(0)">
-						<div class="item-content">
-							<div class="item-media">
-								<i class="ti-user"></i>
-							</div>
-							<div class="item-inner">
-								<span class="title"> Dead -- Patients </span><i class="icon-arrow"></i>
-							</div>
-						</div>
-					</a>
-					<ul class="sub-menu">
-
-						<li>
-							<a href="manage-patient.php">
-								<span class="title"> Manage Patients </span>
-							</a>
-						</li>
-
+						
 					</ul>
 				</li>
 

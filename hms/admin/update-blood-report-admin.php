@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Admin | Add Blood Report </title>
+	<title>Admin | Update Blood Report </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -73,14 +73,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Blood Report </h1>
+								<h1 class="mainTitle">Admin | Update Blood Report </h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Blood Report </span>
+									<span>Update Blood Report </span>
 								</li>
 							</ol>
 						</div>
@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">Add Blood Report </h3>
+												<h3 class="">Update Blood Report </h3>
 											</div>
 
 											<?php
@@ -104,6 +104,7 @@ if (isset($_POST['submit'])) {
 											$row = mysqli_fetch_array($sql);
 											?>
 
+											<?php if ($row['status'] == 1) { ?>
 											<div class="panel-body">
 
 												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
@@ -223,6 +224,11 @@ if (isset($_POST['submit'])) {
 													</button>
 												</form>
 											</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
 										</div>
 									</div>
 

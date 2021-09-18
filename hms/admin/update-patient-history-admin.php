@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">Update Patient History<?php var_dump($id);?></h3>
+												<h3 class="">Update Patient History</h3>
 											</div>
 
 											<?php

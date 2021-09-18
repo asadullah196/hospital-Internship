@@ -126,16 +126,13 @@ check_login();
 											<i class="fa fa-square fa-stack-2x text-primary"></i> 
 											<i class="fa fa-search-minus fa-stack-1x fa-inverse"></i> 
 										</span>
-										<h2 class="StepTitle"> Pending Report</h2>
+										<h2 class="StepTitle"> Patient Report </h2>
 
 										<p class="links cl-effect-1">
 											<a href="book-appointment.php">
-												<a href="unread-queries.php">
-													<?php
-													$sql = mysqli_query($con, "SELECT * FROM tblcontactus where  IsRead is null");
-													$num_rows22 = mysqli_num_rows($sql);
-													?>
-													Total New Queries :<?php echo htmlentities($num_rows22);   ?>
+												<a href="patient-search-admin.php">
+
+													Add-Update-View Report :<?php echo htmlentities($num_rows22);   ?>
 												</a>
 											</a>
 										</p>

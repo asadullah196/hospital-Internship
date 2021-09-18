@@ -75,7 +75,8 @@ $did = intval($_GET['viewid']); // get patient id
 											$sql = mysqli_query($con, "select * from user_blood where id='" . $did . "'");
 											$row = mysqli_fetch_array($sql);
 											?>
-
+											
+											<?php if ($row['status'] == 1) { ?>
 											<div class="panel-body">
 
 												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
@@ -195,6 +196,11 @@ $did = intval($_GET['viewid']); // get patient id
 													</div>
 												</form>
 											</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
 										</div>
 									</div>
 
