@@ -18,11 +18,11 @@ if (isset($_POST['submit'])) {
 	$creatinine = $_POST['pcreatinine'];
 	$arterial = $_POST['parterial'];
 	
+	$sql = mysqli_query($con, "UPDATE user_urin SET `name`='$name',`hemoglobingl`='$hemoglobingl',`leukocyte_count_cm`='$leukocyte_count',`glucose_ml`='$glucose',`blood_urea_nitrogen_ml`='$blood_urea_nitrogen',`creatinine_m`='$creatinine',`arterial_ph`='$arterial' WHERE id='$id'");
 
-	$sql = mysqli_query($con, "INSERT INTO `user_urin` (`id`, `name`, `hemoglobingl`, `leukocyte_count_cm`, `glucose_ml`, `blood_urea_nitrogen_ml`, `creatinine_m`, `arterial_ph`, `status`) VALUES ('$id', '$name', '$hemoglobingl', '$leukocyte_count', '$glucose', '$blood_urea_nitrogen', '$creatinine', '$arterial', '1');");
 	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
-		echo "<script>window.location.href ='update-urine-report-admin.php?viewid=$id'</script>";
+		echo "<script>alert('Urin Report Updated Successfully');</script>";
+		echo "<script>window.location.href ='update-urin-report-admin.php?viewid=$id'</script>";
 	}
 }
 ?>
@@ -90,10 +90,11 @@ if (isset($_POST['submit'])) {
 
 											<?php
 											// Connect with user-patient database
-											$sql = mysqli_query($con, "select * from users where id='" . $did . "'");
+											$sql = mysqli_query($con, "select * from user_urin where id='" . $did . "'");
 											$row = mysqli_fetch_array($sql);
 											?>
-
+											
+											<?php if ($row['status'] == 1) { ?>
 											<div class="panel-body">
 
 												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
@@ -109,40 +110,40 @@ if (isset($_POST['submit'])) {
 															<tbody>
 																<tr>
 																	<td>Patient</td>
-																	<td><input type="text" name="pname" class="form-control" placeholder="" value="<?php echo $row['fullName']; ?>" readonly></td>
+																	<td><input type="text" name="pname" class="form-control" placeholder="" value="<?php echo $row['name']; ?>" readonly></td>
 																	<td>N/A</td>
 																</tr>
 
 																<tr>
 																	<td>Hemoglobin(g/l)</td>
-																	<td><input type="text" name="phemoglobin" class="form-control" placeholder="Hemoglobin" required></td>
+																	<td><input type="text" name="phemoglobin" class="form-control" placeholder="<?php echo $row['hemoglobingl'];?>" value="<?php echo $row['hemoglobingl'];?>" required></td>
 																	<td>120-160</td>
 																</tr>
 
 																<tr>
 																	<td>Leukocyte Count(cell/microL)</td>
-																	<td><input type="text" class="form-control" name="pleukocyte_count" placeholder="Leukocyte Count" required></td>
+																	<td><input type="text" class="form-control" name="pleukocyte_count" placeholder="<?php echo $row['leukocyte_count_cm'];?>" value="<?php echo $row['leukocyte_count_cm'];?>" required></td>
 																	<td>4800-1000</td>
 																</tr>
 
 																<tr>
 																	<td>Glucose(mmol/l)</td>
-																	<td><input type="text" class="form-control" name="pglucose" placeholder="Glucose" required></td>
+																	<td><input type="text" class="form-control" name="pglucose" placeholder="<?php echo $row['glucose_ml'];?>" value="<?php echo $row['glucose_ml'];?>" required></td>
 																	<td>3.9-6.4</td>
 																</tr>
 																<tr>
 																	<td>Blood Urea nitrogen(mmol/l)</td>
-																	<td><input type="text" class="form-control" name="pblood_urea_nitrogen" placeholder="Blood Urea nitrogen" required></td>
+																	<td><input type="text" class="form-control" name="pblood_urea_nitrogen" placeholder="<?php echo $row['blood_urea_nitrogen_ml'];?>" value="<?php echo $row['blood_urea_nitrogen_ml'];?>" required></td>
 																	<td>7.1-35.7</td>
 																</tr>
 																<tr>
 																	<td>Creatinine(micromml)</td>
-																	<td><input type="text" class="form-control" name="pcreatinine" placeholder="Creatinine" required></td>
+																	<td><input type="text" class="form-control" name="pcreatinine" placeholder="<?php echo $row['creatinine_m'];?>" value="<?php echo $row['creatinine_m'];?>" required></td>
 																	<td>44.2-97.2</td>
 																</tr>
 																<tr>
 																	<td>Arterial pH</td>
-																	<td><input type="text" class="form-control" name="parterial" placeholder="Arterial" required></td>
+																	<td><input type="text" class="form-control" name="parterial" placeholder="<?php echo $row['arterial_ph'];?>" value="<?php echo $row['arterial_ph'];?>" required></td>
 																	<td>7.35-7.45</td>
 																</tr>
 
@@ -154,6 +155,11 @@ if (isset($_POST['submit'])) {
 													</button>
 												</form>
 											</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
 										</div>
 									</div>
 
