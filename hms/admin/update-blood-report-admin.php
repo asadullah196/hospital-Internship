@@ -7,12 +7,40 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
+if (isset($_POST['submit'])) {
+
+	$id = $did;
+	$name = $_POST['pname'];
+	$albumin = $_POST['palbumin'];      
+	$alt_sgot = $_POST['palt_sgot'];
+	$ast_sgot = $_POST['past_sgot'];
+	$alkaline_phosphatase = $_POST['palkaline_phosphatase'];
+	$total_billirubin = $_POST['ptotal_billirubin'];
+	$bun = $_POST['pbun'];
+	$calcium = $_POST['pcalcium'];
+	$chloride = $_POST['pchloride'];
+	$creatinine = $_POST['pcreatinine'];
+	$glucose = $_POST['pglucose'];   
+	$lactate_dehydrogenase_ldh = $_POST['plactate_dehydrogenase_ldh'];
+	$magnesium = $_POST['pmagnesium'];
+	$sodium = $_POST['psodium'];
+	$total_protien = $_POST['ptotal_protien'];
+	$uric_acide = $_POST['puric_acide'];
+
+
+	$sql = mysqli_query($con, "UPDATE user_blood SET `name`='$name',`albumin`='$albumin',`alt_sgot`='$alt_sgot',`ast_sgot`='$ast_sgot',`alkaline_phosphatase`='$alkaline_phosphatase',`total_billirubin`='$total_billirubin',`bun`='$bun',`calcium`='$calcium',`chloride`='$chloride',`creatinine`='$creatinine',`glucose`='$glucose',`lactate_dehydrogenase_ldh`='$lactate_dehydrogenase_ldh',`magnesium`='$magnesium',`sodium`='$sodium',`total_protien`='$total_protien',`uric_acide`='$uric_acide' WHERE id='$id'");
+
+	if ($sql) {
+		echo "<script>alert('Blood Report Added Successfully');</script>";
+		echo "<script>window.location.href ='update-blood-report-admin.php?viewid=$id'</script>";
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin | View Blood Report </title>
+	<title>Admin | Add Blood Report </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -45,14 +73,14 @@ $did = intval($_GET['viewid']); // get patient id
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | View Blood Report </h1>
+								<h1 class="mainTitle">Admin | Add Blood Report </h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>View Blood Report </span>
+									<span>Add Blood Report </span>
 								</li>
 							</ol>
 						</div>
@@ -67,7 +95,7 @@ $did = intval($_GET['viewid']); // get patient id
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">View Blood Report </h3>
+												<h3 class="">Add Blood Report </h3>
 											</div>
 
 											<?php
@@ -92,107 +120,107 @@ $did = intval($_GET['viewid']); // get patient id
 															<tbody>
 																<tr>
 																	<td>Patient</td>
-																	<td><?php echo $row['name']; ?></td>
+																	<td><input type="text" name="pname" class="form-control" placeholder="" value="<?php echo $row['name']; ?>" readonly></td>
 																	<td>N/A</td>
 																	<td>N/A</td>
 																</tr>
 
 																<tr>
 																	<td>Albumin</td>
-																	<td><?php echo $row['albumin']; ?></td>
+																	<td><input type="text" class="form-control" name="palbumin" placeholder="<?php echo $row['albumin'];?>" value="<?php echo $row['albumin'];?>" required></td>
 																	<td>g/dl</td>
 																	<td> 3.5 - 5.0 </td>
 																</tr>
 																<tr>
 																	<td>ALT (SGOT)</td>
-																	<td><?php echo $row['alt_sgot']; ?></td>
+																	<td><input type="text" class="form-control" name="palt_sgot" placeholder="<?php echo $row['alt_sgot'];?>" value="<?php echo $row['alt_sgot'];?>" required></td>
 																	<td>IU/L</td>
 																	<td>11 - 36</td>
 																</tr>
 																<tr>
 																	<td>AST (SGOT)</td>
-																	<td><?php echo $row['ast_sgot']; ?></td>
+																	<td><input type="text" class="form-control" name="past_sgot" placeholder="<?php echo $row['ast_sgot'];?>" value="<?php echo $row['ast_sgot'];?>" required></td>
 																	<td>IU/L</td>
 																	<td>38 - 126</td>
 																</tr>
 																<tr>
 																	<td>Alkaline Phosphatase</td>
-																	<td><?php echo $row['alkaline_phosphatase']; ?></td>
+																	<td><input type="text" class="form-control" name="palkaline_phosphatase" placeholder="<?php echo $row['alkaline_phosphatase'];?>" value="<?php echo $row['alkaline_phosphatase'];?>" required></td>
 																	<td>mg/dl</td>
 																	<td>0.2 - 1.3</td>
 																</tr>
 																<tr>
 																	<td>Total Billirubin</td>
-																	<td><?php echo $row['total_billirubin']; ?></td>
+																	<td><input type="text" class="form-control" name="ptotal_billirubin" placeholder="<?php echo $row['total_billirubin'];?>" value="<?php echo $row['total_billirubin'];?>" required></td>
 																	<td>mg/dl</td>
 																	<td>7 - 17</td>
 																</tr>
 																<tr>
 																	<td>BUN</td>
-																	<td><?php echo $row['bun']; ?></td>
+																	<td><input type="text" class="form-control" name="pbun" placeholder="<?php echo $row['bun'];?>" value="<?php echo $row['bun'];?>" required></td>
 																	<td>mg/dl</td>
 																	<td>8.4 - 10.2</td>
 																</tr>
 																<tr>
 																	<td>Calcium</td>
-																	<td><?php echo $row['calcium']; ?></td>
+																	<td><input type="text" class="form-control" name="pcalcium" placeholder="<?php echo $row['calcium'];?>" value="<?php echo $row['calcium'];?>" required></td>
 																	<td>mg/dl</td>
 																	<td>98 - 107</td>
 																</tr>
 																<tr>
 																	<td>Chloride</td>
-																	<td><?php echo $row['chloride']; ?></td>
+																	<td><input type="text" class="form-control" name="pchloride" placeholder="<?php echo $row['chloride'];?>" value="<?php echo $row['chloride'];?>" required></td>
 																	<td>mg/dl</td>
 																	<td>0.7 - 1.2</td>
 																</tr>
 																<tr>
 																	<td>Creatinine</td>
-																	<td><?php echo $row['creatinine']; ?></td>
+																	<td><input type="text" class="form-control" name="pcreatinine" placeholder="<?php echo $row['creatinine'];?>" value="<?php echo $row['creatinine'];?>" required></td>
 																	<td>mmol/L</td>
 																	<td>65 - 105</td>
 																</tr>
 																<tr>
 																	<td>Glucose</td>
-																	<td><?php echo $row['glucose']; ?></td>
+																	<td><input type="text" class="form-control" name="pglucose" placeholder="<?php echo $row['glucose'];?>" value="<?php echo $row['glucose'];?>" required></td>
 																	<td>mg/dl</td>
 																	<td>100 - 250</td>
 																</tr>
 																<tr>
 																	<td>Lactate dehydrogenase (LDH)</td>
-																	<td><?php echo $row['lactate_dehydrogenase_ldh']; ?></td>
+																	<td><input type="text" class="form-control" name="plactate_dehydrogenase_ldh" placeholder="<?php echo $row['lactate_dehydrogenase_ldh'];?>" value="<?php echo $row['lactate_dehydrogenase_ldh'];?>" required></td>
 																	<td>mg/dl</td>
 																	<td>0.65 - 1.05</td>
 																</tr>
 																<tr>
 																	<td>Magnesium</td>
-																	<td><?php echo $row['magnesium']; ?></td>
+																	<td><input type="text" class="form-control" name="pmagnesium" placeholder="<?php echo $row['magnesium'];?>" value="<?php echo $row['magnesium'];?>" required></td>
 																	<td>IU/L</td>
 																	<td>3.6 - 5.0</td>
 																</tr>
 																<tr>
 																	<td>Sodium</td>
-																	<td><?php echo $row['sodium']; ?></td>
+																	<td><input type="text" class="form-control" name="psodium" placeholder="<?php echo $row['sodium'];?>" value="<?php echo $row['sodium'];?>" required></td>
 																	<td>mmol/L</td>
 																	<td>137 - 145</td>
 																</tr>
 																<tr>
 																	<td>Total Protien</td>
-																	<td><?php echo $row['total_protien']; ?></td>
+																	<td><input type="text" class="form-control" name="ptotal_protien" placeholder="<?php echo $row['total_protien'];?>" value="<?php echo $row['total_protien'];?>" required></td>
 																	<td>mmol/L</td>
 																	<td>6.3 - 8.2</td>
 																</tr>
 																<tr>
 																	<td>Uric Acide</td>
-																	<td><?php echo $row['uric_acide']; ?></td>
+																	<td><input type="text" class="form-control" name="puric_acide" placeholder="<?php echo $row['uric_acide'];?>" value="<?php echo $row['uric_acide'];?>" required></td>
 																	<td>mmol/L</td>
 																	<td>227 - 467</td>
 																</tr>
 															</tbody>
 														</table>
 													</div>
-													<div class="col-md-12 text-right mb-3">
-														<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
-													</div>
+													<button type="submit" name="submit" id="submit" class="btn btn-primary pull-right">
+														Submit
+													</button>
 												</form>
 											</div>
 										</div>
