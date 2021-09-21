@@ -7,16 +7,41 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
-if (isset($_GET['cancel'])) {
-    mysqli_query($con, "update appointment set userStatus='0' where id = '" . $_GET['id'] . "'");
-    $_SESSION['msg'] = "Your appointment canceled !!";
+if (isset($_POST['submit'])) {
+
+	$id = $did;
+	$name = $_POST['pname'];
+	$albumin = $_POST['palbumin'];      
+	$alt_sgot = $_POST['palt_sgot'];
+	$ast_sgot = $_POST['past_sgot'];
+	$alkaline_phosphatase = $_POST['palkaline_phosphatase'];
+	$total_billirubin = $_POST['ptotal_billirubin'];
+	$bun = $_POST['pbun'];
+	$calcium = $_POST['pcalcium'];
+	$chloride = $_POST['pchloride'];
+	$creatinine = $_POST['pcreatinine'];
+	$glucose = $_POST['pglucose'];   
+	$lactate_dehydrogenase_ldh = $_POST['plactate_dehydrogenase_ldh'];
+	$magnesium = $_POST['pmagnesium'];
+	$sodium = $_POST['psodium'];
+	$total_protien = $_POST['ptotal_protien'];
+	$uric_acide = $_POST['puric_acide'];
+
+
+	$sql = mysqli_query($con, "INSERT INTO `user_blood`(`id`, `name`, `albumin`, `alt_sgot`, `ast_sgot`, `alkaline_phosphatase`, `total_billirubin`, `bun`, `calcium`, `chloride`, `creatinine`, `glucose`, `lactate_dehydrogenase_ldh`, `magnesium`, `sodium`, `total_protien`, `uric_acide`, `status`) VALUES ('$id','$name','$albumin','$alt_sgot','$ast_sgot','$alkaline_phosphatase','$total_billirubin','$bun','$calcium','$chloride','$creatinine','$glucose','$lactate_dehydrogenase_ldh','$magnesium','$total_protien','$uric_acide','1')");
+	
+	if ($sql) {
+		echo "<script>alert('Blood Report Added Successfully');</script>";
+		echo "<script>window.location.href ='add-blood-report-admin.php?viewid=$id'</script>";
+	}
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Doctor | Patient Details </title>
+    <title>Doctor | Add Prescription Details </title>
 
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -48,14 +73,14 @@ if (isset($_GET['cancel'])) {
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Doctor | Patient Details</h1>
+                                <h1 class="mainTitle">Doctor | Add Prescription Details</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li>
                                     <span>User </span>
                                 </li>
                                 <li class="active">
-                                    <span>Patient Details</span>
+                                    <span>Add Prescription Details</span>
                                 </li>
                             </ol>
                         </div>
@@ -99,43 +124,90 @@ if (isset($_GET['cancel'])) {
 
                                     <?php } ?>
                                     </table>
-                                    <?php
-                                    $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
-                                    ?>
                             </div>
                             <h2 class="text-bold"><br/><br/>&nbsp;&nbsp;Rx </h2>
-                            <div class="col-md-12 text-left mb-3">
-                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <tr>
-                                        <th>Serial No</th>
-                                        <th>Medicine Name</th>
-                                        <th>Medicine Details</th>
-                                        <th>Time Table</th>
-                                        <th>Total Medicine</th>
-                                    </tr>
+                            <div class="panel-body">
+                                <form role="form" name="adddoc" method="post" onSubmit="return valid();">
+                                    <?php
+                                    
+                                    $ret = mysqli_query($con, "select * from users where ID='$did'");
+                                    $row = mysqli_fetch_array($ret);
+                                    ?>
+                                    <div class="hidden-top">
+                                        <input type="hidden" class="form-control" name="did" value="<?php echo $row['id'];?>">
+                                        <input type="hidden" class="form-control" name="dname" value="<?php echo $row['fullName'];?>">
+                                    </div>
+									<div class="col-md-12 text-left mb-3">
+                                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <tr>
+                                                <th>Serial No</th>
+                                                <th>Medicine Name</th>
+                                                <th>Medicine Details</th>
+                                                <th>Time Table</th>
+                                                <th>Total Medicine</th>
+                                            </tr>
 
-                                    <tr>
-                                        <td>
-                                            <a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br /><br />
+                                            <tr>
+                                                <td>01</td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
+                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
+                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                            </tr>
 
-                                            <a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br /><br />
+                                            
+                                            <tr>
+                                                <td>02</td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
+                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
+                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                            </tr>
 
-                                            <a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br /><br />
+                                            
+                                            <tr>
+                                                <td>03</td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
+                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
+                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                            </tr>
 
-                                            <a href="#"><button class="btn btn-primary"> Others</button></a>
-                                        </td>
+                                            
+                                            <tr>
+                                                <td>04</td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
+                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
+                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                            </tr>
 
+                                            
+                                            <tr>
+                                                <td>05</td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
+                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
+                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                            </tr>
 
-                                        <td>
-                                            <a href="add-prescription-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary">Add Prescription</button></a><br /><br />
-
-                                            <a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary">Update Prescription</button></a><br /><br />
-
-                                            <a href="#"><button class="btn btn-primary"> Special Note</button></a>
-                                        </td>
-                                    </tr>
-
-                                </table>
+                                            
+                                            <tr>
+                                                <td>06</td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
+                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
+                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12 text-right mb-3">
+                            <button class="btn btn-primary" id="download"> Download</button>
+                            <button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+                        <button type="submit" name="submit" id="submit" class="btn btn-primary pull-left">
+														Submit
+									</button>
+                                </form></div>
                             </div>
                         </div>
                     </div>
