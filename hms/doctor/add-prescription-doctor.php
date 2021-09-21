@@ -10,29 +10,31 @@ $did = intval($_GET['viewid']); // get patient id
 if (isset($_POST['submit'])) {
 
     $id = $did;
-    $name = $_POST['pname'];
-    $albumin = $_POST['palbumin'];
-    $alt_sgot = $_POST['palt_sgot'];
-    $ast_sgot = $_POST['past_sgot'];
-    $alkaline_phosphatase = $_POST['palkaline_phosphatase'];
-    $total_billirubin = $_POST['ptotal_billirubin'];
-    $bun = $_POST['pbun'];
-    $calcium = $_POST['pcalcium'];
-    $chloride = $_POST['pchloride'];
-    $creatinine = $_POST['pcreatinine'];
-    $glucose = $_POST['pglucose'];
-    $lactate_dehydrogenase_ldh = $_POST['plactate_dehydrogenase_ldh'];
-    $magnesium = $_POST['pmagnesium'];
-    $sodium = $_POST['psodium'];
-    $total_protien = $_POST['ptotal_protien'];
-    $uric_acide = $_POST['puric_acide'];
+    $name = $_POST['dname'];
 
+    $medicine1 = $_POST['dmedicine1'];
+    $time1 = $_POST['dtime1'];
+    
+    $medicine2 = $_POST['dmedicine2'];
+    $time2 = $_POST['dtime2'];
+    
+    $medicine3 = $_POST['dmedicine3'];
+    $time3 = $_POST['dtime3'];
+    
+    $medicine4 = $_POST['dmedicine4'];
+    $time4 = $_POST['dtime4'];
+    
+    $medicine5 = $_POST['dmedicine5'];
+    $time5 = $_POST['dtime5'];
+    
+    $medicine_extra = $_POST['dmedicine_extra'];
+    $time_extra = $_POST['dtime_extra'];
 
-    $sql = mysqli_query($con, "INSERT INTO `medicine_history`(`id`, `name`, `medicine_one`, `time_one`, `medicine_two`, `time_two`, `medicine_three`, `time_three`, `medicine_four`, `time_four`, `medicine_five`, `time_five`, `medicine_extra`, `time_extra`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14])");
+    $sql = mysqli_query($con, "INSERT INTO `medicine_history`(`id`, `name`, `medicine_one`, `time_one`, `medicine_two`, `time_two`, `medicine_three`, `time_three`, `medicine_four`, `time_four`, `medicine_five`, `time_five`, `medicine_extra`, `time_extra`) VALUES ('$id','$name','$medicine1','$time1','$medicine2','$time2','$medicine3','$time3','$medicine4','$time4','$medicine5','$time5','$medicine_extra','$time_extra'");
 
     if ($sql) {
         echo "<script>alert('Blood Report Added Successfully');</script>";
-        echo "<script>window.location.href ='add-blood-report-admin.php?viewid=$id'</script>";
+        echo "<script>window.location.href ='add-prescription-doctor.php?viewid=$id'</script>";
     }
 }
 ?>
@@ -90,7 +92,7 @@ if (isset($_POST['submit'])) {
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3 class="">Add <span class="text-bold">Prescription</span></h3>
+                                <h3 class="">Add <span class="text-bold">Prescription</span><?php var_dump($medicine1);?></h3>
                                 <?php
                                 $vid = $_GET['id'];
                                 $ret = mysqli_query($con, "select * from users where ID='$did'");
@@ -174,7 +176,7 @@ if (isset($_POST['submit'])) {
                                                 <td><input type="text" class="form-control" name="dmedicine4" placeholder="Medicine Name"></td>
                                                 <td><input type="text" class="form-control" name="dtime4" placeholder="Time Table"></td>
                                             </tr>
-
+                                            
                                             <tr>
                                                 <td>Extra</td>
                                                 <td><textarea type="text" class="form-control" name="dmedicine_extra" placeholder="Medicine Name"></textarea></td>
@@ -185,8 +187,11 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-md-12 text-right mb-3">
                                         <button class="btn btn-primary" id="apintment-date"> Next Appointment Date</button>
-                                        <button type="submit" name="submit" id="submit" class="btn btn-primary"> Submit </button>
+                                        
                                     </div>
+                                    <button type="submit" name="submit" id="submit" class="btn btn-primary pull-right">
+														Submit
+													</button>
                                 </form>
                             </div>
                         </div>

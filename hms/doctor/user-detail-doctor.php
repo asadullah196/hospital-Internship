@@ -116,7 +116,8 @@ if (isset($_GET['cancel'])) {
 											
 											<a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
 
-											<a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/>
+											<a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
+
 										</td>
 
 										
