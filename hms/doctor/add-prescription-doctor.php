@@ -107,7 +107,7 @@ if (isset($_GET['cancel'])) {
                             <div class="col-md-12 text-left mb-3">
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <tr>
-                                        <th>Serial No</th>
+                                        <th>Serial Number</th>
                                         <th>Medicine Name</th>
                                         <th>Medicine Details</th>
                                         <th>Time Table</th>
