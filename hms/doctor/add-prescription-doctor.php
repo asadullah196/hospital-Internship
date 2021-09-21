@@ -9,31 +9,31 @@ $did = intval($_GET['viewid']); // get patient id
 
 if (isset($_POST['submit'])) {
 
-	$id = $did;
-	$name = $_POST['pname'];
-	$albumin = $_POST['palbumin'];      
-	$alt_sgot = $_POST['palt_sgot'];
-	$ast_sgot = $_POST['past_sgot'];
-	$alkaline_phosphatase = $_POST['palkaline_phosphatase'];
-	$total_billirubin = $_POST['ptotal_billirubin'];
-	$bun = $_POST['pbun'];
-	$calcium = $_POST['pcalcium'];
-	$chloride = $_POST['pchloride'];
-	$creatinine = $_POST['pcreatinine'];
-	$glucose = $_POST['pglucose'];   
-	$lactate_dehydrogenase_ldh = $_POST['plactate_dehydrogenase_ldh'];
-	$magnesium = $_POST['pmagnesium'];
-	$sodium = $_POST['psodium'];
-	$total_protien = $_POST['ptotal_protien'];
-	$uric_acide = $_POST['puric_acide'];
+    $id = $did;
+    $name = $_POST['pname'];
+    $albumin = $_POST['palbumin'];
+    $alt_sgot = $_POST['palt_sgot'];
+    $ast_sgot = $_POST['past_sgot'];
+    $alkaline_phosphatase = $_POST['palkaline_phosphatase'];
+    $total_billirubin = $_POST['ptotal_billirubin'];
+    $bun = $_POST['pbun'];
+    $calcium = $_POST['pcalcium'];
+    $chloride = $_POST['pchloride'];
+    $creatinine = $_POST['pcreatinine'];
+    $glucose = $_POST['pglucose'];
+    $lactate_dehydrogenase_ldh = $_POST['plactate_dehydrogenase_ldh'];
+    $magnesium = $_POST['pmagnesium'];
+    $sodium = $_POST['psodium'];
+    $total_protien = $_POST['ptotal_protien'];
+    $uric_acide = $_POST['puric_acide'];
 
 
-	$sql = mysqli_query($con, "INSERT INTO `user_blood`(`id`, `name`, `albumin`, `alt_sgot`, `ast_sgot`, `alkaline_phosphatase`, `total_billirubin`, `bun`, `calcium`, `chloride`, `creatinine`, `glucose`, `lactate_dehydrogenase_ldh`, `magnesium`, `sodium`, `total_protien`, `uric_acide`, `status`) VALUES ('$id','$name','$albumin','$alt_sgot','$ast_sgot','$alkaline_phosphatase','$total_billirubin','$bun','$calcium','$chloride','$creatinine','$glucose','$lactate_dehydrogenase_ldh','$magnesium','$total_protien','$uric_acide','1')");
-	
-	if ($sql) {
-		echo "<script>alert('Blood Report Added Successfully');</script>";
-		echo "<script>window.location.href ='add-blood-report-admin.php?viewid=$id'</script>";
-	}
+    $sql = mysqli_query($con, "INSERT INTO `medicine_history`(`id`, `name`, `medicine_one`, `time_one`, `medicine_two`, `time_two`, `medicine_three`, `time_three`, `medicine_four`, `time_four`, `medicine_five`, `time_five`, `medicine_extra`, `time_extra`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13],[value-14])");
+
+    if ($sql) {
+        echo "<script>alert('Blood Report Added Successfully');</script>";
+        echo "<script>window.location.href ='add-blood-report-admin.php?viewid=$id'</script>";
+    }
 }
 ?>
 
@@ -125,107 +125,88 @@ if (isset($_POST['submit'])) {
                                     <?php } ?>
                                     </table>
                             </div>
-                            <h2 class="text-bold"><br/><br/>&nbsp;&nbsp;Rx </h2>
+                            <h2 class="text-bold"><br /><br />&nbsp;&nbsp;Rx </h2>
                             <div class="panel-body">
                                 <form role="form" name="adddoc" method="post" onSubmit="return valid();">
                                     <?php
-                                    
+
                                     $ret = mysqli_query($con, "select * from users where ID='$did'");
                                     $row = mysqli_fetch_array($ret);
                                     ?>
                                     <div class="hidden-top">
-                                        <input type="hidden" class="form-control" name="did" value="<?php echo $row['id'];?>">
-                                        <input type="hidden" class="form-control" name="dname" value="<?php echo $row['fullName'];?>">
+                                        <input type="hidden" class="form-control" name="did" value="<?php echo $row['id']; ?>">
+                                        <input type="hidden" class="form-control" name="dname" value="<?php echo $row['fullName']; ?>">
                                     </div>
-									<div class="col-md-12 text-left mb-3">
+                                    <div class="col-md-12 text-left mb-3">
                                         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <tr>
                                                 <th>Serial No</th>
                                                 <th>Medicine Name</th>
-                                                <th>Medicine Details</th>
                                                 <th>Time Table</th>
-                                                <th>Total Medicine</th>
                                             </tr>
 
                                             <tr>
                                                 <td>01</td>
-                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
-                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
-                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
-                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name"></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table"></td>
                                             </tr>
 
-                                            
                                             <tr>
                                                 <td>02</td>
-                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
-                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
-                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
-                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name"></td>
+                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table"></td>
                                             </tr>
 
-                                            
                                             <tr>
                                                 <td>03</td>
-                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
-                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
-                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
-                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                                <td><input type="text" class="form-control" name="dmedicine2" placeholder="Medicine Name"></td>
+                                                <td><input type="text" class="form-control" name="dtime2" placeholder="Time Table"></td>
                                             </tr>
 
-                                            
                                             <tr>
                                                 <td>04</td>
-                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
-                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
-                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
-                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                                <td><input type="text" class="form-control" name="dmedicine3" placeholder="Medicine Name"></td>
+                                                <td><input type="text" class="form-control" name="dtime3" placeholder="Time Table"></td>
                                             </tr>
 
-                                            
                                             <tr>
                                                 <td>05</td>
-                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
-                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
-                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
-                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                                <td><input type="text" class="form-control" name="dmedicine4" placeholder="Medicine Name"></td>
+                                                <td><input type="text" class="form-control" name="dtime4" placeholder="Time Table"></td>
                                             </tr>
 
-                                            
                                             <tr>
-                                                <td>06</td>
-                                                <td><input type="text" class="form-control" name="dmedicine1" placeholder="Medicine Name" required></td>
-                                                <td><input type="text" class="form-control" name="ddetails1" placeholder="Medicine Details" required></td>
-                                                <td><input type="text" class="form-control" name="dtime1" placeholder="Time Table" required></td>
-                                                <td><input type="text" class="form-control" name="dtotal1" placeholder="Total Medicine" required></td>
+                                                <td>Extra</td>
+                                                <td><textarea type="text" class="form-control" name="dmedicine_extra" placeholder="Medicine Name"></textarea></td>
+                                                <td><textarea type="text" class="form-control" name="dtime_extra" placeholder="Time Table"></textarea></td>
                                             </tr>
+                                            
                                         </table>
                                     </div>
                                     <div class="col-md-12 text-right mb-3">
-                            <button class="btn btn-primary" id="download"> Download</button>
-                            <button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
-                        <button type="submit" name="submit" id="submit" class="btn btn-primary pull-left">
-														Submit
-									</button>
-                                </form></div>
+                                        <button class="btn btn-primary" id="apintment-date"> Next Appointment Date</button>
+                                        <button type="submit" name="submit" id="submit" class="btn btn-primary"> Submit </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                    <!-- end: BASIC EXAMPLE -->
-                    <!-- end: SELECT BOXES -->
-
                 </div>
+
+                <!-- end: BASIC EXAMPLE -->
+                <!-- end: SELECT BOXES -->
+
             </div>
         </div>
-        <!-- start: FOOTER -->
-        <?php include('include/footer.php'); ?>
-        <!-- end: FOOTER -->
+    </div>
+    <!-- start: FOOTER -->
+    <?php include('include/footer.php'); ?>
+    <!-- end: FOOTER -->
 
-        <!-- start: SETTINGS -->
-        <?php include('include/setting.php'); ?>
+    <!-- start: SETTINGS -->
+    <?php include('include/setting.php'); ?>
 
-        <!-- end: SETTINGS -->
+    <!-- end: SETTINGS -->
     </div>
     <!-- start: MAIN JAVASCRIPTS -->
     <script src="vendor/jquery/jquery.min.js"></script>
