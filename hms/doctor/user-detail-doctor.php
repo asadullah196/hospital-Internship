@@ -124,7 +124,7 @@ if (isset($_GET['cancel'])) {
 										<td>
 											<a href="add-prescription-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary">Add Prescription</button></a><br/><br/>
 
-											<a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary">Update Prescription</button></a><br/><br/>
+											<a href="update-prescription-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary">Update Prescription</button></a><br/><br/>
 
 											<a href="#"><button class="btn btn-primary"> Special Note</button></a>
 										</td>
