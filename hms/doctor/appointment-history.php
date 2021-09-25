@@ -63,6 +63,67 @@ if (isset($_GET['cancel'])) {
 
 
 						<div class="row">
+
+							<h2 class="text-bold">&nbsp;&nbsp;Tomorrow's Appointment </h2>
+							<div class="col-md-12">
+								<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
+									<?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
+								<table class="table table-hover" id="sample-table-1">
+									<thead>
+										<tr>
+											<th class="center">#</th>
+											<th class="hidden-xs">Patient's Name</th>
+											<th>Patient's Email</th>
+											<th>Patient's Phone</th>
+											<th>Patient's Addrress</th>
+											<th>Appointment Time </th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+
+
+										$sql = mysqli_query($con, "select users.id as fid, users.fullName as fname, users.email as uemail, users.phone as uphone, users.address as uaddress, appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $_SESSION['id'] . "'");
+
+
+
+										$cnt = 1;
+
+										while ($row = mysqli_fetch_array($sql)) {
+
+											$nextday = $row['appointmentDate'];
+											$nextdate = new DateTime($nextday);
+											$nextdate->modify('+1 day');
+
+											$today = $nextdate->format('d-m-y');
+											$tomorrow = date("d-m-y", strtotime('tomorrow'));
+
+											$diff = $tomorrow - $today;
+											if ($diff == 0) {
+
+										?>
+
+												<tr>
+													<td class="center"><?php echo $cnt; ?>.</td>
+													<td class="hidden-xs"><?php echo $row['fname']; ?></td>
+													<td><?php echo $row['uemail']; ?></td>
+													<td><?php echo $row['uphone']; ?></td>
+													<td><?php echo $row['uaddress']; ?></td>
+													<td><?php echo $row['appointmentTime']; ?></td>
+
+												</tr>
+
+										<?php
+												$cnt = $cnt + 1;
+											}
+										} ?>
+
+
+									</tbody>
+								</table>
+							</div>
+
+							<h2 class="text-bold">&nbsp;&nbsp;All Appointment </h2>
 							<div class="col-md-12">
 
 								<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
@@ -95,7 +156,7 @@ if (isset($_GET['cancel'])) {
 												<td><?php echo $row['doctorSpecialization']; ?></td>
 												<td><?php echo $row['consultancyFees']; ?></td>
 												<td><?php echo $row['appointmentDate']; ?> / <?php echo
-																							$row['appointmentTime']; ?>
+																								$row['appointmentTime']; ?>
 												</td>
 												<td><?php echo $row['postingDate']; ?></td>
 												<td>
@@ -112,7 +173,7 @@ if (isset($_GET['cancel'])) {
 													?>
 												</td>
 
-												
+
 												<td>
 													<p class="cl-effect-1">
 														<a href="user-detail-doctor.php?viewid=<?php echo $row['fid'] ?>">
@@ -142,6 +203,7 @@ if (isset($_GET['cancel'])) {
 									</tbody>
 								</table>
 							</div>
+
 						</div>
 					</div>
 

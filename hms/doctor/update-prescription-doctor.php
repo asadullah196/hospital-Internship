@@ -37,6 +37,7 @@ if (isset($_POST['submit'])) {
 		echo "<script>window.location.href ='update-prescription-doctor.php?viewid=$id'</script>";
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -207,8 +208,6 @@ if (isset($_POST['submit'])) {
 															</table>
 														</div>
 														<div class="col-md-12 text-right mb-3">
-															<button class="btn btn-primary" id="apintment-date"> Next Appointment Date</button>
-
 															<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
 																Submit
 															</button>
@@ -217,7 +216,7 @@ if (isset($_POST['submit'])) {
 												</div>
 											<?php
 											} else {
-												echo "<h2>&nbsp;&nbsp;You did not submited the prescription!</h2>";
+												echo "<h2>&nbsp;&nbsp;Prescription has been submitted already!</h2>";
 											}
 											?>
 										</div>

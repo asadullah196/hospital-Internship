@@ -36,6 +36,23 @@ if (isset($_POST['submit'])) {
 		echo "<script>window.location.href ='add-prescription-doctor.php?viewid=$id'</script>";
 	}
 }
+
+
+if (isset($_POST['datesubmit'])) {
+	$pid = $id;
+	$pname = $_POST['dname'];
+	$pemail = $_POST['dname'];
+	$dname = $_POST['dname'];
+	$time = $_POST['dname'];
+
+	$sql = mysqli_query($con, "insert into nextdate_appointment(user_id,user_name,user_email,doctore_name,date,status) values('$pid','$pname','$pemail','$dname','$time','1')");
+
+	if ($sql) {
+		echo "<script>alert('Blood Report Added Successfully');</script>";
+		echo "<script>window.location.href ='add-prescription-doctor.php?viewid=$id'</script>";
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

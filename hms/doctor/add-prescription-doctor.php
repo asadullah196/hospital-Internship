@@ -31,11 +31,22 @@ if (isset($_POST['submit'])) {
 
 	$sql = mysqli_query($con, "insert into medicine(pid,name,medicine_one,time_one,medicine_two,time_two,medicine_three,time_three,medicine_four,time_four,medicine_five,time_five,medicine_extra,time_extra,status) values('$docid','$patname','$medicine1','$time1','$medicine2','$time2','$medicine3','$time3','$medicine4','$time4','$medicine5','$time5','$medicine_extra','$time_extra','1')");
 
+	
+	$pid = $id;
+	$nextFees = $_POST['nextFee'];
+	$nextDate = date('Y-m-d', strtotime($_POST['nextdate']));
+	$nextTime= $_POST['nexttime'];
+	$statusCode = $_POST['nextStatus'];
+
+	$sql = mysqli_query($con, "UPDATE appointment SET `next_date`='$nextDate',`nextTime`='$nextTime',`nextFees`='$nextFees',`status`='$statusCode' WHERE userId='$pid'");
+
+
 	if ($sql) {
 		echo "<script>alert('Blood Report Added Successfully');</script>";
 		echo "<script>window.location.href ='add-prescription-doctor.php?viewid=$id'</script>";
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -159,6 +170,8 @@ if (isset($_POST['submit'])) {
 														?>
 														<div class="hidden-top">
 															<input type="hidden" class="form-control" name="dname" value="<?php echo $row['fullName']; ?>">
+
+															<input type="hidden" class="form-control" name="pemail" value="<?php echo $row['email']; ?>">
 														</div>
 
 
@@ -208,9 +221,49 @@ if (isset($_POST['submit'])) {
 
 															</table>
 														</div>
-														<div class="col-md-12 text-right mb-3">
-															<button class="btn btn-primary" id="apintment-date"> Next Appointment Date</button>
 
+														
+														<?php
+															// Apointment Updating Part
+															$apointment = mysqli_query($con, "select * from appointment where userId='$id'");
+															$next = mysqli_fetch_array($apointment);
+
+															$nextStatus = $next['status'];
+															$nextFee = $next['consultancyFees'];
+
+															if($nextStatus == 0){
+																$nextFee = $nextFee - ($nextFee*20)/100;
+																$nextStatus++;
+															}elseif($nextStatus >= 1){
+																$nextFee = $nextFee - ($nextFee*50)/100;
+																$nextStatus++;
+															}
+
+														?>
+
+														<div class="hidden-top">
+
+															<input type="hidden" class="form-control" name="nextFee" value="<?php echo $nextFee; ?>">
+
+															<input type="hidden" class="form-control" name="nextStatus" value="<?php echo $nextStatus; ?>">
+												
+														</div>
+
+
+														<div class="col-md-6">
+															<h3 class="">Next<span class="text-bold"> Appointment Date</span></h3><br />
+
+															<input type="date" class="form-control" name="nextdate" placeholder="Next Appointment Date"><br />
+
+														</div>
+														<div class="col-md-6">
+															<h3 class="">Next<span class="text-bold"> Appointment Date</span></h3><br />
+
+															<input type="time" class="form-control" name="nexttime" placeholder="Next Appointment Time"><br />
+
+														</div>
+														
+														<div class="col-md-12 text-right mb-3">
 															<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
 																Submit
 															</button>
@@ -226,6 +279,7 @@ if (isset($_POST['submit'])) {
 									</div>
 								</div>
 							</div>
+
 
 							<div class="col-lg-12 col-md-12">
 								<div class="panel panel-white">

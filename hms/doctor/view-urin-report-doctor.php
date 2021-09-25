@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Doctor | View Patient Detail</title>
+	<title>Doctor | Add Patient</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -48,6 +48,7 @@ if (isset($_POST['submit'])) {
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+
 </head>
 
 <body>
@@ -55,20 +56,21 @@ if (isset($_POST['submit'])) {
 		<?php include('include/sidebar.php'); ?>
 		<div class="app-content">
 			<?php include('include/header.php'); ?>
+
 			<div class="main-content">
 				<div class="wrap-content container" id="container">
 					<!-- start: PAGE TITLE -->
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Doctor | Manage Patients</h1>
+								<h1 class="mainTitle">Admin | View Patients</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Doctor</span>
+									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Manage Patients</span>
+									<span>View Patients</span>
 								</li>
 							</ol>
 						</div>
@@ -114,47 +116,23 @@ if (isset($_POST['submit'])) {
 									$ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
 									?>
 							</div>
-							<div class="col-md-12 text-left mb-3">
+							<div class="col-md-12 text-right mb-3">
 								<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 									<tr>
-										<th>Add Report</th>
 										<th>View Report</th>
-										<th>Update Report</th>
 									</tr>
 
 									<tr>
 										<td>
-
-											<a href="add-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
-
-											<a href="add-urin-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
-
-											<a href="add-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
-
-											<a href="add-patient-note-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
-
-										
-										<td>
-											<a href="view-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
+											<a href="view-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a>
 											
-											<a href="view-urin-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
+											<a href="view-urin-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a>
 
-											<a href="view-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
-
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
-
-										
-										<td>
-											<a href="update-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
-
-											<a href="update-urin-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
-
-											<a href="update-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
+											<a href="view-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a>
 
 											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
 										</td>
+
 									</tr>
 
 								</table>

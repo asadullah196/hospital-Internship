@@ -48,12 +48,12 @@
 								<ul class="sub-menu">
 									
 									<li>
-										<a href="add-patient.php">
+										<a href="add-patient-doctor.php">
 											<span class="title"> Add Patient</span>
 										</a>
 									</li>
 									<li>
-										<a href="manage-patient.php">
+										<a href="patient-search-doctor.php">
 											<span class="title"> Manage Patient </span>
 										</a>
 									</li>
@@ -61,13 +61,13 @@
 								</ul>
 								</li>
 <li>
-								<a href="search.php">
+								<a href="check-salary-doctor.php">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-search"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Search </span>
+											<span class="title"> Check Salary </span>
 										</div>
 									</div>
 								</a>

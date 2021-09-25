@@ -5,28 +5,26 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
+$did = intval($_GET['viewid']); // get patient id
+
 if (isset($_POST['submit'])) {
-	$fname = $_POST['full_name'];
-	$address = $_POST['address'];
-	$city = $_POST['city'];
-	$gender = $_POST['gender'];
-	$phone = $_POST['phone'];
-	$email = $_POST['email'];
-	$password = md5($_POST['password']);
-	$query = mysqli_query($con, "insert into users(fullname,address,city,gender,phone,email,password) values('$fname','$address','$city','$gender','$phone','$email','$password')");
-	if ($query) {
-		echo "<script>alert('Patient Added Successfully to the System!');</script>";
-		echo "<script>window.location.href ='add-patient-admin.php?viewid=$id'</script>";
+
+	$id = $did;
+	$notes = $_POST['specialNotes'];
+
+	$sql = mysqli_query($con, "UPDATE user_history SET `special_note`='$notes' WHERE id='$id'");
+	
+	if ($sql) {
+		echo "<script>alert('Doctor info added Successfully');</script>";
+		echo "<script>window.location.href ='add-patient-note-admin.php?viewid=$id'</script>";
 	}
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin | Add Patients</title>
+	<title>Admin | Add Patient History </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -42,33 +40,7 @@ if (isset($_POST['submit'])) {
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-	<script type="text/javascript">
-		function valid() {
-			if (document.adddoc.npass.value != document.adddoc.cfpass.value) {
-				alert("Password and Confirm Password Field do not match  !!");
-				document.adddoc.cfpass.focus();
-				return false;
-			}
-			return true;
-		}
-	</script>
 
-
-	<script>
-		function checkemailAvailability() {
-			$("#loaderIcon").show();
-			jQuery.ajax({
-				url: "check_availability.php",
-				data: 'emailid=' + $("#docemail").val(),
-				type: "POST",
-				success: function(data) {
-					$("#email-availability-status").html(data);
-					$("#loaderIcon").hide();
-				},
-				error: function() {}
-			});
-		}
-	</script>
 </head>
 
 <body>
@@ -85,14 +57,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Patient </h1>
+								<h1 class="mainTitle">Admin | Add Patient History</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Patient</span>
+									<span>Add Patient History</span>
 								</li>
 							</ol>
 						</div>
@@ -105,75 +77,31 @@ if (isset($_POST['submit'])) {
 
 								<div class="row margin-top-30">
 									<div class="col-lg-8 col-md-12">
-										<!-- start: REGISTER BOX -->
-										<div class="box-register">
-											<form name="registration" id="registration" method="post" onSubmit="return valid();">
-												<fieldset>
-													<legend>
-														Add New Patient
-													</legend>
-													<p>
-														Enter personal details below:
-													</p>
-													<div class="form-group">
-														Full Name <input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
-													</div>
-													<div class="form-group">
-														Address <input type="text" class="form-control" name="address" placeholder="Address" required>
-													</div>
-													<div class="form-group">
-														City <input type="text" class="form-control" name="city" placeholder="City" required>
-													</div>
-													<div class="form-group">
-														Phone <input type="text" class="form-control" name="phone" placeholder="Phone" required>
-													</div>
-													<div class="form-group">
-														<label class="block">
-															Gender
-														</label>
-														<div class="clip-radio radio-primary">
-															<input type="radio" id="rg-female" name="gender" value="female">
-															<label for="rg-female">
-																Female
-															</label>
-															<input type="radio" id="rg-male" name="gender" value="male">
-															<label for="rg-male">
-																Male
-															</label>
-														</div>
-													</div>
-													<p>
-														Enter your login details below:
-													</p>
-													<div class="form-group">
-														Email <span class="input-icon">
-															<input type="email" class="form-control" name="email" id="email" onBlur="userAvailability()" placeholder="Email" required>
-															<i class="fa fa-envelope"></i> </span>
-														<span id="user-availability-status1" style="font-size:12px;"></span>
-													</div>
-													<div class="form-group">
-														Password <span class="input-icon">
-															<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-															<i class="fa fa-lock"></i> </span>
-													</div>
-													<div class="form-group">
-														Password Again <span class="input-icon">
-															<input type="password" class="form-control" id="password_again" name="password_again" placeholder="Password Again" required>
-															<i class="fa fa-lock"></i> </span>
-													</div>
-
-													<div class="form-actions">
-														<button type="submit" class="btn btn-primary pull-right" id="submit" name="submit">
-															Save <i class="fa fa-arrow-circle-right"></i>
-														</button>
-													</div>
-												</fieldset>
-											</form>
-
-											<div class="copyright">
-												&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> HMS</span>. <span>All rights reserved</span>
+										<div class="panel panel-white">
+											<div class="panel-heading">
+												<h3 class="">Add Patient History</h3>
 											</div>
 
+											<?php
+											// Connect with user-patient database
+											$sql = mysqli_query($con, "select * from users where id='" . $did . "'");
+											$row = mysqli_fetch_array($sql);
+											?>
+
+											<div class="panel-body">
+
+												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+													<div class="form-group">
+
+													<h4>Name : <?php echo $row['fullName']; ?></h4><br/>
+													<h4>Note :</h4><br/>
+														<textarea id="specialNotes" name="specialNotes" rows="4" cols="50"></textarea>
+													</div>
+													<button type="submit" name="submit" id="submit" class="btn btn-primary pull-right">
+														Submit
+													</button>
+												</form>
+											</div>
 										</div>
 									</div>
 

@@ -16,17 +16,15 @@ if (isset($_POST['submit'])) {
 	$query = mysqli_query($con, "insert into users(fullname,address,city,gender,phone,email,password) values('$fname','$address','$city','$gender','$phone','$email','$password')");
 	if ($query) {
 		echo "<script>alert('Patient Added Successfully to the System!');</script>";
-		echo "<script>window.location.href ='add-patient-admin.php?viewid=$id'</script>";
+		echo "<script>window.location.href ='dashboard.php</script>";
 	}
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin | Add Patients</title>
+	<title>Doctor | Add Patient</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -42,17 +40,6 @@ if (isset($_POST['submit'])) {
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-	<script type="text/javascript">
-		function valid() {
-			if (document.adddoc.npass.value != document.adddoc.cfpass.value) {
-				alert("Password and Confirm Password Field do not match  !!");
-				document.adddoc.cfpass.focus();
-				return false;
-			}
-			return true;
-		}
-	</script>
-
 
 	<script>
 		function checkemailAvailability() {
@@ -75,21 +62,19 @@ if (isset($_POST['submit'])) {
 	<div id="app">
 		<?php include('include/sidebar.php'); ?>
 		<div class="app-content">
-
 			<?php include('include/header.php'); ?>
 
-			<!-- end: TOP NAVBAR -->
 			<div class="main-content">
 				<div class="wrap-content container" id="container">
 					<!-- start: PAGE TITLE -->
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Patient </h1>
+								<h1 class="mainTitle">Patient | Add Patient</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Admin</span>
+									<span>Patient</span>
 								</li>
 								<li class="active">
 									<span>Add Patient</span>
@@ -97,8 +82,6 @@ if (isset($_POST['submit'])) {
 							</ol>
 						</div>
 					</section>
-					<!-- end: PAGE TITLE -->
-					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
 							<div class="col-md-12">
@@ -181,23 +164,12 @@ if (isset($_POST['submit'])) {
 							</div>
 							<div class="col-lg-12 col-md-12">
 								<div class="panel panel-white">
-
-
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
-			<!-- end: SELECT BOXES -->
-
 		</div>
 	</div>
 	</div>
