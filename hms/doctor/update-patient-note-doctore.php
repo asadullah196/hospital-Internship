@@ -5,25 +5,18 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
-$did = intval($_GET['viewid']); // get patient id
+$id = intval($_GET['viewid']); // get patient id
 
 if (isset($_POST['submit'])) {
 
-	$vid = $_GET['viewid'];
-	var_dump($viewid);
-	$bp = $_POST['bp'];
-	$bs = $_POST['bs'];
-	$weight = $_POST['weight'];
-	$temp = $_POST['temp'];
-	$pres = $_POST['pres'];
+	$id = $id;
+	$notes = $_POST['specialNotes'];
 
-
-	$query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
-	if ($query) {
-		echo '<script>alert("Medicle history has been added.")</script>';
-		echo "<script>window.location.href ='manage-patient.php'</script>";
-	} else {
-		echo '<script>alert("Something Went Wrong. Please try again")</script>';
+	$sql = mysqli_query($con, "UPDATE user_history SET `special_note`='$notes' WHERE id='$id'");
+	
+	if ($sql) {
+		echo "<script>alert('Doctor info added Successfully');</script>";
+		echo "<script>window.location.href ='add-patient-note-admin.php?viewid=$id'</script>";
 	}
 }
 
@@ -49,6 +42,21 @@ if (isset($_POST['submit'])) {
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 
+	<script>
+		function userAvailability() {
+			$("#loaderIcon").show();
+			jQuery.ajax({
+				url: "check_availability.php",
+				data: 'email=' + $("#patemail").val(),
+				type: "POST",
+				success: function(data) {
+					$("#user-availability-status1").html(data);
+					$("#loaderIcon").hide();
+				},
+				error: function() {}
+			});
+		}
+	</script>
 </head>
 
 <body>
@@ -63,26 +71,26 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | View Patients</h1>
+								<h1 class="mainTitle">Patient | Add Patient</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Admin</span>
+									<span>Patient</span>
 								</li>
 								<li class="active">
-									<span>View Patients</span>
+									<span>Add Patient</span>
 								</li>
 							</ol>
 						</div>
 					</section>
+
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
+
 							<div class="col-md-12">
-								<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
+								<h3 class="">Add <span class="text-bold">Prescription</span></h3>
 								<?php
-								$vid = $_GET['viewid'];
-								$ret = mysqli_query($con, "select * from users where ID='$vid'");
-								$cnt = 1;
+								$ret = mysqli_query($con, "select * from users where ID='$id'");
 								while ($row = mysqli_fetch_array($ret)) {
 								?>
 									<table border="1" class="table table-bordered">
@@ -112,30 +120,21 @@ if (isset($_POST['submit'])) {
 
 									<?php } ?>
 									</table>
-									<?php
-									$ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
-									?>
 							</div>
-							<div class="col-md-12 text-right mb-3">
-								<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<tr>
-										<th>View Report</th>
-									</tr>
 
-									<tr>
-										<td>
-											<a href="view-patient-history-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a>
-											
-											<a href="view-urin-report-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a>
+							<div class="col-md-12">
+								<div class="row margin-top-30">
+									<div class="col-lg-8 col-md-12">
+										<h4>Note :</h4><br/>
+										<textarea id="specialNotes" name="specialNotes" rows="4" cols="50"></textarea><br/><br/>
+									</div>
+								</div>
+									<button type="submit" name="submit" id="submit" class="btn btn-primary pull-left">Submit</button>
+							</div>
 
-											<a href="view-blood-report-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a>
-
-											<a href="view-patient-note-doctore.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
-
-									</tr>
-
-								</table>
+							<div class="col-lg-12 col-md-12">
+								<div class="panel panel-white">
+								</div>
 							</div>
 						</div>
 					</div>
