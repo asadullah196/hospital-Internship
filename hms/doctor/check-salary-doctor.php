@@ -83,88 +83,66 @@ if (isset($_POST['submit'])) {
 						</div>
 					</section>
 					<div class="container-fluid container-fullw bg-white">
+
 						<div class="row">
-							<div class="col-md-12">
+							<div class="col-md-12" id="invoice">
 
-								<div class="row margin-top-30">
-									<div class="col-lg-8 col-md-12">
-										<!-- start: REGISTER BOX -->
-										<div class="box-register">
-											<form name="registration" id="registration" method="post" onSubmit="return valid();">
-												<fieldset>
-													<legend>
-														Add New Patient
-													</legend>
-													<p>
-														Enter personal details below:
-													</p>
-													<div class="form-group">
-														Full Name <input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
-													</div>
-													<div class="form-group">
-														Address <input type="text" class="form-control" name="address" placeholder="Address" required>
-													</div>
-													<div class="form-group">
-														City <input type="text" class="form-control" name="city" placeholder="City" required>
-													</div>
-													<div class="form-group">
-														Phone <input type="text" class="form-control" name="phone" placeholder="Phone" required>
-													</div>
-													<div class="form-group">
-														<label class="block">
-															Gender
-														</label>
-														<div class="clip-radio radio-primary">
-															<input type="radio" id="rg-female" name="gender" value="female">
-															<label for="rg-female">
-																Female
-															</label>
-															<input type="radio" id="rg-male" name="gender" value="male">
-															<label for="rg-male">
-																Male
-															</label>
-														</div>
-													</div>
-													<p>
-														Enter your login details below:
-													</p>
-													<div class="form-group">
-														Email <span class="input-icon">
-															<input type="email" class="form-control" name="email" id="email" onBlur="userAvailability()" placeholder="Email" required>
-															<i class="fa fa-envelope"></i> </span>
-														<span id="user-availability-status1" style="font-size:12px;"></span>
-													</div>
-													<div class="form-group">
-														Password <span class="input-icon">
-															<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-															<i class="fa fa-lock"></i> </span>
-													</div>
-													<div class="form-group">
-														Password Again <span class="input-icon">
-															<input type="password" class="form-control" id="password_again" name="password_again" placeholder="Password Again" required>
-															<i class="fa fa-lock"></i> </span>
-													</div>
+								<?php
 
-													<div class="form-actions">
-														<button type="submit" class="btn btn-primary pull-right" id="submit" name="submit">
-															Save <i class="fa fa-arrow-circle-right"></i>
-														</button>
-													</div>
-												</fieldset>
-											</form>
 
-											<div class="copyright">
-												&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> HMS</span>. <span>All rights reserved</span>
-											</div>
+								$sql = mysqli_query($con, "select users.id as fid, users.fullName as fname, users.email as uemail, users.phone as uphone, users.address as uaddress, appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $_SESSION['id'] . "'");
 
-										</div>
-									</div>
+								$cnt = 1;
 
-								</div>
+								while ($row = mysqli_fetch_array($sql)) {									
+										$cnt = $cnt + 1;									
+								} 
+
+								// Salary Calculation Block
+								$base_salary = 50000;
+
+								$paitents_number = $cnt-1;
+								$paitents_earning = $paitents_number * 300;
+
+								$total_salary =  $paitents_earning + $base_salary;
+
+								?>
+
+								<h2>Salary Details</h2><br>
+								<table class="parent-table table table-bordered admin-salary" width="1">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Quantity</th>
+											<th>Rate (BDT)</th>
+											<th>Total (BDT)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Base Salary</td>
+											<td>N/A</td>
+											<td>N/A</td>
+											<td><?php echo $base_salary; ?></td>
+										</tr>
+										<tr>
+											<td>Total Patients</td>
+											<td><?php echo $paitents_number; ?></td>
+											<td>300</td>
+											<td><?php echo $paitents_earning; ?></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>Total Payable</td>
+											<td>= <?php echo $total_salary; ?> BDT</td>
+										</tr>
+									</tbody>
+								</table>
+
 							</div>
-							<div class="col-lg-12 col-md-12">
-								<div class="panel panel-white">
-								</div>
+							<div class="col-md-12 text-right mb-3">
+								<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
 							</div>
 						</div>
 					</div>
