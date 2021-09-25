@@ -33,13 +33,13 @@
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="doctor-specilization.php">
-								<span class="title"> Doctor Specialization </span>
+							<a href="add-doctor.php">
+								<span class="title"> Add Doctor</span>
 							</a>
 						</li>
 						<li>
-							<a href="add-doctor.php">
-								<span class="title"> Add Doctor</span>
+							<a href="doctor-specilization.php">
+								<span class="title"> Specialization </span>
 							</a>
 						</li>
 						<li>
@@ -143,8 +143,6 @@
 					</a>
 				</li>
 
-
-
 				<li>
 					<a href="user-logs.php">
 						<div class="item-content">
@@ -153,18 +151,6 @@
 							</div>
 							<div class="item-inner">
 								<span class="title"> User Session Logs </span>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="admin-salary.php">
-						<div class="item-content">
-							<div class="item-media">
-								<i class="fa fa-usd fa-lg"></i>								
-							</div>
-							<div class="item-inner">
-								<span class="title">&nbsp;&nbsp;&nbsp;Check Salary </span>
 							</div>
 						</div>
 					</a>

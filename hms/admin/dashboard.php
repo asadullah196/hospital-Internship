@@ -67,12 +67,14 @@ check_login();
 										<h2 class="StepTitle">Manage Doctors</h2>
 
 										<p class="cl-effect-1">
-											<a href="manage-doctors.php">
-												<?php $result1 = mysqli_query($con, "SELECT * FROM doctors ");
-												$num_rows1 = mysqli_num_rows($result1); {
-												?>
-													Total Doctors :<?php echo htmlentities($num_rows1);
-																} ?>
+											<a href="add-doctor.php">
+												<span class="title"> Add Doctor</span>
+											</a><br/>
+											<a href="doctor-specilization.php">
+												<span class="title"> Specialization </span>
+											</a><br/>
+											<a href="Manage-doctors.php">
+												<span class="title"> Manage Doctors </span>
 											</a>
 
 										</p>
@@ -86,14 +88,14 @@ check_login();
 										<h2 class="StepTitle"> Appointments</h2>
 
 										<p class="links cl-effect-1">
-											<a href="book-appointment.php">
-												<a href="appointment-history.php">
-													<?php $sql = mysqli_query($con, "SELECT * FROM appointment");
-													$num_rows2 = mysqli_num_rows($sql); {
-													?>
-														Total Appointments :<?php echo htmlentities($num_rows2);
-																		} ?>
-												</a>
+											<a href="add-patient-admin.php">
+												<span class="title"> Add Patient </span>
+											</a><br/>
+											<a href="view-all-patients-admin.php">
+												<span class="title"> View All Patient </span>
+											</a><br/>
+											<a href="patient-search-admin.php">
+												<span class="title"> Manage Patient </span>
 											</a>
 										</p>
 									</div>
@@ -104,75 +106,81 @@ check_login();
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-										<h2 class="StepTitle">Manage Patients</h2>
+										<h2 class="StepTitle">Conatctus Queries </h2>
 
 										<p class="links cl-effect-1">
-											<a href="manage-patient.php">
-												<?php $result = mysqli_query($con, "SELECT * FROM tblpatient ");
-												$num_rows = mysqli_num_rows($result); {
-												?>
-													Total Patients :<?php echo htmlentities($num_rows);
-																} ?>
+											<br/>
+											<a href="unread-queries.php">
+												<span class="title"> Unread Query </span>
+											</a><br/>
+											<a href="read-query.php">
+												<span class="title"> Read Query </span>
 											</a>
 										</p>
 									</div>
 								</div>
 							</div>
-
-							<div class="col-sm-4">
+							</div>
+							<div class="row">
+							<div class="col-sm-3">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x">
 											<i class="fa fa-square fa-stack-2x text-primary"></i> 
 											<i class="fa fa-search-minus fa-stack-1x fa-inverse"></i> 
 										</span>
-										<h2 class="StepTitle"> Patient Report </h2>
+										<h2 class="StepTitle"> Appointment History </h2>
 
 										<p class="links cl-effect-1">
-											<a href="book-appointment.php">
-												<a href="patient-search-admin.php">
-
-													Add-Update-View Report :<?php echo htmlentities($num_rows22);   ?>
-												</a>
+											<a href="appointment-history.php">
+												<span class="title"> Check Now </span>
 											</a>
 										</p>
 									</div>
 								</div>
 							</div>
 
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-										<h2 class="StepTitle"> New Queries</h2>
+										<h2 class="StepTitle"> Doctor Session Logs </h2>
 
 										<p class="links cl-effect-1">
-											<a href="book-appointment.php">
-												<a href="unread-queries.php">
-													<?php
-													$sql = mysqli_query($con, "SELECT * FROM tblcontactus where  IsRead is null");
-													$num_rows22 = mysqli_num_rows($sql);
-													?>
-													Total New Queries :<?php echo htmlentities($num_rows22);   ?>
-												</a>
+										<a href="doctor-logs.php">
+												<span class="title"> Check Logs </span>
 											</a>
 										</p>
 									</div>
 								</div>
 							</div>
 
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x">
 											<i class="fa fa-square fa-stack-2x text-primary"></i> 
 											<i class="fa fa-bell fa-stack-1x fa-inverse"></i> 
 										</span>
-										<h2 class="StepTitle">Salary Update</h2>
+										<h2 class="StepTitle"> User Session Logs </h2>
 
 										<p class="links cl-effect-1">
-											<a href="admin-salary.php">
-													Check Now
+											<a href="user-logs.php">
+												<span class="title"> Check Logs </span>
+											</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="panel panel-white no-radius text-center">
+									<div class="panel-body">
+										<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
+										<h2 class="StepTitle"> Doctor's Salary </h2>
+
+										<p class="links cl-effect-1">
+											<a href="doctor-search-admin.php">
+												<span class="title"> Check Now </span>
 											</a>
 										</p>
 									</div>
