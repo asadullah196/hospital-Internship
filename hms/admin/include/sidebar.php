@@ -169,6 +169,18 @@
 						</div>
 					</a>
 				</li>
+				<li>
+					<a href="doctor-search-admin.php">
+						<div class="item-content">
+							<div class="item-media">
+								<i class="fa fa-usd fa-lg"></i>								
+							</div>
+							<div class="item-inner">
+								<span class="title">&nbsp;&nbsp;&nbsp;Check Doctor's Salary </span>
+							</div>
+						</div>
+					</a>
+				</li>
 
 			</ul>
 			<!-- end: CORE FEATURES -->

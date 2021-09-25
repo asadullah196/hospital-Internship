@@ -142,7 +142,7 @@ if (isset($_POST['submit'])) {
 
 											<a href="view-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
 
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
+											<a href="view-patient-note-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Special Note</button></a>
 										</td>
 
 										
@@ -153,7 +153,7 @@ if (isset($_POST['submit'])) {
 
 											<a href="update-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
 
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
+											<a href="update-patient-note-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Special Note</button></a>
 										</td>
 									</tr>
 
