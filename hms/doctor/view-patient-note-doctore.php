@@ -62,90 +62,18 @@ $did = intval($_GET['viewid']); // get patient id
 								<div class="row margin-top-30">
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
-											<div class="panel-heading">
-												<h3 class="">View Patient History</h3>
-											</div>
-
+											
 											<?php
 											// Connect with user-patient database
 											$sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
 											$row = mysqli_fetch_array($sql);
 											?>
 
+											<h2><br/>&nbsp;&nbsp;&nbsp;Special Notes</h2>
+
 											<?php if ($row['status'] == 1) { ?>
 												<div class="panel-body">
-													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
-														<div class="form-group">
-															<table class="parent-table table table-bordered admin-salary" width="1">
-																<thead>
-																	<tr>
-																		<th>Name</th>
-																		<th>Value</th>
-																		<th>Units</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>Patient</td>
-																		<td><?php echo $row['name']; ?></td>
-																		<td>N/A</td>
-																	</tr>
-
-																	<tr>
-																		<td>Age</td>
-																		<td><?php echo $row['age']; ?></td>
-																		<td>Year</td>
-																	</tr>
-
-																	<tr>
-																		<td>Gender</td>
-																		<td><?php echo $row['gender']; ?></td>
-																		<td>N/A</td>
-																	</tr>
-
-																	<tr>
-																		<td>Height</td>
-																		<td><?php echo $row['height']; ?></td>
-																		<td>Inc</td>
-																	</tr>
-
-																	<tr>
-																		<td>Weight</td>
-																		<td><?php echo $row['weight']; ?></td>
-																		<td>Kg</td>
-																	</tr>
-
-																	<tr>
-																		<td>Temperature</td>
-																		<td><?php echo $row['temperature']; ?></td>
-																		<td>Degrees Celsius</td>
-																	</tr>
-
-																	<tr>
-																		<td>Blood Pressure</td>
-																		<td><?php echo $row['blood_pressure']; ?></td>
-																		<td>mmHg</td>
-																	</tr>
-
-																	<tr>
-																		<td>Covid19 Vaccinated</td>
-																		<td><?php echo $row['covid_vaccinated']; ?></td>
-																		<td>N/A</td>
-																	</tr>
-
-																	<tr>
-																		<td>Occupation</td>
-																		<td><?php echo $row['occupation']; ?></td>
-																		<td>N/A</td>
-																	</tr>
-
-																</tbody>
-															</table>
-														</div>
-														<div class="col-md-12 text-right mb-3">
-															<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
-														</div>
-													</form>
+													<h3><?php echo $row['special_note']; ?></h3>
 												</div>
 											<?php
 											} else {
@@ -159,6 +87,8 @@ $did = intval($_GET['viewid']); // get patient id
 							</div>
 							<div class="col-lg-12 col-md-12">
 								<div class="panel panel-white">
+
+
 								</div>
 							</div>
 						</div>

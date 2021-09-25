@@ -7,26 +7,6 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
-if (isset($_POST['submit'])) {
-
-	$vid = $_GET['viewid'];
-	var_dump($viewid);
-	$bp = $_POST['bp'];
-	$bs = $_POST['bs'];
-	$weight = $_POST['weight'];
-	$temp = $_POST['temp'];
-	$pres = $_POST['pres'];
-
-
-	$query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
-	if ($query) {
-		echo '<script>alert("Medicle history has been added.")</script>';
-		echo "<script>window.location.href ='manage-patient.php'</script>";
-	} else {
-		echo '<script>alert("Something Went Wrong. Please try again")</script>';
-	}
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,64 +58,95 @@ if (isset($_POST['submit'])) {
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
 							<div class="col-md-12">
-								<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
-								<?php
-								$vid = $_GET['viewid'];
-								$ret = mysqli_query($con, "select * from users where ID='$vid'");
-								$cnt = 1;
-								while ($row = mysqli_fetch_array($ret)) {
-								?>
-									<table border="1" class="table table-bordered">
-										<tr align="center">
-											<td colspan="4" style="font-size:20px;color:blue">
-												Patient Details</td>
-										</tr>
 
-										<tr>
-											<th scope>Patient Name</th>
-											<td><?php echo $row['fullName']; ?></td>
-											<th scope>Patient Email</th>
-											<td><?php echo $row['email']; ?></td>
-										</tr>
-										<tr>
-											<th scope>Patient Mobile Number</th>
-											<td><?php echo $row['phone']; ?></td>
-											<th>Patient Address</th>
-											<td><?php echo $row['address']; ?></td>
-										</tr>
-										<tr>
-											<th>Patient Gender</th>
-											<td><?php echo $row['gender']; ?></td>
-											<th>Patient Reg Date</th>
-											<td><?php echo $row['regDate']; ?></td>
-										</tr>
+								<div class="row margin-top-30">
+									<div class="col-lg-8 col-md-12">
+										<div class="panel panel-white">
+											<div class="panel-heading">
+												<h3 class="">View Patient Urin Report </h3>
+											</div>
 
-									<?php } ?>
-									</table>
-									<?php
-									$ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
-									?>
+											<?php
+											// Connect with user-patient database
+											$sql = mysqli_query($con, "select * from user_urin where id='" . $did . "'");
+											$row = mysqli_fetch_array($sql);
+											?>
+
+											<?php if ($row['status'] == 1) { ?>
+												<div class="panel-body">
+													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+														<div class="form-group">
+															<table class="parent-table table table-bordered admin-salary" width="1">
+																<thead>
+																	<tr>
+																		<th>Laboratory Test</th>
+																		<th>Patient Value</th>
+																		<th>Normal Value</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td>Patient</td>
+																		<td><?php echo $row['name']; ?></td>
+																		<td>N/A</td>
+																	</tr>
+
+																	<tr>
+																		<td>Hemoglobin(g/l)</td>
+																		<td><?php echo $row['hemoglobingl']; ?></td>
+																		<td>120-160</td>
+																	</tr>
+
+																	<tr>
+																		<td>Leukocyte Count(cell/microL)</td>
+																		<td><?php echo $row['leukocyte_count_cm']; ?></td>
+																		<td>4800-1000</td>
+																	</tr>
+
+																	<tr>
+																		<td>Glucose(mmol/l)</td>
+																		<td><?php echo $row['glucose_ml']; ?></td>
+																		<td>3.9-6.4</td>
+																	</tr>
+																	<tr>
+																		<td>Blood Urea nitrogen(mmol/l)</td>
+																		<td><?php echo $row['blood_urea_nitrogen_ml']; ?></td>
+																		<td>7.1-35.7</td>
+																	</tr>
+																	<tr>
+																		<td>Creatinine(micromml)</td>
+																		<td><?php echo $row['creatinine_m']; ?></td>
+																		<td>44.2-97.2</td>
+																	</tr>
+																	<tr>
+																		<td>Arterial pH</td>
+																		<td><?php echo $row['arterial_ph']; ?></td>
+																		<td>7.35-7.45</td>
+																	</tr>
+
+																</tbody>
+															</table>
+														</div>
+														<div class="col-md-12 text-right mb-3">
+															<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+														</div>
+													</form>
+												</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
+										</div>
+									</div>
+
+								</div>
 							</div>
-							<div class="col-md-12 text-right mb-3">
-								<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<tr>
-										<th>View Report</th>
-									</tr>
+							<div class="col-lg-12 col-md-12">
+								<div class="panel panel-white">
 
-									<tr>
-										<td>
-											<a href="view-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a>
-											
-											<a href="view-urin-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a>
 
-											<a href="view-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a>
-
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
-
-									</tr>
-
-								</table>
+								</div>
 							</div>
 						</div>
 					</div>

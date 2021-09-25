@@ -58,7 +58,7 @@ check_login();
 						<!-- start: BASIC EXAMPLE -->
 							<div class="container-fluid container-fullw bg-white">
 							<div class="row">
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
@@ -72,17 +72,49 @@ check_login();
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">My Appointments</h2>
+											<h2 class="StepTitle">Appointments</h2>
 										
 											<p class="cl-effect-1">
 												<a href="appointment-history.php">
 													View Appointment History
 												</a>
 											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="panel panel-white no-radius text-center">
+										<div class="panel-body">
+											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
+											<h2 class="StepTitle">Patients </h2>
+											
+											<p class="links cl-effect-1">
+												<a href="add-patient-doctor.php">
+													Add
+												</a>
+												<a href="patient-search-doctor.php">
+													Manage
+												</a>
+											</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="panel panel-white no-radius text-center">
+										<div class="panel-body">
+											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
+											<h2 class="StepTitle">Salary Status</h2>
+										
+											<p class="cl-effect-1">
+												<a href="check-salary-doctor.php">
+													Check Salary
+												</a>
+											</p>
+											
 										</div>
 									</div>
 								</div>

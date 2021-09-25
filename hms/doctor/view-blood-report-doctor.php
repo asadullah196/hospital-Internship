@@ -7,26 +7,6 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
-if (isset($_POST['submit'])) {
-
-	$vid = $_GET['viewid'];
-	var_dump($viewid);
-	$bp = $_POST['bp'];
-	$bs = $_POST['bs'];
-	$weight = $_POST['weight'];
-	$temp = $_POST['temp'];
-	$pres = $_POST['pres'];
-
-
-	$query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
-	if ($query) {
-		echo '<script>alert("Medicle history has been added.")</script>';
-		echo "<script>window.location.href ='manage-patient.php'</script>";
-	} else {
-		echo '<script>alert("Something Went Wrong. Please try again")</script>';
-	}
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,64 +58,155 @@ if (isset($_POST['submit'])) {
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
 							<div class="col-md-12">
-								<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
-								<?php
-								$vid = $_GET['viewid'];
-								$ret = mysqli_query($con, "select * from users where ID='$vid'");
-								$cnt = 1;
-								while ($row = mysqli_fetch_array($ret)) {
-								?>
-									<table border="1" class="table table-bordered">
-										<tr align="center">
-											<td colspan="4" style="font-size:20px;color:blue">
-												Patient Details</td>
-										</tr>
 
-										<tr>
-											<th scope>Patient Name</th>
-											<td><?php echo $row['fullName']; ?></td>
-											<th scope>Patient Email</th>
-											<td><?php echo $row['email']; ?></td>
-										</tr>
-										<tr>
-											<th scope>Patient Mobile Number</th>
-											<td><?php echo $row['phone']; ?></td>
-											<th>Patient Address</th>
-											<td><?php echo $row['address']; ?></td>
-										</tr>
-										<tr>
-											<th>Patient Gender</th>
-											<td><?php echo $row['gender']; ?></td>
-											<th>Patient Reg Date</th>
-											<td><?php echo $row['regDate']; ?></td>
-										</tr>
+								<div class="row margin-top-30">
+									<div class="col-lg-8 col-md-12">
+										<div class="panel panel-white">
+											<div class="panel-heading">
+												<h3 class="">View Blood Report </h3>
+											</div>
 
-									<?php } ?>
-									</table>
-									<?php
-									$ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
-									?>
-							</div>
-							<div class="col-md-12 text-right mb-3">
-								<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-									<tr>
-										<th>View Report</th>
-									</tr>
-
-									<tr>
-										<td>
-											<a href="view-patient-history-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a>
+											<?php
+											// Connect with user-patient database
+											$sql = mysqli_query($con, "select * from user_blood where id='" . $did . "'");
+											$row = mysqli_fetch_array($sql);
+											?>
 											
-											<a href="view-urin-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a>
+											<?php if ($row['status'] == 1) { ?>
+											<div class="panel-body">
 
-											<a href="view-blood-report-admin.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a>
+												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+													<div class="form-group">
+														<table class="parent-table table table-bordered admin-salary" width="1">
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Result</th>
+																	<th>Units</th>
+																	<th>Refernce Interval</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Patient</td>
+																	<td><?php echo $row['name']; ?></td>
+																	<td>N/A</td>
+																	<td>N/A</td>
+																</tr>
 
-											<a href="add-patient-admin.php"><button class="btn btn-primary"> Special Note</button></a>
-										</td>
+																<tr>
+																	<td>Albumin</td>
+																	<td><?php echo $row['albumin']; ?></td>
+																	<td>g/dl</td>
+																	<td> 3.5 - 5.0 </td>
+																</tr>
+																<tr>
+																	<td>ALT (SGOT)</td>
+																	<td><?php echo $row['alt_sgot']; ?></td>
+																	<td>IU/L</td>
+																	<td>11 - 36</td>
+																</tr>
+																<tr>
+																	<td>AST (SGOT)</td>
+																	<td><?php echo $row['ast_sgot']; ?></td>
+																	<td>IU/L</td>
+																	<td>38 - 126</td>
+																</tr>
+																<tr>
+																	<td>Alkaline Phosphatase</td>
+																	<td><?php echo $row['alkaline_phosphatase']; ?></td>
+																	<td>mg/dl</td>
+																	<td>0.2 - 1.3</td>
+																</tr>
+																<tr>
+																	<td>Total Billirubin</td>
+																	<td><?php echo $row['total_billirubin']; ?></td>
+																	<td>mg/dl</td>
+																	<td>7 - 17</td>
+																</tr>
+																<tr>
+																	<td>BUN</td>
+																	<td><?php echo $row['bun']; ?></td>
+																	<td>mg/dl</td>
+																	<td>8.4 - 10.2</td>
+																</tr>
+																<tr>
+																	<td>Calcium</td>
+																	<td><?php echo $row['calcium']; ?></td>
+																	<td>mg/dl</td>
+																	<td>98 - 107</td>
+																</tr>
+																<tr>
+																	<td>Chloride</td>
+																	<td><?php echo $row['chloride']; ?></td>
+																	<td>mg/dl</td>
+																	<td>0.7 - 1.2</td>
+																</tr>
+																<tr>
+																	<td>Creatinine</td>
+																	<td><?php echo $row['creatinine']; ?></td>
+																	<td>mmol/L</td>
+																	<td>65 - 105</td>
+																</tr>
+																<tr>
+																	<td>Glucose</td>
+																	<td><?php echo $row['glucose']; ?></td>
+																	<td>mg/dl</td>
+																	<td>100 - 250</td>
+																</tr>
+																<tr>
+																	<td>Lactate dehydrogenase (LDH)</td>
+																	<td><?php echo $row['lactate_dehydrogenase_ldh']; ?></td>
+																	<td>mg/dl</td>
+																	<td>0.65 - 1.05</td>
+																</tr>
+																<tr>
+																	<td>Magnesium</td>
+																	<td><?php echo $row['magnesium']; ?></td>
+																	<td>IU/L</td>
+																	<td>3.6 - 5.0</td>
+																</tr>
+																<tr>
+																	<td>Sodium</td>
+																	<td><?php echo $row['sodium']; ?></td>
+																	<td>mmol/L</td>
+																	<td>137 - 145</td>
+																</tr>
+																<tr>
+																	<td>Total Protien</td>
+																	<td><?php echo $row['total_protien']; ?></td>
+																	<td>mmol/L</td>
+																	<td>6.3 - 8.2</td>
+																</tr>
+																<tr>
+																	<td>Uric Acide</td>
+																	<td><?php echo $row['uric_acide']; ?></td>
+																	<td>mmol/L</td>
+																	<td>227 - 467</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div class="col-md-12 text-right mb-3">
+														<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+													</div>
+												</form>
+											</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
+										</div>
+									</div>
 
-									</tr>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="panel panel-white">
 
-								</table>
+
+								</div>
 							</div>
 						</div>
 					</div>

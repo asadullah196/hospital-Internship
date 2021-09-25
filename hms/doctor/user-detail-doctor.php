@@ -112,11 +112,13 @@ if (isset($_GET['cancel'])) {
 
 									<tr>
 										<td>
-											<a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
+											<a href="view-patient-history-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Patient History</button></a><br/><br/>
 											
-											<a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
+											<a href="view-urin-report-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Urine Report</button></a><br/><br/>
 
-											<a href="#?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
+											<a href="view-blood-report-doctor.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> Blood Report</button></a><br/><br/>
+
+                                            <a href="view-patient-note-doctore.php?viewid=<?php echo $did ?>"><button class="btn btn-primary"> View Special Note</button></a>
 
 										</td>
 
