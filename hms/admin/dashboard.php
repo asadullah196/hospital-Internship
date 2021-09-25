@@ -109,7 +109,9 @@ check_login();
 										<h2 class="StepTitle">Conatctus Queries </h2>
 
 										<p class="links cl-effect-1">
-											<br/>
+											<a href="tomorrow-appointment-admin.php">
+												<span class="title"> Tomorrow's Appointment </span>
+											</a><br/>
 											<a href="unread-queries.php">
 												<span class="title"> Unread Query </span>
 											</a><br/>

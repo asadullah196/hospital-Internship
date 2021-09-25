@@ -114,6 +114,12 @@
 					<ul class="sub-menu">
 
 						<li>
+							<a href="tomorrow-appointment-admin.php">
+								<span class="title"> Tomorrow's Appointment </span>
+							</a>
+						</li>
+
+						<li>
 							<a href="unread-queries.php">
 								<span class="title"> Unread Query </span>
 							</a>
