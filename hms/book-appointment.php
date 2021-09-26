@@ -172,7 +172,7 @@ if (isset($_POST['submit'])) {
 															Time
 
 														</label>
-														<input class="form-control" name="apptime" id="timepicker1" required="required">eg : 10:00 PM
+														<input class="form-control" name="apptime" id="timepicker1" required="required">Sample : 10:00 PM
 													</div>
 
 													<button type="submit" name="submit" class="btn btn-o btn-primary">
@@ -240,8 +240,14 @@ if (isset($_POST['submit'])) {
 
 		$('.datepicker').datepicker({
 			format: 'yyyy-mm-dd',
-			startDate: '-3d'
+			startDate: 'new Date()',
+			daysOfWeekDisabled: [5, 6]
 		});
+
+		$('.datepicker').datepicker({
+			beforeShowDay: $.datepicker.noWeekends
+		});
+
 	</script>
 	<script type="text/javascript">
 		$('#timepicker1').timepicker();
