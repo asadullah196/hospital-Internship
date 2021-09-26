@@ -6,14 +6,63 @@ include('include/checklogin.php');
 check_login();
 
 if (isset($_POST['submit'])) {
+
+	$doctorid = $_POST['doctor'];
+	$appdate = $_POST['appdate'];
+	$time = $_POST['apptime'];
+
+	// Connect with appointment table
+	$sql = mysqli_query($con, "SELECT * FROM `appointment` WHERE `doctorId`='$doctorid' AND `appointmentDate`='$appdate'");
+	
+	$cnt = 0;
+	while ($row = mysqli_fetch_array($sql)) {									
+		$cnt = $cnt + 1;
+	}
+
+	if($cnt>=6){
+		$dateerror = "<br/><br/><h5>All slot booked! Please select next day.</h5>";
+	} else{
+
+		$sql = mysqli_query($con, "SELECT * FROM `appointment` WHERE `doctorId`='$doctorid' AND `appointmentTime`='$time'");
+		$row = mysqli_fetch_array($sql);
+
+		if(!empty($row['appointmentTime'])){
+			$timeerror = "<br/><br/><h5>This slot is booked! Please select next slot.</h5>";
+		}else{
+			$specilization = $_POST['Doctorspecialization'];
+			$doctorid = $_POST['doctor'];
+			$userid = $_SESSION['id'];
+			$fees = $_POST['fees'];
+
+			$appdate = $_POST['appdate'];
+			$time = $_POST['apptime'];
+
+			$userstatus = 1;
+			$docstatus = 1;
+
+			$query = mysqli_query($con, "insert into appointment(doctorSpecialization,doctorId,userId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
+			if ($query) {
+				echo "<script>alert('Your appointment successfully booked');</script>";
+			}
+		}
+		
+	}
+
+}
+
+if (isset($_POST['sub-mit'])) {
+
 	$specilization = $_POST['Doctorspecialization'];
 	$doctorid = $_POST['doctor'];
 	$userid = $_SESSION['id'];
 	$fees = $_POST['fees'];
+
 	$appdate = $_POST['appdate'];
 	$time = $_POST['apptime'];
+
 	$userstatus = 1;
 	$docstatus = 1;
+
 	$query = mysqli_query($con, "insert into appointment(doctorSpecialization,doctorId,userId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
 	if ($query) {
 		echo "<script>alert('Your appointment successfully booked');</script>";
@@ -67,9 +116,6 @@ if (isset($_POST['submit'])) {
 		}
 	</script>
 
-
-
-
 </head>
 
 <body>
@@ -114,8 +160,7 @@ if (isset($_POST['submit'])) {
 													<?php echo htmlentities($_SESSION['msg1'] = ""); ?></p>
 												<form role="form" name="book" method="post">
 
-
-
+												
 													<div class="form-group">
 														<label for="DoctorSpecialization">
 															Doctor Specialization
@@ -133,44 +178,39 @@ if (isset($_POST['submit'])) {
 														</select>
 													</div>
 
-
-
-
 													<div class="form-group">
 														<label for="doctor">
 															Doctors
 														</label>
-														<select name="doctor" class="form-control" id="doctor" onChange="getfee(this.value);" required="required">
+														<select onChange="getfee(this.value);" name="doctor" class="form-control" id="doctor" required="required">
 															<option value="">Select Doctor</option>
 														</select>
+
 													</div>
 
-
-
-
-
+													
 													<div class="form-group">
 														<label for="consultancyfees">
-															Consultancy Fees
+															Fees
 														</label>
 														<select name="fees" class="form-control" id="fees" readonly>
 
 														</select>
 													</div>
 
+
 													<div class="form-group">
 														<label for="AppointmentDate">
-															Date
+															Date <?php echo $dateerror; ?>
 														</label>
 														<input class="form-control datepicker" name="appdate" required="required" data-date-format="yyyy-mm-dd">
 
 													</div>
 
+													
 													<div class="form-group">
 														<label for="Appointmenttime">
-
-															Time
-
+															Time <?php echo $timeerror; ?>
 														</label>
 														<input class="form-control" name="apptime" id="timepicker1" required="required">Sample : 10:00 PM
 													</div>

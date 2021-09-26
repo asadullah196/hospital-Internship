@@ -92,7 +92,7 @@ check_login();
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-										<h2 class="StepTitle"> Book My Appointment</h2>
+										<h2 class="StepTitle"> Book Appointment</h2>
 
 										<p class="links cl-effect-1">
 											<a href="book-appointment.php">
