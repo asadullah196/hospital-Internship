@@ -70,64 +70,63 @@ if (isset($_POST['submit'])) {
                     <div class="container-fluid container-fullw bg-white">
 
 						<div class="row">
-							<div class="col-md-12" id="invoice">
-
-								<?php
-
-
-								$sql = mysqli_query($con, "select users.id as fid, users.fullName as fname, users.email as uemail, users.phone as uphone, users.address as uaddress, appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $did . "'");
-
-								$cnt = 1;
-
-								while ($row = mysqli_fetch_array($sql)) {									
-										$cnt = $cnt + 1;									
-								} 
-
-								// Salary Calculation Block
-								$base_salary = 50000;
-
-								$paitents_number = $cnt-1;
-								$paitents_earning = $paitents_number * 300;
-
-								$total_salary =  $paitents_earning + $base_salary;
-
-								?>
-
-								<h2>Salary Details</h2><br>
-								<table class="parent-table table table-bordered admin-salary" width="1">
+                        <h2 class="text-bold">&nbsp;&nbsp;Tomorrow's Appointment </h2>
+							<div class="col-md-12">
+								<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
+									<?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
+								<table class="table table-hover" id="sample-table-1">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Quantity</th>
-											<th>Rate (BDT)</th>
-											<th>Total (BDT)</th>
+											<th class="center">#</th>
+											<th class="hidden-xs">Patient's Name</th>
+											<th>Patient's Email</th>
+											<th>Patient's Phone</th>
+											<th>Patient's Addrress</th>
+											<th>Appointment Time </th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Base Salary</td>
-											<td>N/A</td>
-											<td>N/A</td>
-											<td><?php echo $base_salary; ?></td>
-										</tr>
-										<tr>
-											<td>Total Patients</td>
-											<td><?php echo $paitents_number; ?></td>
-											<td>300</td>
-											<td><?php echo $paitents_earning; ?></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td>Total Payable</td>
-											<td>= <?php echo $total_salary; ?> BDT</td>
-										</tr>
+										<?php
+
+
+										$sql = mysqli_query($con, "select users.id as fid, users.fullName as fname, users.email as uemail, users.phone as uphone, users.address as uaddress, appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $_SESSION['id'] . "'");
+
+
+
+										$cnt = 1;
+
+										while ($row = mysqli_fetch_array($sql)) {
+
+											$nextday = $row['appointmentDate'];
+											$nextdate = new DateTime($nextday);
+											$nextdate->modify('+1 day');
+
+											$today = $nextdate->format('d-m-y');
+											$tomorrow = date("d-m-y", strtotime('tomorrow'));
+
+											$diff = $tomorrow - $today;
+											if ($diff == 0) {
+
+										?>
+
+												<tr>
+													<td class="center"><?php echo $cnt; ?>.</td>
+													<td class="hidden-xs"><?php echo $row['fname']; ?></td>
+													<td><?php echo $row['uemail']; ?></td>
+													<td><?php echo $row['uphone']; ?></td>
+													<td><?php echo $row['uaddress']; ?></td>
+													<td><?php echo $row['appointmentTime']; ?></td>
+
+												</tr>
+
+										<?php
+												$cnt = $cnt + 1;
+											}
+										} ?>
+
+
 									</tbody>
 								</table>
-
-							</div>
-							<div class="col-md-12 text-right mb-3">
-								<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
 							</div>
 						</div>
 					</div>
