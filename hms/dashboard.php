@@ -106,7 +106,21 @@ check_login();
 
 						<!-- Extentds Feature Area -->
 						<div class="row">
-							<div class="col-sm-4">
+							<div class="col-sm-3">
+								<div class="panel panel-white no-radius text-center">
+									<div class="panel-body">
+									<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
+										<h2 class="StepTitle">Urine Test</h2>
+
+										<p class="links cl-effect-1">
+											<a href="user-urine-test.php">
+												Check Update
+											</a>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i> </span>
@@ -120,7 +134,7 @@ check_login();
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-adn fa-stack-1x fa-inverse"></i> </span>
@@ -134,11 +148,11 @@ check_login();
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<div class="panel panel-white no-radius text-center">
 									<div class="panel-body">
 										<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-arrow-circle-up fa-stack-1x fa-inverse"></i> </span>
-										<h2 class="StepTitle"> Special Test </h2>
+										<h2 class="StepTitle"> Special Note </h2>
 
 										<p class="links cl-effect-1">
 											<a href="#">

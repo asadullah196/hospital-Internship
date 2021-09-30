@@ -216,13 +216,13 @@ body {
 /* all browsers except IE6 and lower */
 
 .images_1_of_3 {
-	width        : 32%;
+	width        : 30%;
 	padding      : 1.5%;
 	border-radius: 1.1em;
 }
 
 .images_1_of_3:first-child {
-	margin-left: 10px;
+	margin-left: 40px;
 }
 
 .listimg_1_of_2 {
