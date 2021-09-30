@@ -5,51 +5,6 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
-if (isset($_POST['submit'])) {
-
-	$doctorid = $_POST['doctor'];
-	$appdate = $_POST['appdate'];
-	$time = $_POST['apptime'];
-
-	// Connect with appointment table
-	$sql = mysqli_query($con, "SELECT * FROM `appointment` WHERE `doctorId`='$doctorid' AND `appointmentDate`='$appdate'");
-	
-	$cnt = 0;
-	while ($row = mysqli_fetch_array($sql)) {									
-		$cnt = $cnt + 1;
-	}
-
-	if($cnt>=6){
-		$dateerror = "<br/><br/><h5>All slot booked! Please select next day.</h5>";
-	} else{
-
-		$sql = mysqli_query($con, "SELECT * FROM `appointment` WHERE `doctorId`='$doctorid' AND `appointmentTime`='$time'");
-		$row = mysqli_fetch_array($sql);
-
-		if(!empty($row['appointmentTime'])){
-			$timeerror = "<br/><br/><h5>This slot is booked! Please select next slot.</h5>";
-		}else{
-			$specilization = $_POST['Doctorspecialization'];
-			$doctorid = $_POST['doctor'];
-			$userid = $_SESSION['id'];
-			$fees = $_POST['fees'];
-
-			$appdate = $_POST['appdate'];
-			$time = $_POST['apptime'];
-
-			$userstatus = 1;
-			$docstatus = 1;
-
-			$query = mysqli_query($con, "insert into appointment(doctorSpecialization,doctorId,userId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
-			if ($query) {
-				echo "<script>alert('Your appointment successfully booked');</script>";
-			}
-		}
-		
-	}
-
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,80 +89,35 @@ if (isset($_POST['submit'])) {
 								<div class="row margin-top-30">
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
-											<div class="panel-heading">
-												<h5 class="panel-title">Book Appointment</h5>
-											</div>
-											<div class="panel-body">
-												<p style="color:red;"><?php echo htmlentities($_SESSION['msg1']); ?>
-													<?php echo htmlentities($_SESSION['msg1'] = ""); ?></p>
-												<form role="form" name="book" method="post">
+											
+											<?php
+											// Connect with user-patient database
+											$sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
+											$row = mysqli_fetch_array($sql);
+											?>
 
-												
-													<div class="form-group">
-														<label for="DoctorSpecialization">
-															Doctor Specialization
-														</label>
-														<select name="Doctorspecialization" class="form-control" onChange="getdoctor(this.value);" required="required">
-															<option value="">Select Specialization</option>
-															<?php $ret = mysqli_query($con, "select * from doctorspecilization");
-															while ($row = mysqli_fetch_array($ret)) {
-															?>
-																<option value="<?php echo htmlentities($row['specilization']); ?>">
-																	<?php echo htmlentities($row['specilization']); ?>
-																</option>
-															<?php } ?>
+											<h2><br/>&nbsp;&nbsp;&nbsp;Special Notes</h2>
 
-														</select>
-													</div>
-
-													<div class="form-group">
-														<label for="doctor">
-															Doctors
-														</label>
-														<select onChange="getfee(this.value);" name="doctor" class="form-control" id="doctor" required="required">
-															<option value="">Select Doctor</option>
-														</select>
-
-													</div>
-
-													
-													<div class="form-group">
-														<label for="consultancyfees">
-															Fees
-														</label>
-														<select name="fees" class="form-control" id="fees" readonly>
-
-														</select>
-													</div>
-
-
-													<div class="form-group">
-														<label for="AppointmentDate">
-															Date <?php echo $dateerror; ?>
-														</label>
-														<input class="form-control datepicker" name="appdate" required="required" data-date-format="yyyy-mm-dd">
-
-													</div>
-
-													
-													<div class="form-group">
-														<label for="Appointmenttime">
-															Time <?php echo $timeerror; ?>
-														</label>
-														<input class="form-control" name="apptime" id="timepicker1" required="required">Sample : 10:00 PM
-													</div>
-
-													<button type="submit" name="submit" class="btn btn-o btn-primary">
-														Submit
-													</button>
-												</form>
-											</div>
+											<?php if ($row['status'] == 1) { ?>
+												<div class="panel-body">
+													<h3><?php echo $row['special_note']; ?></h3>
+												</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;&nbsp;Sorry! There is no notes for you!</h2>";
+											}
+											?>
 										</div>
 									</div>
 
 								</div>
 							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="panel panel-white">
 
+
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -254,27 +164,7 @@ if (isset($_POST['submit'])) {
 	<script src="assets/js/main.js"></script>
 	<!-- start: JavaScript Event Handlers for this page -->
 	<script src="assets/js/form-elements.js"></script>
-	<script>
-		jQuery(document).ready(function() {
-			Main.init();
-			FormElements.init();
-		});
 
-		$('.datepicker').datepicker({
-			format: 'yyyy-mm-dd',
-			startDate: 'new Date()',
-			daysOfWeekDisabled: [5, 6]
-		});
-
-		$('.datepicker').datepicker({
-			beforeShowDay: $.datepicker.noWeekends
-		});
-
-	</script>
-	<script type="text/javascript">
-		$('#timepicker1').timepicker();
-	</script>
-	<!-- end: JavaScript Event Handlers for this page -->
 	<!-- end: CLIP-TWO JAVASCRIPTS -->
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
