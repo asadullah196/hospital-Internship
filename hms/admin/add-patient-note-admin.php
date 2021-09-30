@@ -12,11 +12,11 @@ if (isset($_POST['submit'])) {
 	$id = $did;
 	$notes = $_POST['specialNotes'];
 
-	$sql = mysqli_query($con, "UPDATE user_history SET `special_note`='$notes' WHERE id='$id'");
+	$sql = mysqli_query($con, "UPDATE user_history SET `special_note`='$notes',`status`='2' WHERE id='$id'");
 	
 	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
-		echo "<script>window.location.href ='add-patient-note-admin.php?viewid=$id'</script>";
+		echo "<script>alert('Patient's Notes Added Successfully');</script>";
+		echo "<script>window.location.href ='view-patient-admin.php?viewid=$id'</script>";
 	}
 }
 ?>
@@ -70,6 +70,15 @@ if (isset($_POST['submit'])) {
 						</div>
 					</section>
 					<!-- end: PAGE TITLE -->
+
+					<?php
+						// Connect with user-patient database
+						$sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
+						$row = mysqli_fetch_array($sql);
+					?>
+
+					<?php if ($row['status'] == 1) { ?>
+
 					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
@@ -115,6 +124,15 @@ if (isset($_POST['submit'])) {
 							</div>
 						</div>
 					</div>
+
+					<?php
+						} elseif($row['status'] == 2){
+							echo "<br/><h2>&nbsp;&nbsp;&nbsp;You have already submitted the notes!</h2>";
+						}
+						else {
+							echo "<br/><h2>&nbsp;&nbsp;&nbsp;Sorry! Update patient history first!</h2>";
+						}
+					?>
 				</div>
 			</div>
 			<!-- end: BASIC EXAMPLE -->

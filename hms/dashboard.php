@@ -169,7 +169,7 @@ check_login();
 										<h2 class="StepTitle"> Special Note </h2>
 
 										<p class="links cl-effect-1">
-											<a href="view-notes-patient.php">
+											<a href="view-notes-patient.php?viewid=<?php echo $_SESSION['id']; ?>">
 												Check Update
 											</a>
 										</p>

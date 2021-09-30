@@ -5,12 +5,14 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
+$did = intval($_GET['viewid']); // get patient id
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>User | Book Appointment</title>
+	<title>Patient | View Notes</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -69,14 +71,14 @@ check_login();
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">User | Book Appointment</h1>
+								<h1 class="mainTitle">Patient | View Notes</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>User</span>
+									<span>Patient</span>
 								</li>
 								<li class="active">
-									<span>Book Appointment</span>
+									<span>View Notes</span>
 								</li>
 							</ol>
 					</section>
@@ -98,10 +100,12 @@ check_login();
 
 											<h2><br/>&nbsp;&nbsp;&nbsp;Special Notes</h2>
 
-											<?php if ($row['status'] == 1) { ?>
-												<div class="panel-body">
-													<h3><?php echo $row['special_note']; ?></h3>
-												</div>
+											<?php if ($row['status'] == 2) { ?>
+
+											<div class="panel-body">
+												<h3><?php echo $row['special_note']; ?></h3>
+											</div>
+											
 											<?php
 											} else {
 												echo "<h2>&nbsp;&nbsp;&nbsp;Sorry! There is no notes for you!</h2>";

@@ -58,10 +58,14 @@ if (isset($_GET['cancel'])) {
 						</div>
 					</section>
 					<!-- end: PAGE TITLE -->
+					<?php
+						// Connect with user-patient database
+						$sql = mysqli_query($con, "select * from appointment where id='" . $did . "'");
+						$row = mysqli_fetch_array($sql);
+					?>
+					<?php if ($row['status'] == 1) { ?>
 					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
-
-
 						<div class="row">
 							<div class="col-md-12">
 
@@ -157,6 +161,11 @@ if (isset($_GET['cancel'])) {
 						</div>
 					</div>
 
+					<?php
+						} else {
+							echo "<br/><h2>&nbsp;&nbsp;&nbsp;Sorry! Next appointment date is not updated yet!</h2>";
+						}
+					?>
 					<!-- end: BASIC EXAMPLE -->
 					<!-- end: SELECT BOXES -->
 

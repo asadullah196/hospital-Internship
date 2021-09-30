@@ -10,7 +10,7 @@ check_login();
 <html lang="en">
 
 <head>
-	<title>User | Urine Test Report </title>
+	<title>Patient | Urine Test Report </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -47,14 +47,14 @@ check_login();
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">User | Urine Test Report</h1>
+								<h1 class="mainTitle">Patient | Urine Test Report</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>User </span>
+									<span>Patient </span>
 								</li>
 								<li class="active">
-									<span>Urine Test History</span>
+									<span>Patient Test History</span>
 								</li>
 							</ol>
 						</div>
@@ -139,7 +139,6 @@ check_login();
 									</tbody>
 								</table>
 								<div class="col-md-12 text-right mb-3">
-                                	<button class="btn btn-primary" id="download"> Download</button>
                                 	<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
                             	</div>
 							</div>

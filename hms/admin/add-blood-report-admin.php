@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 	$uric_acide = $_POST['puric_acide'];
 
 
-	$sql = mysqli_query($con, "INSERT INTO `user_blood`(`id`, `name`, `albumin`, `alt_sgot`, `ast_sgot`, `alkaline_phosphatase`, `total_billirubin`, `bun`, `calcium`, `chloride`, `creatinine`, `glucose`, `lactate_dehydrogenase_ldh`, `magnesium`, `sodium`, `total_protien`, `uric_acide`, `status`) VALUES ('$id','$name','$albumin','$alt_sgot','$ast_sgot','$alkaline_phosphatase','$total_billirubin','$bun','$calcium','$chloride','$creatinine','$glucose','$lactate_dehydrogenase_ldh','$magnesium','$total_protien','$uric_acide','1')");
+	$sql = mysqli_query($con, "INSERT INTO `user_blood`(`id`, `name`, `albumin`, `alt_sgot`, `ast_sgot`, `alkaline_phosphatase`, `total_billirubin`, `bun`, `calcium`, `chloride`, `creatinine`, `glucose`, `lactate_dehydrogenase_ldh`, `magnesium`, `sodium`, `total_protien`, `uric_acide`, `status`) VALUES ('$id','$name','$albumin','$alt_sgot','$ast_sgot','$alkaline_phosphatase','$total_billirubin','$bun','$calcium','$chloride','$creatinine','$glucose','$lactate_dehydrogenase_ldh','$magnesium','$sodium','$total_protien','$uric_acide','1')");
 	
 	if ($sql) {
 		echo "<script>alert('Blood Report Added Successfully');</script>";
