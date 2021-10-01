@@ -7,32 +7,12 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
-if (isset($_POST['submit'])) {
-
-	$vid = $_GET['viewid'];
-	var_dump($viewid);
-	$bp = $_POST['bp'];
-	$bs = $_POST['bs'];
-	$weight = $_POST['weight'];
-	$temp = $_POST['temp'];
-	$pres = $_POST['pres'];
-
-
-	$query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
-	if ($query) {
-		echo '<script>alert("Medicle history has been added.")</script>';
-		echo "<script>window.location.href ='manage-patient.php'</script>";
-	} else {
-		echo '<script>alert("Something Went Wrong. Please try again")</script>';
-	}
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Doctor | Add Patient</title>
+	<title>Doctor | View Patient Details</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -63,14 +43,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | View Patients</h1>
+								<h1 class="mainTitle">Doctor | View Patient Details</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Admin</span>
+									<span>Doctor</span>
 								</li>
 								<li class="active">
-									<span>View Patients</span>
+									<span>View Patient Details</span>
 								</li>
 							</ol>
 						</div>

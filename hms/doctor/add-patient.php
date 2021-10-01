@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Patient</span>
+									<span>Doctor</span>
 								</li>
 								<li class="active">
 									<span>Add Patient</span>

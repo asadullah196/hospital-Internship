@@ -52,7 +52,7 @@ if (isset($_GET['cancel'])) {
                             </div>
                             <ol class="breadcrumb">
                                 <li>
-                                    <span>User </span>
+                                    <span>Doctor </span>
                                 </li>
                                 <li class="active">
                                     <span>Patient Details</span>

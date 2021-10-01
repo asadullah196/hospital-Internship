@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
 	$sql = mysqli_query($con, "UPDATE user_history SET `special_note`='$notes' WHERE id='$id'");
 	
 	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
+		echo "<script>alert('Patient info added Successfully');</script>";
 		echo "<script>window.location.href ='add-patient-note-admin.php?viewid=$id'</script>";
 	}
 }
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Doctor | Add Patient</title>
+	<title>Doctor | Update Patient</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -71,14 +71,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Patient | Add Patient</h1>
+								<h1 class="mainTitle">Doctor | Patient Info Update</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Patient</span>
+									<span>Doctor</span>
 								</li>
 								<li class="active">
-									<span>Add Patient</span>
+									<span>Patient Info Update</span>
 								</li>
 							</ol>
 						</div>

@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
 	$sql = mysqli_query($con, "UPDATE medicine SET `name`='$patname',`medicine_one`='$medicine1',`time_one`='$time1',`medicine_two`='$medicine2',`time_two`='$time2',`medicine_three`='$medicine3',`time_three`='$time3',`medicine_four`='$medicine4',`time_four`='$time4',`medicine_five`='$medicine5',`time_five`='$time5',`medicine_extra`='$medicine_extra',`time_extra`='$time_extra' WHERE pid='$id'");
 
 	if ($sql) {
-		echo "<script>alert('Blood Report Added Successfully');</script>";
+		echo "<script>alert('Prescription Update Successfully');</script>";
 		echo "<script>window.location.href ='update-prescription-doctor.php?viewid=$id'</script>";
 	}
 }
@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Doctor | Add Patient</title>
+	<title>Doctor | Update Prescription</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -89,14 +89,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Patient | Add Patient</h1>
+								<h1 class="mainTitle">Doctor | Udate Prescription</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>Patient</span>
+									<span>Doctor</span>
 								</li>
 								<li class="active">
-									<span>Add Patient</span>
+									<span>Update Prescription</span>
 								</li>
 							</ol>
 						</div>
