@@ -108,7 +108,7 @@ if (isset($_GET['del'])) {
 												<td><?php echo $row['updationDate']; ?></td>
 												<td>
 													<div class="visible-md visible-lg hidden-sm hidden-xs">
-														<a href="manage-users.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="fa fa-file"></i></a>
+														<a href="view-patient-details-admin.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="fa fa-file"></i></a>
 													</div>
 												</td>
 												<td>
