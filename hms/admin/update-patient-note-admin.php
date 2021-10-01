@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Admin | Add Patient History </title>
+	<title>Admin | Update Patient Note </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -57,7 +57,7 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Patient History</h1>
+								<h1 class="mainTitle">Admin | Update Patient Note</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
@@ -79,7 +79,7 @@ if (isset($_POST['submit'])) {
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
 											<div class="panel-heading">
-												<h3 class="">Add Patient History</h3>
+												<h3 class="">Update Patient History</h3>
 											</div>
 
 											<?php

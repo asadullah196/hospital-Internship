@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 	$sql = mysqli_query($con, "INSERT INTO `user_history` (`id`, `name`, `age`, `gender`, `height`, `weight`, `temperature`, `blood_pressure`, `covid_vaccinated`, `occupation`, `status`) VALUES ('$id', '$name', '$age', '$gender', '$height', '$weight', '$temperature', '$blood_pressure', '$covid_vaccinated', '$occupation', '1');");
 	
 	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
+		echo "<script>alert('Patient History Added Successfully');</script>";
 		echo "<script>window.location.href ='view-patient-admin.php?viewid=$id'</script>";
 	}
 }

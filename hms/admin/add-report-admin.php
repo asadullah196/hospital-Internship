@@ -19,7 +19,7 @@ if (isset($_POST['blood-submit'])) {
 
     $query = mysqli_query($con, "INSERT INTO `user_urin` (`id`, `hemoglobingl`, `leukocyte_count_cm`, `glucose_ml`, `blood_urea_nitrogen_ml`, `creatinine_m`, `arterial_ph`, `status`) VALUES ('$id', '$hemoglobin', '$leukocyte_count', '$glucose', '$blood_urea_nitrogen', '$creatinine', '$arterial', '1');");
     if ($query) {
-        echo "<script>alert('Patient Added Successfully to the System!');</script>";
+        echo "<script>alert(' Repport Added Successfully to the System!');</script>";
     }
 }
 

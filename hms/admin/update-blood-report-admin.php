@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 	$sql = mysqli_query($con, "UPDATE user_blood SET `name`='$name',`albumin`='$albumin',`alt_sgot`='$alt_sgot',`ast_sgot`='$ast_sgot',`alkaline_phosphatase`='$alkaline_phosphatase',`total_billirubin`='$total_billirubin',`bun`='$bun',`calcium`='$calcium',`chloride`='$chloride',`creatinine`='$creatinine',`glucose`='$glucose',`lactate_dehydrogenase_ldh`='$lactate_dehydrogenase_ldh',`magnesium`='$magnesium',`sodium`='$sodium',`total_protien`='$total_protien',`uric_acide`='$uric_acide' WHERE id='$id'");
 
 	if ($sql) {
-		echo "<script>alert('Blood Report Added Successfully');</script>";
+		echo "<script>alert('Blood Report updated Successfully');</script>";
 		echo "<script>window.location.href ='update-blood-report-admin.php?viewid=$id'</script>";
 	}
 }

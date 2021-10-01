@@ -7,24 +7,12 @@ check_login();
 
 $did = intval($_GET['viewid']); // get patient id
 
-if (isset($_POST['submit'])) {
-
-	$id = $did;
-	$notes = $_POST['specialNotes'];
-
-	$sql = mysqli_query($con, "UPDATE user_history SET `special_note`='$notes' WHERE id='$id'");
-	
-	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
-		echo "<script>window.location.href ='add-patient-note-admin.php?viewid=$id'</script>";
-	}
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Admin | Add Patient History </title>
+	<title>Admin | View Patient Note </title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -57,14 +45,14 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">Admin | Add Patient History</h1>
+								<h1 class="mainTitle">Admin | View Patient Note</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
 									<span>Admin</span>
 								</li>
 								<li class="active">
-									<span>Add Patient History</span>
+									<span>View Patient Note</span>
 								</li>
 							</ol>
 						</div>
@@ -78,10 +66,7 @@ if (isset($_POST['submit'])) {
 								<div class="row margin-top-30">
 									<div class="col-lg-8 col-md-12">
 										<div class="panel panel-white">
-											<div class="panel-heading">
-												<h3 class="">Add Patient History</h3>
-											</div>
-
+											
 											<?php
 											// Connect with user-patient database
 											$sql = mysqli_query($con, "select * from user_history where id='" . $did . "'");
@@ -94,8 +79,7 @@ if (isset($_POST['submit'])) {
 													<div class="form-group">
 
 													<h4>Name: <?php echo $row['name']; ?></h4><br/>
-													<h4>Note :</h4><br/>
-														<textarea id="specialNotes" name="specialNotes" rows="4" cols="50" placeholder="<?php echo $row['special_note']; ?>" readonly></textarea>
+													<h4>Note :</h4><?php echo $row['special_note']; ?>
 													</div>
 												</form>
 											</div>

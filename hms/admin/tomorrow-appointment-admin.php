@@ -7,24 +7,12 @@ check_login();
 
 $did = intval($_GET['viewid']); // get doctor id
 
-if (isset($_POST['submit'])) {
-    $docspecialization = $_POST['Doctorspecialization'];
-    $docname = $_POST['docname'];
-    $docaddress = $_POST['clinicaddress'];
-    $docfees = $_POST['docfees'];
-    $doccontactno = $_POST['doccontact'];
-    $docemail = $_POST['docemail'];
-    $sql = mysqli_query($con, "Update doctors set specilization='$docspecialization',doctorName='$docname',address='$docaddress',docFees='$docfees',contactno='$doccontactno',docEmail='$docemail' where id='$did'");
-    if ($sql) {
-        $msg = "Doctor Details updated Successfully";
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Admin Salary Details</title>
+    <title>Tomorrow's Appointment</title>
 
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -61,7 +49,7 @@ if (isset($_POST['submit'])) {
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Admin Salary</h1>
+                                <h1 class="mainTitle">Tomorrow's Appointment</h1>
                             </div>
                         </div>
                     </section>

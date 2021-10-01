@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 
 	$sql = mysqli_query($con, "INSERT INTO `user_urin` (`id`, `name`, `hemoglobingl`, `leukocyte_count_cm`, `glucose_ml`, `blood_urea_nitrogen_ml`, `creatinine_m`, `arterial_ph`, `status`) VALUES ('$id', '$name', '$hemoglobingl', '$leukocyte_count', '$glucose', '$blood_urea_nitrogen', '$creatinine', '$arterial', '1');");
 	if ($sql) {
-		echo "<script>alert('Doctor info added Successfully');</script>";
+		echo "<script>alert('Urine Report Added Successfully');</script>";
 		echo "<script>window.location.href ='add-urin-report-admin.php?viewid=$id'</script>";
 	}
 }
