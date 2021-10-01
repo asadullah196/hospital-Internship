@@ -13,7 +13,7 @@ if (isset($_GET['cancel'])) {
 <html lang="en">
 
 <head>
-	<title>User | Appointment History</title>
+	<title>Patient | Appointment History</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -45,11 +45,11 @@ if (isset($_GET['cancel'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">User | Appointment History</h1>
+								<h1 class="mainTitle">Patient | Appointment History</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>User </span>
+									<span>Patient </span>
 								</li>
 								<li class="active">
 									<span>Appointment History</span>
@@ -60,7 +60,8 @@ if (isset($_GET['cancel'])) {
 					<!-- end: PAGE TITLE -->
 					<?php
 						// Connect with user-patient database
-						$sql = mysqli_query($con, "select * from appointment where id='" . $did . "'");
+						$did =  $_SESSION['id'];
+						$sql = mysqli_query($con, "select * from appointment where userId='" . $did . "'");
 						$row = mysqli_fetch_array($sql);
 					?>
 					<?php if ($row['status'] == 1) { ?>
@@ -80,7 +81,7 @@ if (isset($_GET['cancel'])) {
 											<th>Fee</th>
 											<th>Appointment Date</th>
 											<th>Current Status</th>
-											<th>Action</th>
+											
 
 										</tr>
 									</thead>
@@ -112,42 +113,6 @@ if (isset($_GET['cancel'])) {
 
 
 													?></td>
-												<td>
-													<div class="visible-md visible-lg hidden-sm hidden-xs">
-														<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) { ?>
-
-
-															<a href="appointment-history.php?id=<?php echo $row['id'] ?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment ?')" class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
-														<?php } else {
-
-															echo "Canceled";
-														} ?>
-													</div>
-													<div class="visible-xs visible-sm hidden-md hidden-lg">
-														<div class="btn-group" dropdown is-open="status.isopen">
-															<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-																<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-															</button>
-															<ul class="dropdown-menu pull-right dropdown-light" role="menu">
-																<li>
-																	<a href="#">
-																		Edit
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		Share
-																	</a>
-																</li>
-																<li>
-																	<a href="#">
-																		Remove
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</td>
 											</tr>
 
 										<?php

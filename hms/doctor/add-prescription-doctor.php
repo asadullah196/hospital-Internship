@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 
 
 	if ($sql) {
-		echo "<script>alert('Blood Report Added Successfully');</script>";
+		echo "<script>alert('Prescription Added Successfully');</script>";
 		echo "<script>window.location.href ='add-prescription-doctor.php?viewid=$id'</script>";
 	}
 }
@@ -272,7 +272,7 @@ if (isset($_POST['submit'])) {
 												</div>
 											<?php
 											} else {
-												echo "<h2>&nbsp;&nbsp;You have submited the prescription already!</h2>";
+												echo "<h2>&nbsp;&nbsp;A prescription is given to this patient already!</h2>";
 											}
 											?>
 										</div>

@@ -72,7 +72,7 @@ $did = intval($_GET['viewid']); // get patient id
 											$row = mysqli_fetch_array($sql);
 											?>
 
-											<?php if ($row['status'] == 1) { ?>
+											<?php if ($row['status'] >= 1) { ?>
 												<div class="panel-body">
 													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
 														<div class="form-group">

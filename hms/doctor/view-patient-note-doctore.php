@@ -71,7 +71,7 @@ $did = intval($_GET['viewid']); // get patient id
 
 											<h2><br/>&nbsp;&nbsp;&nbsp;Special Notes</h2>
 
-											<?php if ($row['status'] == 1) { ?>
+											<?php if ($row['status'] == 2) { ?>
 												<div class="panel-body">
 													<h3><?php echo $row['special_note']; ?></h3>
 												</div>

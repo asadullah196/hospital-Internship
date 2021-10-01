@@ -87,6 +87,7 @@ check_login();
 
 							<div class="col-md-12">
 								<?php
+								$id =  $_SESSION['id'];
 								$ret = mysqli_query($con, "select * from users where ID='$id'");
 								while ($row = mysqli_fetch_array($ret)) {
 								?>
@@ -134,7 +135,7 @@ check_login();
 
 												<div class="panel-body">
 													<form role="form" name="" method="post">
-														
+
 														<?php
 														$medicintable = mysqli_query($con, "select * from medicine where pid='$id'");
 														$med = mysqli_fetch_array($medicintable);
@@ -150,46 +151,44 @@ check_login();
 
 																<tr>
 																	<td>01</td>
-																	<td><input type="text" class="form-control" name="dmedicine1" placeholder="<?php echo $med['medicine_one']; ?>" value="<?php echo $med['medicine_one']; ?>"></td>
-																	<td><input type="text" class="form-control" name="dtime1" placeholder="<?php echo $med['time_one']; ?>" value="<?php echo $med['time_one']; ?>"></td>
+																	<td><?php echo $med['medicine_one']; ?></td>
+																	<td><?php echo $med['time_one']; ?></td>
 																</tr>
 
 																<tr>
 																	<td>02</td>
-																	<td><input type="text" class="form-control" name="dmedicine2" placeholder="<?php echo $med['medicine_two']; ?>" value="<?php echo $med['medicine_two']; ?>"></td>
-																	<td><input type="text" class="form-control" name="dtime2" placeholder="<?php echo $med['time_two']; ?>" value="<?php echo $med['time_two']; ?>"></td>
+																	<td><?php echo $med['medicine_two']; ?></td>
+																	<td><?php echo $med['time_two']; ?></td>
 																</tr>
 
 																<tr>
 																	<td>03</td>
-																	<td><input type="text" class="form-control" name="dmedicine3" placeholder="<?php echo $med['medicine_three']; ?>" value="<?php echo $med['medicine_three']; ?>"></td>
-																	<td><input type="text" class="form-control" name="dtime3" placeholder="<?php echo $med['time_three']; ?>" value="<?php echo $med['time_three']; ?>"></td>
+																	<td><?php echo $med['medicine_three']; ?></td>
+																	<td><?php echo $med['time_three']; ?></td>
 																</tr>
 
 																<tr>
 																	<td>04</td>
-																	<td><input type="text" class="form-control" name="dmedicine4" placeholder="<?php echo $med['medicine_four']; ?>" value="<?php echo $med['medicine_four']; ?>"></td>
-																	<td><input type="text" class="form-control" name="dtime4" placeholder="<?php echo $med['time_four']; ?>" value="<?php echo $med['time_four']; ?>"></td>
+																	<td><?php echo $med['medicine_four']; ?></td>
+																	<td><?php echo $med['time_four']; ?></td>
 																</tr>
 
 																<tr>
 																	<td>05</td>
-																	<td><input type="text" class="form-control" name="dmedicine5" placeholder="<?php echo $med['medicine_five']; ?>" value="<?php echo $med['medicine_five']; ?>"></td>
-																	<td><input type="text" class="form-control" name="dtime5" placeholder="<?php echo $med['time_five']; ?>" value="<?php echo $med['time_five']; ?>"></td>
+																	<td><?php echo $med['medicine_five']; ?></td>
+																	<td><?php echo $med['time_five']; ?></td>
 																</tr>
 
 																<tr>
 																	<td>Extra</td>
-																	<td><textarea type="text" class="form-control" name="dmedicine_extra" placeholder="<?php echo $med['medicine_extra']; ?>" value="<?php echo $med['medicine_extra']; ?>"></textarea></td>
-																	<td><textarea type="text" class="form-control" name="dtime_extra" placeholder="<?php echo $med['time_extra']; ?>" value="<?php echo $med['time_extra']; ?>"></textarea></td>
+																	<td><?php echo $med['medicine_extra']; ?></td>
+																	<td><?php echo $med['time_extra']; ?></td>
 																</tr>
 
 															</table>
 														</div>
 														<div class="col-md-12 text-right mb-3">
-															<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
-																Submit
-															</button>
+															<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
 														</div>
 													</form>
 												</div>
