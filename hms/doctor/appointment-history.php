@@ -60,8 +60,6 @@ if (isset($_GET['cancel'])) {
 					<!-- end: PAGE TITLE -->
 					<!-- start: BASIC EXAMPLE -->
 					<div class="container-fluid container-fullw bg-white">
-
-
 						<div class="row">
 
 							<h2 class="text-bold">&nbsp;&nbsp;Tomorrow's Appointment </h2>
@@ -98,8 +96,8 @@ if (isset($_GET['cancel'])) {
 											$today = $nextdate->format('d-m-y');
 											$tomorrow = date("d-m-y", strtotime('tomorrow'));
 
-											$diff = $tomorrow - $today;
-											if ($diff == 0) {
+											$diff = $today - $tomorrow;
+											if ($diff == 1) {
 
 										?>
 

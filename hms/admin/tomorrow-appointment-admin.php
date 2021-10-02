@@ -77,7 +77,7 @@ $did = intval($_GET['viewid']); // get doctor id
 										<?php
 
 
-										$sql = mysqli_query($con, "select users.id as fid, users.fullName as fname, users.email as uemail, users.phone as uphone, users.address as uaddress, appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $_SESSION['id'] . "'");
+										$sql = mysqli_query($con, "select users.id as fid, users.fullName as fname, users.email as uemail, users.phone as uphone, users.address as uaddress, appointment.*  from appointment join users on users.id=appointment.userId");
 
 
 
@@ -92,8 +92,8 @@ $did = intval($_GET['viewid']); // get doctor id
 											$today = $nextdate->format('d-m-y');
 											$tomorrow = date("d-m-y", strtotime('tomorrow'));
 
-											$diff = $tomorrow - $today;
-											if ($diff == 0) {
+											$diff = $today - $tomorrow;
+											if ($diff == 1) {
 
 										?>
 

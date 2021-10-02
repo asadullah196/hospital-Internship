@@ -19,14 +19,14 @@ if (isset($_POST['submit'])) {
 		$cnt = $cnt + 1;
 	}
 
-	if($cnt>=6){
+	if($cnt>=15){
 		$dateerror = "<br/><br/><h5>All slot booked! Please select next day.</h5>";
 	} else{
 
-		$sql = mysqli_query($con, "SELECT * FROM `appointment` WHERE `doctorId`='$doctorid' AND `appointmentTime`='$time'");
+		$sql = mysqli_query($con, "SELECT * FROM `appointment` WHERE `doctorId`='$doctorid' AND `appointmentTime`='$time' AND 'appointmentDate'='$appdate'");
 		$row = mysqli_fetch_array($sql);
 
-		if(!empty($row['appointmentTime'])){
+		if(!empty($row['appointmentTime']) && !empty($row['appointmentDate'])){
 			$timeerror = "<br/><br/><h5>This slot is booked! Please select next slot.</h5>";
 		}else{
 			$specilization = $_POST['Doctorspecialization'];
