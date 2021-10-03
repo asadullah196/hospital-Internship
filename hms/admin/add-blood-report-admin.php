@@ -204,13 +204,13 @@ if (isset($_POST['submit'])) {
 																	<td>137 - 145</td>
 																</tr>
 																<tr>
-																	<td>Total Protien</td>
-																	<td><input type="text" class="form-control" name="ptotal_protien" placeholder="Total Protien" required></td>
+																	<td>Total Protein</td>
+																	<td><input type="text" class="form-control" name="ptotal_protien" placeholder="Total Protein" required></td>
 																	<td>mmol/L</td>
 																	<td>6.3 - 8.2</td>
 																</tr>
 																<tr>
-																	<td>Uric Acide</td>
+																	<td>Uric Acid</td>
 																	<td><input type="text" class="form-control" name="puric_acide" placeholder="Uric Acide" required></td>
 																	<td>mmol/L</td>
 																	<td>227 - 467</td>

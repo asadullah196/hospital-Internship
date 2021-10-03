@@ -142,7 +142,7 @@ if (isset($_POST['submit'])) {
 																<tr>
 																	<td>Temperature</td>
 																	<td><input type="text" name="ptemperature" class="form-control" placeholder="Temperature" required></td>
-																	<td>Degrees Celsius</td>
+																	<td>Degree Celsius</td>
 																</tr>
 
 																<tr>

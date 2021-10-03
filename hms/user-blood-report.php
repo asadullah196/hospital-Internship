@@ -82,71 +82,160 @@ check_login();
 					</section>
 					<section>
 						<?php
-						$sql = mysqli_query($con, "SELECT * FROM user_urin where id='" . $_SESSION['id'] . "'");
+						$sql = mysqli_query($con, "SELECT * FROM user_blood where id='" . $_SESSION['id'] . "'");
 						$row = mysqli_fetch_array($sql);
 						?>
 					</section>
 					<!-- start: BASIC EXAMPLE -->
-					<div class="container-fluid container-fullw bg-white" id="invoice">
-
+					<div class="container-fluid container-fullw bg-white">
 						<div class="row">
 							<div class="col-md-12">
-								<div class="report-detail">
-									<h3>Blood Test Report</h3>
+
+								<div class="row margin-top-30">
+									<div class="col-lg-8 col-md-12">
+										<div class="panel panel-white">
+											<div class="panel-heading">
+												<h3 class="">View Blood Report </h3>
+											</div>
+
+											
+											<?php if ($row['status'] == 1) { ?>
+											<div class="panel-body">
+
+												<form role="form" name="adddoc" method="post" onSubmit="return valid();">
+													<div class="form-group">
+														<table class="parent-table table table-bordered admin-salary" width="1">
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Result</th>
+																	<th>Units</th>
+																	<th>Refernce Interval</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Patient</td>
+																	<td><?php echo $row['name']; ?></td>
+																	<td>N/A</td>
+																	<td>N/A</td>
+																</tr>
+
+																<tr>
+																	<td>Albumin</td>
+																	<td><?php echo $row['albumin']; ?></td>
+																	<td>g/dl</td>
+																	<td> 3.5 - 5.0 </td>
+																</tr>
+																<tr>
+																	<td>ALT (SGOT)</td>
+																	<td><?php echo $row['alt_sgot']; ?></td>
+																	<td>IU/L</td>
+																	<td>11 - 36</td>
+																</tr>
+																<tr>
+																	<td>AST (SGOT)</td>
+																	<td><?php echo $row['ast_sgot']; ?></td>
+																	<td>IU/L</td>
+																	<td>38 - 126</td>
+																</tr>
+																<tr>
+																	<td>Alkaline Phosphatase</td>
+																	<td><?php echo $row['alkaline_phosphatase']; ?></td>
+																	<td>mg/dl</td>
+																	<td>0.2 - 1.3</td>
+																</tr>
+																<tr>
+																	<td>Total Billirubin</td>
+																	<td><?php echo $row['total_billirubin']; ?></td>
+																	<td>mg/dl</td>
+																	<td>7 - 17</td>
+																</tr>
+																<tr>
+																	<td>BUN</td>
+																	<td><?php echo $row['bun']; ?></td>
+																	<td>mg/dl</td>
+																	<td>8.4 - 10.2</td>
+																</tr>
+																<tr>
+																	<td>Calcium</td>
+																	<td><?php echo $row['calcium']; ?></td>
+																	<td>mg/dl</td>
+																	<td>98 - 107</td>
+																</tr>
+																<tr>
+																	<td>Chloride</td>
+																	<td><?php echo $row['chloride']; ?></td>
+																	<td>mg/dl</td>
+																	<td>0.7 - 1.2</td>
+																</tr>
+																<tr>
+																	<td>Creatinine</td>
+																	<td><?php echo $row['creatinine']; ?></td>
+																	<td>mmol/L</td>
+																	<td>65 - 105</td>
+																</tr>
+																<tr>
+																	<td>Glucose</td>
+																	<td><?php echo $row['glucose']; ?></td>
+																	<td>mg/dl</td>
+																	<td>100 - 250</td>
+																</tr>
+																<tr>
+																	<td>Lactate dehydrogenase (LDH)</td>
+																	<td><?php echo $row['lactate_dehydrogenase_ldh']; ?></td>
+																	<td>mg/dl</td>
+																	<td>0.65 - 1.05</td>
+																</tr>
+																<tr>
+																	<td>Magnesium</td>
+																	<td><?php echo $row['magnesium']; ?></td>
+																	<td>IU/L</td>
+																	<td>3.6 - 5.0</td>
+																</tr>
+																<tr>
+																	<td>Sodium</td>
+																	<td><?php echo $row['sodium']; ?></td>
+																	<td>mmol/L</td>
+																	<td>137 - 145</td>
+																</tr>
+																<tr>
+																	<td>Total Protien</td>
+																	<td><?php echo $row['total_protien']; ?></td>
+																	<td>mmol/L</td>
+																	<td>6.3 - 8.2</td>
+																</tr>
+																<tr>
+																	<td>Uric Acide</td>
+																	<td><?php echo $row['uric_acide']; ?></td>
+																	<td>mmol/L</td>
+																	<td>227 - 467</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<div class="col-md-12 text-right mb-3">
+														<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
+													</div>
+												</form>
+											</div>
+											<?php
+											} else {
+												echo "<h2>&nbsp;&nbsp;Sorry! No report updated yet</h2>";
+											}
+											?>
+										</div>
+									</div>
+
 								</div>
-								<!-- Code for Urin Test -->
-								<table class="parent-table table table-bordered admin-salary" width="1">
-									<thead>
-										<tr>
-											<th>Laboratory Test</th>
-											<th>Patient value</th>
-											<th>Normal Value</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Hemoglobin(g/l)</td>
-											<td><?php echo htmlentities($row['hemoglobingl']); ?></td>
-											<td>120-160</td>
-										</tr>
-										<tr>
-											<td>Leukocyte Count(cell/microL)</td>
-											<td><?php echo htmlentities($row['leukocyte_count_cm']); ?></td>
-											<td>4800-1000</td>
-										</tr>
-										<tr>
-											<td>Glucose(mmol/l)</td>
-											<td><?php echo htmlentities($row['glucose_ml']); ?></td>
-											<td>3.9-6.4</td>
-										</tr>
-										<tr>
-											<td>Blood Urea nitrogen(mmol/l)</td>
-											<td><?php echo htmlentities($row['blood_urea_nitrogen_ml']); ?></td>
-											<td>7.1-35.7</td>
-										</tr>
-										</tr>
-										<tr>
-											<td>Creatinine(micromml)</td>
-											<td><?php echo htmlentities($row['creatinine_m']); ?></td>
-											<td>44.2-97.2</td>
-										</tr>
-										</tr>
-										<tr>
-											<td>Arterial pH</td>
-											<td><?php echo htmlentities($row['arterial_ph']); ?></td>
-											<td>7.35-7.45</td>
-										</tr>
-									</tbody>
-								</table>
-								<div class="col-md-12 text-right mb-3">
-                                	<button class="btn btn-primary" onclick="window.print()"> Print PDF</button>
-                            	</div>
+							</div>
+							<div class="col-lg-12 col-md-12">
+								<div class="panel panel-white">
+
+
+								</div>
 							</div>
 						</div>
-
-						<!-- end: BASIC EXAMPLE -->
-						<!-- end: SELECT BOXES -->
-
 					</div>
 				</div>
 			</div>

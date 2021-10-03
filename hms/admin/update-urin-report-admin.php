@@ -116,7 +116,7 @@ if (isset($_POST['submit'])) {
 
 																<tr>
 																	<td>Hemoglobin(g/l)</td>
-																	<td><input type="text" name="phemoglobin" class="form-control" placeholder="<?php echo $row['hemoglobingl'];?>" value="<?php echo $row['hemoglobingl'];?>" required></td>
+																	<td><input type="text" name="phemoglobingl" class="form-control" placeholder="<?php echo $row['hemoglobingl'];?>" value="<?php echo $row['hemoglobingl'];?>" required></td>
 																	<td>120-160</td>
 																</tr>
 

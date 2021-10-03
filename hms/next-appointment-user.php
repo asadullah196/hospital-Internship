@@ -80,6 +80,7 @@ if (isset($_GET['cancel'])) {
 											<th>Specialization</th>
 											<th>Fee</th>
 											<th>Appointment Date</th>
+											<th>Time</th>
 											<th>Current Status</th>
 											
 
@@ -98,6 +99,7 @@ if (isset($_GET['cancel'])) {
 												<td><?php echo $row['doctorSpecialization']; ?></td>
 												<td><?php echo $row['nextFees']; ?></td>
 												<td><?php echo $row['next_date']; ?></td>
+												<td><?php echo $row['nextTime']; ?></td>
 												<td>
 													<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
 														echo "Active";
